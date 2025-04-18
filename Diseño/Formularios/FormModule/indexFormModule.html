@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/bootstrap/css/bootstrap.css" />
+  <script src="/bootstrap/js/bootstrap.js"></script>
+  <link rel="stylesheet" href="css/style.css" />
+  <title>FormModule</title>
+</head>
+<body>
+  <nav class="navbar navbar-dark bg-dark fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">FormModule</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Formularios</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <li class="nav-item"><a href="../../index.html" class="nav-link">Home</a></li>
+            <li class="nav-item"> <a href="/Formularios/Person/indexPerson.html" class="nav-link">Person</a></li>
+            <li class="nav-item letras"><a href="/Formularios/User/indexUser.html" class="nav-link">User</a></li>
+            <li class="nav-item"> <a href="/Formularios/RolUser/indexRolUser.html" class="nav-link">RolUser</a></li>
+            <li class="nav-item"><a href="/Formularios/RolFormPermission/indexRolFormPermission.html" class="nav-link">RolFormPermission</a></li>
+            <li class="nav-item"><a href="/Formularios/Rol/indexRol.html" class="nav-link">Rol</a></li>
+            <li class="nav-item"><a href="/Formularios/Form/indexForm.html" class="nav-link">Form</a></li>
+            <li class="nav-item"><a href="/Formularios/FormModule/indexFormModule.html" class="nav-link">FormModule</a></li>
+            <li class="nav-item"><a href="/Formularios/Module/indexModule.html" class="nav-link">Module</a></li>
+            <li class="nav-item"><a href="/Formularios/Permission/indexPermission.html" class="nav-link">Permission</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <h1 class="mt-5 pt-4 text-center">FormModule</h1>
+
+  <div class="container container1 mt-4">
+    <form id="rolForm" class="p-4 shadow rounded w-75 mx-auto">
+      <input type="hidden" id="formModuleId" />
+      <div class="form-floating mb-3">
+        <input type="number" class="form-control" id="formId" placeholder="formId" required />
+        <label for="name">FomrId</label>
+      </div>
+      <div class="form-floating mb-3">
+        <input type="number" class="form-control" id="moduleId" placeholder="moduleId" required />
+        <label for="description">ModeloId</label>
+      </div>
+      <button type="submit" class="btn btn-primary w-100">Registrar</button>
+    </form>
+  </div>
+
+  <div class="container mt-4">
+    <div class="table-responsive">
+      <table class="table table-bordered" id="rolesTable">
+        <thead class="table">
+          <tr>
+            <th>FormId</th>
+            <th>ModeloId</th>
+            <th>Opciones</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <script type="module" src="js/script.js"></script>
+</body>
+</html>

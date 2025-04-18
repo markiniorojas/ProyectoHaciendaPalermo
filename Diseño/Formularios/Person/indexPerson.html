@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.css">
+    <script src="/bootstrap/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <title>Personas</title>
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Person</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+            <div class="offcanvas-header">
+              <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Formularios</h5>
+              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+              <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                <li class="nav-item"><a href="../../index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"> <a href="/Formularios/Person/indexPerson.html" class="nav-link">Person</a></li>
+                <li class="nav-item letras"><a href="/Formularios/User/indexUser.html" class="nav-link">User</a></li>
+                <li class="nav-item"> <a href="/Formularios/RolUser/indexRolUser.html" class="nav-link">RolUser</a></li>
+                <li class="nav-item"><a href="/Formularios/RolFormPermission/indexRolFormPermission.html" class="nav-link">RolFormPermission</a></li>
+                <li class="nav-item"><a href="/Formularios/Rol/indexRol.html" class="nav-link">Rol</a></li>
+                <li class="nav-item"><a href="/Formularios/Form/indexForm.html" class="nav-link">Form</a></li>
+                <li class="nav-item"><a href="/Formularios/FormModule/indexFormModule.html" class="nav-link">FormModule</a></li>
+                <li class="nav-item"><a href="/Formularios/Module/indexModule.html" class="nav-link">Module</a></li>
+                <li class="nav-item"><a href="/Formularios/Permission/indexPermission.html" class="nav-link">Permission</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      
+    <h1>Personas</h1>
+
+    <div class="container container1 mt-5">
+      <form id="personForm" class="p-4 shadow rounded w-75 mx-auto">
+        <input type="hidden" id="personId">
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="firstName" placeholder="Nombre">
+          <label for="firstName">Nombre</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control w-75" id="lastName" placeholder="Apellido">
+          <label for="lastName">Apellido</label>
+        </div>
+        <div class="form-floating mb-3">
+          <select class="form-select" id="documentType" aria-label="Tipo de Documento">
+            <option selected disabled>Seleccione un tipo de documento</option>
+            <option value="CC">CC</option>
+            <option value="TI">TI</option>
+          </select>
+          <label for="documentType">Tipo de Documento</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="number" class="form-control w-75" id="document" placeholder="Número de Documento">
+          <label for="document">Número de Documento</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="date" class="form-control w-75" id="dateBorn" placeholder="Fecha de nacimiento">
+          <label for="dateBorn">Fecha de Nacimiento</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="number" class="form-control w-75" id="phoneNumber" placeholder="Teléfono">
+          <label for="phoneNumber">Teléfono</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control w-75" id="eps" placeholder="EPS">
+          <label for="eps">EPS</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control w-75" id="genero" placeholder="Género">
+          <label for="genero">Género</label>
+        </div>
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" id="relatedPerson">
+          <label class="form-check-label" for="relatedPerson">
+            Persona Relacionada
+          </label>
+        </div>
+        <button type="submit" class="btn btn-primary">Registrar</button>
+       </form>
+  </div>
+    
+
+    <div class="container .container2">
+      <div class="table-responsive">
+        <table class="table table-bordered" id="rolesTable">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>TipoDocumento</th>
+                <th>NumeroDocumento</th>
+                <th>Telefono</th>
+                <th>EPS</th>
+                <th>Genero</th>
+                <th>Opciones</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+      </div>
+    </div>
+    <script type="module" src="js/script.js"></script>
+
+</body>
+</html>
