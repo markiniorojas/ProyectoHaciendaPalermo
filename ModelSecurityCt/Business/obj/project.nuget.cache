@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "3fOfzzm6XmU=",
+  "dgSpecHash": "/6ugGExi5uc=",
   "success": true,
-  "projectFilePath": "C:\\ProyectoMarcos\\ProyectoImplementadoEstilos\\ModelSecurityCt\\Business\\Business.csproj",
+  "projectFilePath": "C:\\ProyectoHaciendaEnAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Business\\Business.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\SENA\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\SENA\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",

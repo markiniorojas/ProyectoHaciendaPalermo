@@ -59,6 +59,7 @@ namespace Data.Core
         /// <param name="id">Identificador de la entidad a marcar como eliminada.</param>
         /// <returns>True si se marcó como eliminada, False si no fue posible.</returns>
         Task<bool> DeleteLogicalAsync(int id);
+        Task<bool> PatchLogicalAsync(int id);
     }
 
 

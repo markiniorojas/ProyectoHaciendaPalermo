@@ -57,5 +57,7 @@ namespace Business.Core
         /// <param name="id">Identificador del registro a marcar como eliminado.</param>
         /// <returns>True si la operación fue exitosa; false en caso contrario.</returns>
         Task<bool> DeleteLogicalAsync(int id);
+
+        Task<bool> PatchLogicalAsync(int id);
     }
 }

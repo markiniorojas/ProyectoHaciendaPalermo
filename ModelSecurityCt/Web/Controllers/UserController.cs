@@ -203,23 +203,23 @@ namespace Web.Controllers
             }
         }
 
-        [HttpPatch("Logico/{id:int}")]
+        [HttpPatch("recuperarLogica/{id:int}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
         [ProducesResponseType(500)]
 
-        public async Task<IActionResult> DeleteUserLogical(int id)
+        public async Task<IActionResult> PatchLogicalAsync(int id)
         {
             try
             {
                 if (id <= 0)
                 {
-                    return BadRequest(new { message = "El ID del user debe ser mayor que cero" });
+                    return BadRequest(new { message = "El ID del user debe igual a cero" });
                 }
 
-                await _userBusiness.DeleteLogicalAsync(id);
-                return Ok(new { message = "user eliminado lógico correctamente" });
+                await _userBusiness.PatchLogicalAsync(id);
+                return Ok(new { message = "user restablecido lógico correctamente" });
             }
             catch (EntityNotFoundException ex)
             {

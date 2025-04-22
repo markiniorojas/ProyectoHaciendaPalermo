@@ -1,11 +1,11 @@
 {
   "Files": [
     {
-      "Id": "C:\\ProyectoMarcos\\ProyectoImplementadoEstilos\\ModelSecurityCt\\Web\\wwwroot\\Css\\style.css",
+      "Id": "C:\\ProyectoHaciendaEnAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Web\\wwwroot\\Css\\style.css",
       "PackagePath": "staticwebassets\\Css\\style.css"
     },
     {
-      "Id": "C:\\ProyectoMarcos\\ProyectoImplementadoEstilos\\ModelSecurityCt\\Web\\wwwroot\\Js\\script.js",
+      "Id": "C:\\ProyectoHaciendaEnAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Web\\wwwroot\\Js\\script.js",
       "PackagePath": "staticwebassets\\Js\\script.js"
     },
     {

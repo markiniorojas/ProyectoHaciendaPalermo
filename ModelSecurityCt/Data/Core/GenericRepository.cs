@@ -98,5 +98,22 @@ namespace Data.Core
             _logger.LogWarning($"La entidad {typeof(T).Name} no tiene propiedad IsDeleted");
             return false;
         }
+
+        public async Task<bool> PatchLogicalAsync(int id)
+        {
+            var entity = await _context.Set<T>().FindAsync(id);
+            if (entity == null) return false;
+
+            var prop = entity.GetType().GetProperty("IsDeleted");
+            if (prop != null)
+            {
+                prop.SetValue(entity, false);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            _logger.LogWarning($"La entidad {typeof(T).Name} no tiene propiedad IsDeleted");
+            return false;
+        }
+
     }
 }

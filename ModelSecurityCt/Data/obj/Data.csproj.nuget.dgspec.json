@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\ProyectoMarcos\\ProyectoImplementadoEstilos\\ModelSecurityCt\\Data\\Data.csproj": {}
+    "C:\\ProyectoHaciendaEnAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Data\\Data.csproj": {}
   },
   "projects": {
-    "C:\\ProyectoMarcos\\ProyectoImplementadoEstilos\\ModelSecurityCt\\Data\\Data.csproj": {
+    "C:\\ProyectoHaciendaEnAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Data\\Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\ProyectoMarcos\\ProyectoImplementadoEstilos\\ModelSecurityCt\\Data\\Data.csproj",
+        "projectUniqueName": "C:\\ProyectoHaciendaEnAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Data\\Data.csproj",
         "projectName": "Data",
-        "projectPath": "C:\\ProyectoMarcos\\ProyectoImplementadoEstilos\\ModelSecurityCt\\Data\\Data.csproj",
+        "projectPath": "C:\\ProyectoHaciendaEnAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Data\\Data.csproj",
         "packagesPath": "C:\\Users\\SENA\\.nuget\\packages\\",
-        "outputPath": "C:\\ProyectoMarcos\\ProyectoImplementadoEstilos\\ModelSecurityCt\\Data\\obj\\",
+        "outputPath": "C:\\ProyectoHaciendaEnAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Data\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -32,8 +32,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\ProyectoMarcos\\ProyectoImplementadoEstilos\\ModelSecurityCt\\Entity\\Entity.csproj": {
-                "projectPath": "C:\\ProyectoMarcos\\ProyectoImplementadoEstilos\\ModelSecurityCt\\Entity\\Entity.csproj"
+              "C:\\ProyectoHaciendaEnAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Entity\\Entity.csproj": {
+                "projectPath": "C:\\ProyectoHaciendaEnAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Entity\\Entity.csproj"
               }
             }
           }
@@ -83,14 +83,14 @@
         }
       }
     },
-    "C:\\ProyectoMarcos\\ProyectoImplementadoEstilos\\ModelSecurityCt\\Entity\\Entity.csproj": {
+    "C:\\ProyectoHaciendaEnAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Entity\\Entity.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\ProyectoMarcos\\ProyectoImplementadoEstilos\\ModelSecurityCt\\Entity\\Entity.csproj",
+        "projectUniqueName": "C:\\ProyectoHaciendaEnAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Entity\\Entity.csproj",
         "projectName": "Entity",
-        "projectPath": "C:\\ProyectoMarcos\\ProyectoImplementadoEstilos\\ModelSecurityCt\\Entity\\Entity.csproj",
+        "projectPath": "C:\\ProyectoHaciendaEnAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Entity\\Entity.csproj",
         "packagesPath": "C:\\Users\\SENA\\.nuget\\packages\\",
-        "outputPath": "C:\\ProyectoMarcos\\ProyectoImplementadoEstilos\\ModelSecurityCt\\Entity\\obj\\",
+        "outputPath": "C:\\ProyectoHaciendaEnAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Entity\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

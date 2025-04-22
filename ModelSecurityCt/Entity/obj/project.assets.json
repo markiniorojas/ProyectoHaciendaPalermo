@@ -4919,11 +4919,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\ProyectoMarcos\\ProyectoImplementadoEstilos\\ModelSecurityCt\\Entity\\Entity.csproj",
+      "projectUniqueName": "C:\\ProyectoHaciendaEnAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Entity\\Entity.csproj",
       "projectName": "Entity",
-      "projectPath": "C:\\ProyectoMarcos\\ProyectoImplementadoEstilos\\ModelSecurityCt\\Entity\\Entity.csproj",
+      "projectPath": "C:\\ProyectoHaciendaEnAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Entity\\Entity.csproj",
       "packagesPath": "C:\\Users\\SENA\\.nuget\\packages\\",
-      "outputPath": "C:\\ProyectoMarcos\\ProyectoImplementadoEstilos\\ModelSecurityCt\\Entity\\obj\\",
+      "outputPath": "C:\\ProyectoHaciendaEnAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Entity\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

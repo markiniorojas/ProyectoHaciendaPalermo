@@ -114,5 +114,18 @@ namespace Business.Core
                 throw;
             }
         }
+
+        public virtual async Task<bool> PatchLogicalAsync(int id)
+        {
+            try
+            {
+                return await _repository.PatchLogicalAsync(id);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error al restaurar logicamente el registro con ID {Id} de {Entity}", id, typeof(TEntity).Name);
+                throw;
+            }
+        }
     }
 }
