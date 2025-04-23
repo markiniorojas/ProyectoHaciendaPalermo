@@ -123,7 +123,7 @@ namespace Business.Core
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error al restaurar logicamente el registro con ID {Id} de {Entity}", id, typeof(TEntity).Name);
+                _logger.LogError(ex, "Error al restaurar lógicamente el registro con ID {Id} de {Entity}", id, typeof(TEntity).Name);
                 throw;
             }
         }

@@ -12,12 +12,12 @@ namespace Web.Controllers
     public class RolUserController : ControllerBase
     {
         private readonly RolUserService _RolUserBusiness;
-        private readonly ILogger<RolUserController> _Logger;
+        private readonly ILogger<RolUserController> _logger;
 
-        public RolUserController(RolUserService rolUserBusiness, ILogger<RolUserController> logger)
+        public RolUserController(RolUserService rolUserBusiness, ILogger<RolUserController> _logger)
         {
             _RolUserBusiness = rolUserBusiness;
-            _Logger = logger;
+            _logger = _logger;
         }
 
         [HttpGet]
@@ -32,7 +32,7 @@ namespace Web.Controllers
             }
             catch (ExternalServiceException ex)
             {
-                _Logger.LogError(ex, "Error al obtner RolForm");
+                _logger.LogError(ex, "Error al obtner RolForm");
                 return StatusCode(500, new { message = ex.Message });
             }
         }
@@ -51,17 +51,17 @@ namespace Web.Controllers
             }
             catch (ValidationException ex)
             {
-                _Logger.LogWarning(ex, "Validación fallida por el RolUser con ID: {RolUserId}", id);
+                _logger.LogWarning(ex, "Validación fallida por el RolUser con ID: {RolUserId}", id);
                 return BadRequest(new { message = ex.Message });
             }
             catch (EntityNotFoundException ex)
             {
-                _Logger.LogInformation(ex, "RolUser no encontrado con ID: {RolUser}", id);
+                _logger.LogInformation(ex, "RolUser no encontrado con ID: {RolUser}", id);
                 return NotFound(new { message = ex.Message });
             }
             catch (ExternalServiceException ex)
             {
-                _Logger.LogError(ex, "Error al obtner RolUser con ID: {RolUserId}", id);
+                _logger.LogError(ex, "Error al obtner RolUser con ID: {RolUserId}", id);
                 return StatusCode(500, new { message = ex.Message });
             }
         }
@@ -85,17 +85,17 @@ namespace Web.Controllers
             }
             catch (ValidationException ex)
             {
-                _Logger.LogWarning(ex, "Error de validación al crear un RolUser");
+                _logger.LogWarning(ex, "Error de validación al crear un RolUser");
                 return BadRequest(new { message = ex.Message });
             }
             catch (ExternalServiceException ex)
             {
-                _Logger.LogError(ex, "Error en la base de datos al crear un RolUser");
+                _logger.LogError(ex, "Error en la base de datos al crear un RolUser");
                 return StatusCode(500, new { message = "Error interno del servidor al procesar la solicitud." });
             }
             catch (Exception ex)
             {
-                _Logger.LogError(ex, "Error desconocido al crear un RolUser");
+                _logger.LogError(ex, "Error desconocido al crear un RolUser");
                 return StatusCode(500, new { message = "Ocurrió un error inesperado." });
             }
         }
@@ -118,17 +118,17 @@ namespace Web.Controllers
             }
             catch (ValidationException ex)
             {
-                _Logger.LogWarning(ex, "Validación fallida al actualizar RolUser");
+                _logger.LogWarning(ex, "Validación fallida al actualizar RolUser");
                 return BadRequest(new { message = ex.Message });
             }
             catch (EntityNotFoundException ex)
             {
-                _Logger.LogInformation(ex, "rolUser no encontrado con ID {RolUserId}");
+                _logger.LogInformation(ex, "rolUser no encontrado con ID {RolUserId}");
                 return NotFound(new { message = ex.Message });
             }
             catch (ExternalServiceException ex)
             {
-                _Logger.LogError(ex, "Error al rolUser Form con ID {RolUserId}");
+                _logger.LogError(ex, "Error al rolUser Form con ID {RolUserId}");
                 return StatusCode(500, new { message = ex.Message });
             }
         }
@@ -152,12 +152,12 @@ namespace Web.Controllers
             }
             catch (EntityNotFoundException ex)
             {
-                _Logger.LogInformation(ex, "RolUser no encontrado con ID: {RolId}", id);
+                _logger.LogInformation(ex, "RolUser no encontrado con ID: {RolId}", id);
                 return NotFound(new { message = ex.Message });
             }
             catch (ExternalServiceException ex)
             {
-                _Logger.LogError(ex, "Error al eliminar el RolUser con ID: {RolUserId}", id);
+                _logger.LogError(ex, "Error al eliminar el RolUser con ID: {RolUserId}", id);
                 return StatusCode(500, new { message = ex.Message });
             }
         }
@@ -182,15 +182,44 @@ namespace Web.Controllers
             }
             catch (EntityNotFoundException ex)
             {
-                _Logger.LogInformation(ex, "rolUser  no encontrado con ID: " + id);
+                _logger.LogInformation(ex, "rolUser  no encontrado con ID: " + id);
                 return NotFound(new { message = ex.Message });
             }
             catch (ExternalServiceException ex)
             {
-                _Logger.LogError(ex, "Error al eliminar lógicamente  el rolUser  con ID:" + id);
+                _logger.LogError(ex, "Error al eliminar lógicamente  el rolUser  con ID:" + id);
                 return StatusCode(500, new { message = ex.Message });
             }
         }
 
+        [HttpPatch("recuperarLogica/{id:int}")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(500)]
+
+        public async Task<IActionResult> PatchLogicalAsync(int id)
+        {
+            try
+            {
+                if (id <= 0)
+                {
+                    return BadRequest(new { message = "El ID de el rol debe igual a cero" });
+                }
+
+                await _RolUserBusiness.PatchLogicalAsync(id);
+                return Ok(new { message = "rol  restablecido lógico correctamente" });
+            }
+            catch (EntityNotFoundException ex)
+            {
+                _logger.LogInformation(ex, "rol no encontrado con ID: " + id);
+                return NotFound(new { message = ex.Message });
+            }
+            catch (ExternalServiceException ex)
+            {
+                _logger.LogError(ex, "Error al eliminar lógicamente del rol con ID:" + id);
+                return StatusCode(500, new { message = ex.Message });
+            }
+        }
     }
 }

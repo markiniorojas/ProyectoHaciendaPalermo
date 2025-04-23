@@ -12,7 +12,7 @@ namespace Web.Controllers
     public class FormModuleController : ControllerBase
     {
         private readonly FormModuleService _formModuleBusiness;
-        private readonly ILogger<FormModuleController> logger;
+        private readonly ILogger<FormModuleController> _logger;
 
 
         /// <summary>
@@ -21,10 +21,10 @@ namespace Web.Controllers
         /// <param name="FormModulebusiness">Capa de negocio de FormModule</param>
         /// <param name="logger">Logger para registro de eventos</param>
         /// 
-        public FormModuleController(FormModuleService _formModuleBusiness, ILogger<FormModuleController> logger)
+        public FormModuleController(FormModuleService _formModuleBusiness, ILogger<FormModuleController> _logger)
         {
             this._formModuleBusiness = _formModuleBusiness;
-            this.logger = logger;
+            this._logger = _logger;
         }
 
 
@@ -48,7 +48,7 @@ namespace Web.Controllers
             }
             catch (Exception ex)
             {
-                logger.LogError(ex, "Error al obtener los FormModule");
+                _logger.LogError(ex, "Error al obtener los FormModule");
                 return StatusCode(500, new { message = ex.Message });
             }
         }
@@ -79,17 +79,17 @@ namespace Web.Controllers
             }
             catch (ValidationException ex)
             {
-                logger.LogWarning(ex, "Validación fallida para el formModule con ID:" + id);
+                _logger.LogWarning(ex, "Validación fallida para el formModule con ID:" + id);
                 return BadRequest(new { Mesagge = ex.Message });
             }
             catch (EntityNotFoundException ex)
             {
-                logger.LogInformation(ex, "formModule no encontrado con ID: {form}", id);
+                _logger.LogInformation(ex, "formModule no encontrado con ID: {form}", id);
                 return NotFound(new { message = ex.Message });
             }
             catch (ExternalServiceException ex)
             {
-                logger.LogError(ex, "Error al obtener formModule con ID: {module}", id);
+                _logger.LogError(ex, "Error al obtener formModule con ID: {module}", id);
                 return StatusCode(500, new { message = ex.Message });
             }
         }
@@ -119,12 +119,12 @@ namespace Web.Controllers
             }
             catch (ValidationException ex)
             {
-                logger.LogWarning(ex, "Validación fallida");
+                _logger.LogWarning(ex, "Validación fallida");
                 return BadRequest(new { mesagge = ex.Message });
             }
             catch (ExternalServiceException ex)
             {
-                logger.LogError(ex, "Error al crear el formModule");
+                _logger.LogError(ex, "Error al crear el formModule");
                 return StatusCode(500, new { mesagge = ex.Message });
             }
         }
@@ -158,17 +158,17 @@ namespace Web.Controllers
             }
             catch (ValidationException ex)
             {
-                logger.LogWarning(ex, "Validación fallida al actualizar el FormModule");
+                _logger.LogWarning(ex, "Validación fallida al actualizar el FormModule");
                 return BadRequest(new { message = ex.Message });
             }
             catch (EntityNotFoundException ex)
             {
-                logger.LogInformation(ex, "FormModule no encontrado con ID: {RolId}", FormModuleDTO.Id);
+                _logger.LogInformation(ex, "FormModule no encontrado con ID: {RolId}", FormModuleDTO.Id);
                 return NotFound(new { message = ex.Message });
             }
             catch (ExternalServiceException ex)
             {
-                logger.LogError(ex, "Error al actualizar el form con ID: {RolId}", FormModuleDTO.Id);
+                _logger.LogError(ex, "Error al actualizar el form con ID: {RolId}", FormModuleDTO.Id);
                 return StatusCode(500, new { message = ex.Message });
             }
         }
@@ -203,12 +203,12 @@ namespace Web.Controllers
             }
             catch (EntityNotFoundException ex)
             {
-                logger.LogInformation(ex, "formmodule no encontrado con ID: {formmodule}", id);
+                _logger.LogInformation(ex, "formmodule no encontrado con ID: {formmodule}", id);
                 return NotFound(new { message = ex.Message });
             }
             catch (ExternalServiceException ex)
             {
-                logger.LogError(ex, "Error al eliminar el formmodule  ", id);
+                _logger.LogError(ex, "Error al eliminar el formmodule  ", id);
                 return StatusCode(500, new { message = ex.Message });
             }
         }
@@ -234,16 +234,45 @@ namespace Web.Controllers
             }
             catch (EntityNotFoundException ex)
             {
-                logger.LogInformation(ex, "formModule no encontrado con ID: " + id);
+                _logger.LogInformation(ex, "formModule no encontrado con ID: " + id);
                 return NotFound(new { message = ex.Message });
             }
             catch (ExternalServiceException ex)
             {
-                logger.LogError(ex, "Error al eliminar lógicamente  el formModule con ID:" + id);
+                _logger.LogError(ex, "Error al eliminar lógicamente  el formModule con ID:" + id);
                 return StatusCode(500, new { message = ex.Message });
             }
         }
 
+        [HttpPatch("recuperarLogica/{id:int}")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(500)]
+
+        public async Task<IActionResult> PatchLogicalAsync(int id)
+        {
+            try
+            {
+                if (id <= 0)
+                {
+                    return BadRequest(new { message = "El ID del form module debe igual a cero" });
+                }
+
+                await _formModuleBusiness.PatchLogicalAsync(id);
+                return Ok(new { message = "form module restablecido lógico correctamente" });
+            }
+            catch (EntityNotFoundException ex)
+            {
+                _logger.LogInformation(ex, "form module no encontrado con ID: " + id);
+                return NotFound(new { message = ex.Message });
+            }
+            catch (ExternalServiceException ex)
+            {
+                _logger.LogError(ex, "Error al eliminar lógicamente  el form module con ID:" + id);
+                return StatusCode(500, new { message = ex.Message });
+            }
+        }
 
     }
 }

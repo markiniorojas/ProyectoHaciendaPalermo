@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\ProyectoHaciendaEnAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Data\\Data.csproj": {}
+    "C:\\ProyectoFinalConC#\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Data\\Data.csproj": {}
   },
   "projects": {
-    "C:\\ProyectoHaciendaEnAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Data\\Data.csproj": {
+    "C:\\ProyectoFinalConC#\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Data\\Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\ProyectoHaciendaEnAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Data\\Data.csproj",
+        "projectUniqueName": "C:\\ProyectoFinalConC#\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Data\\Data.csproj",
         "projectName": "Data",
-        "projectPath": "C:\\ProyectoHaciendaEnAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Data\\Data.csproj",
-        "packagesPath": "C:\\Users\\SENA\\.nuget\\packages\\",
-        "outputPath": "C:\\ProyectoHaciendaEnAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Data\\obj\\",
+        "projectPath": "C:\\ProyectoFinalConC#\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Data\\Data.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "C:\\ProyectoFinalConC#\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Data\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\SENA\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,14 +26,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\ProyectoHaciendaEnAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Entity\\Entity.csproj": {
-                "projectPath": "C:\\ProyectoHaciendaEnAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Entity\\Entity.csproj"
+              "C:\\ProyectoFinalConC#\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Entity\\Entity.csproj": {
+                "projectPath": "C:\\ProyectoFinalConC#\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Entity\\Entity.csproj"
               }
             }
           }
@@ -74,6 +75,20 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.15, 8.0.15]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[8.0.15, 8.0.15]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[8.0.15, 8.0.15]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
@@ -83,20 +98,20 @@
         }
       }
     },
-    "C:\\ProyectoHaciendaEnAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Entity\\Entity.csproj": {
+    "C:\\ProyectoFinalConC#\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Entity\\Entity.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\ProyectoHaciendaEnAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Entity\\Entity.csproj",
+        "projectUniqueName": "C:\\ProyectoFinalConC#\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Entity\\Entity.csproj",
         "projectName": "Entity",
-        "projectPath": "C:\\ProyectoHaciendaEnAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Entity\\Entity.csproj",
-        "packagesPath": "C:\\Users\\SENA\\.nuget\\packages\\",
-        "outputPath": "C:\\ProyectoHaciendaEnAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Entity\\obj\\",
+        "projectPath": "C:\\ProyectoFinalConC#\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Entity\\Entity.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "C:\\ProyectoFinalConC#\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Entity\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\SENA\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -105,6 +120,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -177,6 +193,20 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.15, 8.0.15]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[8.0.15, 8.0.15]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[8.0.15, 8.0.15]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"

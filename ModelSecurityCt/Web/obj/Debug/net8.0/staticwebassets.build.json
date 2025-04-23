@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "OY/FTknj3fPi99spnuZbtBynTAuF0RJhcWbDdZMbmRk=",
+  "Hash": "X3LdyRhibF3W0bjb0ahb1UXWH5o4ZurMHOEbPArZs1Q=",
   "Source": "Web",
   "BasePath": "_content/Web",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "Web\\wwwroot",
       "Source": "Web",
-      "ContentRoot": "C:\\ProyectoHaciendaEnAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Web\\wwwroot\\",
+      "ContentRoot": "C:\\ProyectoFinalConC#\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Web\\wwwroot\\",
       "BasePath": "_content/Web",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\ProyectoHaciendaEnAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Web\\wwwroot\\Css\\style.css",
+      "Identity": "C:\\ProyectoFinalConC#\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Web\\wwwroot\\Css\\style.css",
       "SourceId": "Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\ProyectoHaciendaEnAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Web\\wwwroot\\",
+      "ContentRoot": "C:\\ProyectoFinalConC#\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Web\\wwwroot\\",
       "BasePath": "_content/Web",
       "RelativePath": "Css/style#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -38,10 +38,10 @@
       "OriginalItemSpec": "wwwroot\\Css\\style.css"
     },
     {
-      "Identity": "C:\\ProyectoHaciendaEnAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Web\\wwwroot\\Js\\script.js",
+      "Identity": "C:\\ProyectoFinalConC#\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Web\\wwwroot\\Js\\script.js",
       "SourceId": "Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\ProyectoHaciendaEnAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Web\\wwwroot\\",
+      "ContentRoot": "C:\\ProyectoFinalConC#\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Web\\wwwroot\\",
       "BasePath": "_content/Web",
       "RelativePath": "Js/script#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -62,7 +62,7 @@
   "Endpoints": [
     {
       "Route": "Css/style.css",
-      "AssetFile": "C:\\ProyectoHaciendaEnAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Web\\wwwroot\\Css\\style.css",
+      "AssetFile": "C:\\ProyectoFinalConC#\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Web\\wwwroot\\Css\\style.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -83,7 +83,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 22 Apr 2025 20:58:53 GMT"
+          "Value": "Wed, 23 Apr 2025 02:18:58 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -99,7 +99,7 @@
     },
     {
       "Route": "Css/style.dyjx89twm7.css",
-      "AssetFile": "C:\\ProyectoHaciendaEnAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Web\\wwwroot\\Css\\style.css",
+      "AssetFile": "C:\\ProyectoFinalConC#\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Web\\wwwroot\\Css\\style.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -120,7 +120,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 22 Apr 2025 20:58:53 GMT"
+          "Value": "Wed, 23 Apr 2025 02:18:58 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -144,7 +144,7 @@
     },
     {
       "Route": "Js/script.js",
-      "AssetFile": "C:\\ProyectoHaciendaEnAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Web\\wwwroot\\Js\\script.js",
+      "AssetFile": "C:\\ProyectoFinalConC#\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Web\\wwwroot\\Js\\script.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -165,7 +165,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 22 Apr 2025 20:58:53 GMT"
+          "Value": "Wed, 23 Apr 2025 02:18:58 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -181,7 +181,7 @@
     },
     {
       "Route": "Js/script.slmq4z8odo.js",
-      "AssetFile": "C:\\ProyectoHaciendaEnAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Web\\wwwroot\\Js\\script.js",
+      "AssetFile": "C:\\ProyectoFinalConC#\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Web\\wwwroot\\Js\\script.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -202,7 +202,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 22 Apr 2025 20:58:53 GMT"
+          "Value": "Wed, 23 Apr 2025 02:18:58 GMT"
         },
         {
           "Name": "Cache-Control",

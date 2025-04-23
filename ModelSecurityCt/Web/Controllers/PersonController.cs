@@ -247,5 +247,34 @@ namespace Web.Controllers
             }
         }
 
+        [HttpPatch("recuperarLogica/{id:int}")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(500)]
+
+        public async Task<IActionResult> PatchLogicalAsync(int id)
+        {
+            try
+            {
+                if (id <= 0)
+                {
+                    return BadRequest(new { message = "El ID del la persona debe igual a cero" });
+                }
+
+                await _personBusiness.PatchLogicalAsync(id);
+                return Ok(new { message = "persona  restablecida lógico correctamente" });
+            }
+            catch (EntityNotFoundException ex)
+            {
+                _logger.LogInformation(ex, "persona  no encontrada con ID: " + id);
+                return NotFound(new { message = ex.Message });
+            }
+            catch (ExternalServiceException ex)
+            {
+                _logger.LogError(ex, "Error al eliminar lógicamente  la persona  con ID:" + id);
+                return StatusCode(500, new { message = ex.Message });
+            }
+        }
     }
 }

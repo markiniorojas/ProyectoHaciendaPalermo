@@ -1,0 +1,141 @@
+/* Main Styles */
+body {
+  background-color: #f8f9fa;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding-top: 70px;
+  color: #333;
+}
+
+h1 {
+  color: #343a40;
+  text-align: center;
+  font-size: 2.2em;
+  margin-bottom: 30px;
+  font-weight: 600;
+}
+
+/* Form Styling */
+.container1 {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  margin: 30px auto;
+  max-width: 90%;
+  width: 650px;
+}
+
+.form-floating .form-control:focus {
+  border-color: #80bdff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Button Styling */
+.btn-primary {
+  background-color: #0d6efd;
+  border: none;
+  padding: 10px 20px;
+  font-weight: 500;
+  transition: all 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: #0b5ed7;
+  transform: translateY(-2px);
+}
+
+/* Table Styling */
+.table-container {
+  margin-top: 40px;
+  margin-bottom: 50px;
+}
+
+.table {
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.table thead {
+  background-color: #343a40;
+  color: white;
+}
+
+.table th {
+  padding: 12px 15px;
+  font-weight: 500;
+}
+
+.table td {
+  padding: 12px 15px;
+  vertical-align: middle;
+}
+
+.table tbody tr:hover {
+  background-color: #f5f5f5;
+}
+
+/* Action Buttons */
+.btn-sm {
+  border-radius: 4px;
+  margin-right: 5px;
+  transition: all 0.2s;
+}
+
+.btn-warning {
+  color: white;
+  background-color: #ffc107;
+}
+
+.btn-warning:hover {
+  background-color: #e0a800;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+}
+
+.btn-secondary:hover {
+  background-color: #5a6268;
+}
+
+.is-invalid {
+  border: 1px solid #dc3545;
+  box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+}
+
+@media (max-width: 768px) {
+  .container1 {
+    width: 95%;
+  }
+  
+  .btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+  }
+}
+
+.form-check-input:checked {
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.offcanvas-title {
+  font-weight: 600;
+}
+
+.nav-link {
+  padding: 8px 16px;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
