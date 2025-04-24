@@ -3,12 +3,20 @@
   "WorkspaceRootPath": "C:\\ProyectoHaciendaEnAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D0CA991D-E68C-4CBC-9CAC-9023621A1A69}|Web\\Web.csproj|c:\\proyectohaciendaenangular\\proyectohaciendapalermo\\modelsecurityct\\web\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{D0CA991D-E68C-4CBC-9CAC-9023621A1A69}|Web\\Web.csproj|solutionrelative:web\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{D0CA991D-E68C-4CBC-9CAC-9023621A1A69}|Web\\Web.csproj|c:\\proyectohaciendaenangular\\proyectohaciendapalermo\\modelsecurityct\\web\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D0CA991D-E68C-4CBC-9CAC-9023621A1A69}|Web\\Web.csproj|solutionrelative:web\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D0CA991D-E68C-4CBC-9CAC-9023621A1A69}|Web\\Web.csproj|c:\\proyectohaciendaenangular\\proyectohaciendapalermo\\modelsecurityct\\web\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D0CA991D-E68C-4CBC-9CAC-9023621A1A69}|Web\\Web.csproj|solutionrelative:web\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D0CA991D-E68C-4CBC-9CAC-9023621A1A69}|Web\\Web.csproj|c:\\proyectohaciendaenangular\\proyectohaciendapalermo\\modelsecurityct\\web\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{D0CA991D-E68C-4CBC-9CAC-9023621A1A69}|Web\\Web.csproj|solutionrelative:web\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D0CA991D-E68C-4CBC-9CAC-9023621A1A69}|Web\\Web.csproj|c:\\proyectohaciendaenangular\\proyectohaciendapalermo\\modelsecurityct\\web\\weatherforecast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D0CA991D-E68C-4CBC-9CAC-9023621A1A69}|Web\\Web.csproj|solutionrelative:web\\weatherforecast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -67,12 +75,38 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "C:\\ProyectoHaciendaEnAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Web\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "Web\\Controllers\\UserController.cs",
+              "ToolTip": "C:\\ProyectoHaciendaEnAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Web\\Controllers\\UserController.cs",
+              "RelativeToolTip": "Web\\Controllers\\UserController.cs",
+              "ViewState": "AgIAACQAAAAAAAAAAAAowDcAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-24T19:31:05.93Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "WeatherForecast.cs",
+              "DocumentMoniker": "C:\\ProyectoHaciendaEnAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Web\\WeatherForecast.cs",
+              "RelativeDocumentMoniker": "Web\\WeatherForecast.cs",
+              "ToolTip": "C:\\ProyectoHaciendaEnAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Web\\WeatherForecast.cs",
+              "RelativeToolTip": "Web\\WeatherForecast.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-24T18:47:54.152Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\ProyectoHaciendaEnAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Web\\appsettings.json",
               "RelativeDocumentMoniker": "Web\\appsettings.json",
               "ToolTip": "C:\\ProyectoHaciendaEnAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Web\\appsettings.json",
               "RelativeToolTip": "Web\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAACDAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2025-04-24T18:06:24.266Z",
               "EditorCaption": ""
@@ -85,7 +119,7 @@
               "RelativeDocumentMoniker": "Web\\Program.cs",
               "ToolTip": "C:\\ProyectoHaciendaEnAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Web\\Program.cs",
               "RelativeToolTip": "Web\\Program.cs",
-              "ViewState": "AgIAADYAAAAAAAAAAAAAAAwAAAAdAAAAAAAAAA==",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAAAFYAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-24T17:48:45.125Z",
               "EditorCaption": ""
