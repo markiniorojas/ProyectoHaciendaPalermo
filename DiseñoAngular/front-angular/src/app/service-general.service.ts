@@ -27,12 +27,12 @@ export class ServiceGeneralService {
   }
 
   delete<T>(endpoint: string, id: number | string) {
-    return this.http.delete<T>(`${this.baseUrl}/${endpoint}/${id}`);
+    return this.http.delete<T>(`${this.baseUrl}/${endpoint}/permanent/${id}`);
   }
 
 
   deleteLogic<T>(endpoint: string, id: number | string) {
-    return this.http.delete<T>(`${this.baseUrl}/${endpoint}/logic/${id}`);
+    return this.http.delete<T>(`${this.baseUrl}/${endpoint}/Logico/${id}`);
   }
 
   patchRestore<T>(endpoint: string, id: number | string, data: any) {

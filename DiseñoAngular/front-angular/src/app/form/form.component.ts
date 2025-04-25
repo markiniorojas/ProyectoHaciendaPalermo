@@ -26,7 +26,7 @@ export class FormComponent implements OnInit {
   // Helper para crear un formulario vacío
   getEmptyForm(): IForm {
     return {
-      Id: 0,
+      id: 0,
       name:  '',
       description: '',
       url:'',
@@ -72,9 +72,10 @@ export class FormComponent implements OnInit {
   }
 
   updateForm(): void {
-    this.formService.put<IForm>('form', this.currentForm.Id, this.currentForm).subscribe({
+    console.log(this.currentForm)
+    this.formService.put<IForm>('form', this.currentForm.id, this.currentForm).subscribe({
       next: updatedForm => {
-        const index = this.forms.findIndex(f => f.Id === updatedForm.Id);
+        const index = this.forms.findIndex(f => f.id === updatedForm.id);
         if (index > -1) this.forms[index] = updatedForm;
         this.resetForm();
       },
@@ -84,14 +85,14 @@ export class FormComponent implements OnInit {
 
   deleteForm(id: number): void {
     this.formService.delete<IForm>('form', id).subscribe({
-      next: () => this.forms = this.forms.filter(f => f.Id !== id),
+      next: () => this.forms = this.forms.filter(f => f.id !== id),
       error: err => console.error('Error al eliminar formulario', err)
     });
   }
 
   deleteFormLogic(id: number): void {
     this.formService.deleteLogic<IForm>('form', id).subscribe({
-      next: () => this.forms = this.forms.filter(f => f.Id !== id),
+      next: () => this.forms = this.forms.filter(f => f.id !== id),
       error: err => console.error('Error al eliminar lógicamente', err)
     });
   }
