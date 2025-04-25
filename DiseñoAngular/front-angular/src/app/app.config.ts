@@ -1,15 +1,13 @@
 import { bootstrapApplication } from '@angular/platform-browser';
-import { provideHttpClient } from '@angular/common/http';  // Importar provideHttpClient
-import { appConfig } from './app/app.config';
-import { AppComponent } from './app/app.component';
+import { ApplicationConfig } from '@angular/core';
+import { provideRouter } from '@angular/router';
+import { AppComponent } from './app.component';
 
-const appWithHttpConfig = {
-  ...appConfig,  // Mantén el resto de la configuración que ya tengas
-  providers: [
-    ...appConfig.providers,  // Si ya tienes proveedores definidos en appConfig
-    provideHttpClient()  // Asegúrate de incluir esto aquí
-  ]
+
+export const appConfig : ApplicationConfig = {
+    providers: [provideRouter([])] 
+  
 };
 
-bootstrapApplication(AppComponent, appWithHttpConfig)
-  .catch((err) => console.error(err));
+bootstrapApplication(AppComponent, appConfig)
+  .catch((err) => console.error(err));  
