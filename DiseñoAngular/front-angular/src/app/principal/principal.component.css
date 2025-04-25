@@ -1,0 +1,125 @@
+/* navbar.component.css */
+.navbar {
+    background-color: #1a1a1a;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  .navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 24px;
+  }
+  
+  .navbar-logo {
+    color: #fff;
+    justify-self: start;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+  }
+  
+  .navbar-logo a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .nav-menu {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .nav-item {
+    height: 80px;
+    border-bottom: 2px solid transparent;
+  }
+  
+  .nav-item:hover {
+    border-bottom: 2px solid #09f;
+  }
+  
+  .nav-link {
+    color: #fff;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    height: 100%;
+  }
+  
+  .nav-link:hover {
+    color: #09f;
+    transition: all 0.3s ease;
+  }
+  
+  .nav-link.active {
+    color: #09f;
+    border-bottom: 2px solid #09f;
+  }
+  
+  .menu-icon {
+    display: none;
+  }
+  
+  /* Responsive design */
+  @media screen and (max-width: 960px) {
+    .navbar {
+      position: relative;
+    }
+  
+    .nav-menu {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      position: absolute;
+      top: 80px;
+      left: -100%;
+      opacity: 1;
+      transition: all 0.5s ease;
+      height: 90vh;
+      background-color: #1a1a1a;
+    }
+  
+    .nav-menu.active {
+      left: 0;
+      opacity: 1;
+      transition: all 0.5s ease;
+      z-index: 1;
+    }
+  
+    .nav-item {
+      width: 100%;
+      height: 60px;
+      border: none;
+    }
+  
+    .nav-link {
+      padding: 1.5rem;
+      width: 100%;
+      display: block;
+      text-align: center;
+    }
+  
+    .menu-icon {
+      display: block;
+      cursor: pointer;
+      color: #fff;
+      font-size: 1.8rem;
+    }
+  }

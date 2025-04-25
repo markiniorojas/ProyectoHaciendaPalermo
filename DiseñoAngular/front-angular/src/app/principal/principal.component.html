@@ -1,0 +1,27 @@
+<!-- navbar.component.html -->
+<nav class="navbar">
+    <div class="navbar-container">
+      <div class="navbar-logo">
+        <a href="#">Mi App</a>
+      </div>
+      
+      <div class="menu-icon" (click)="toggleMenu()">
+        <i class="fas fa-bars"></i>
+      </div>
+      
+      <ul class="nav-menu" [ngClass]="{'active': isMenuOpen}">
+        <li class="nav-item">
+          <a [routerLink]="['/inicio']" class="nav-link" routerLinkActive="active">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a [routerLink]="['/servicios']" class="nav-link" routerLinkActive="active">Servicios</a>
+        </li>
+        <li class="nav-item">
+          <a [routerLink]="['/productos']" class="nav-link" routerLinkActive="active">Productos</a>
+        </li>
+        <li class="nav-item">
+          <a [routerLink]="['/contacto']" class="nav-link" routerLinkActive="active">Contacto</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
