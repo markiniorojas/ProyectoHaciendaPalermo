@@ -36,6 +36,6 @@ export class ServiceGeneralService {
   }
 
   patchRestore<T>(endpoint: string, id: number | string, data: any) {
-    return this.http.patch<T>(`${this.baseUrl}/${endpoint}/${id}`, data);
+    return this.http.patch<T>(`${this.baseUrl}/${endpoint}/recuperarLogica/${id}`, data);
   }
 }

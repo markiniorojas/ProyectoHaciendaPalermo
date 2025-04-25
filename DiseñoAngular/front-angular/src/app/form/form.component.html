@@ -1,65 +1,51 @@
-<div class="boton-container" *ngIf="!showForm">
-    <button mat-raised-button color="primary" class="ButtonCenter" (click)="toggleForm('create')">Crear</button>
-  </div>
-  
-  <!-- Tabla, visible solo cuando showForm sea false -->
-  <div *ngIf="!showForm">
-    <div class="table-container">
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Active</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let form of forms">
-            <td>{{ form.Name }}</td>
-            <td>{{ form.Description }}</td>
-            <td>{{ form.IsDeleted ? 'Yes' : 'No' }}</td>
-            <td>
-              <button mat-raised-button color="primary" (click)="editForm(form)">Editar</button>
-              <button mat-raised-button color="warn" (click)="deleteForm(form.Id)">Eliminar</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+
+
+<h2>Lista de Formularios</h2>
+<button (click)="toggleForm('create')">Crear</button>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>URL</th> 
+      <th>Active</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let form of forms">
+      <td>{{ form.name }}</td>
+      <td>{{ form.description }}</td>
+      <td>{{ form.url }}</td> <td>{{ form.IsDeleted ? 'Sí' : 'No' }}</td> <td>
+        <button (click)="editForm(form)">Editar</button>
+        <button (click)="deleteForm(form.Id)">Eliminar</button>
+        <button (click)="deleteFormLogic(form.Id)">Eliminar Lógico</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div *ngIf="showForm">
+  <h3>{{ isEditing ? 'Editar Formulario' : 'Crear Nuevo Formulario' }}</h3>
+  <form (ngSubmit)="submitForm()">
+    <div>
+      <label for="name">Nombre:</label>
+      <input type="text" id="name" name="name" [(ngModel)]="currentForm.name" required>
     </div>
-  </div>
-  
-  <!-- Formulario combinado para crear y actualizar -->
-  <div *ngIf="showForm" class="form-container">
-    <form (ngSubmit)="submitForm()" #formElement="ngForm">
-      <div class="form-group">
-        <label for="name">Name</label>
-        <input type="text" id="name" [(ngModel)]="currentForm.Name" name="name" required #name="ngModel" />
-        <div *ngIf="name.invalid && name.touched" class="error-message">
-          El campo de nombre es obligatorio.
-        </div>
-      </div>
-  
-      <div class="form-group">
-        <label for="description">Description</label>
-        <input type="text" id="description" [(ngModel)]="currentForm.Description" name="description" required #description="ngModel" />
-        <div *ngIf="description.invalid && description.touched" class="error-message">
-          El campo de descripción es obligatorio.
-        </div>
-      </div>
-  
-      <div class="form-group">
-        <label for="active">Active</label>
-        <input type="checkbox" id="active" [(ngModel)]="currentForm.IsDeleted" name="active" />
-      </div>
-  
-      <div class="buttons-container">
-        <button mat-raised-button color="primary" type="submit" [disabled]="formElement.invalid">
-          {{ isEditing ? 'Actualizar' : 'Crear' }}
-        </button>
-        <button mat-raised-button type="button" (click)="cancelForm()">
-          Cancelar
-        </button>
-      </div>
-    </form>
-  </div>
+    <div>
+      <label for="description">Descripción:</label>
+      <textarea id="description" name="description" [(ngModel)]="currentForm.description"></textarea>
+    </div>
+    <div>
+      <label for="url">URL:</label>
+      <input type="text" id="url" name="url" [(ngModel)]="currentForm.url">
+    </div>
+    <div>
+      <label for="isDeleted">Activo:</label>
+      <input type="checkbox" id="isDeleted" name="isDeleted" [(ngModel)]="currentForm.IsDeleted">
+    </div>
+    <button type="submit">Guardar</button>
+    <button type="button" (click)="cancelForm()">Cancelar</button>
+  </form>
+</div>

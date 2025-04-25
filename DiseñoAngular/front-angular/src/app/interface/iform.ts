@@ -1,6 +1,7 @@
 export interface IForm {
     Id: number;
-    Name: String;
-    Description: String ;
+    name: string;
+    description: string ;
+    url: string;
     IsDeleted : boolean;
 }

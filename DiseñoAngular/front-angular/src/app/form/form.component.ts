@@ -27,18 +27,23 @@ export class FormComponent implements OnInit {
   getEmptyForm(): IForm {
     return {
       Id: 0,
-      Name: '',
-      Description: '',
+      name:  '',
+      description: '',
+      url:'',
       IsDeleted: true
     };
   }
 
   loadForms(): void {
     this.formService.get<IForm[]>('form').subscribe({
-      next: data => this.forms = data,
-      error: err => console.error('Error al cargar los formularios', err)
+      next: data => {
+        console.log('Formularios cargados:', data);
+        this.forms = data;
+      },
+      error: err => console.error('Error al cargar los formularios', err),
     });
   }
+  
 
   // Maneja tanto la creación como la actualización
   submitForm(): void {
@@ -61,6 +66,7 @@ export class FormComponent implements OnInit {
 
   editForm(form: IForm): void {
     this.isEditing = true;
+    // console.log('Datos enviados para actualizar:', this.currentForm);
     this.currentForm = { ...form };
     this.showForm = true;
   }
