@@ -1,56 +1,111 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, Validators } from '@angular/forms';
 import { ServiceGeneralService } from '../service-general.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { IForm } from '../interface/iform';
 
 @Component({
   selector: 'app-form-example',
-  templateUrl: '',
+  standalone: true,
+  imports: [CommonModule,FormsModule ],
+  templateUrl: './form.component.html',
+  styleUrls: ['./form.component.css']
 })
-export class FormExampleComponent implements OnInit {
-  form!: FormGroup;
-
-  @Input() endpoint!: string;
-  @Input() fields!: { name: string; label: string; required?: boolean }[];
-
-  id!: number;
-  isEditMode = false;
-
-  constructor(
-    private fb: FormBuilder,
-    private service: ServiceGeneralService,
-    private route: ActivatedRoute,
-    private router: Router
-  ) {}
+export class FormComponent implements OnInit {
+  forms: IForm[] = [];
+  currentForm: IForm = this.getEmptyForm();
+  showForm: boolean = false;
+  isEditing: boolean = false;
+  
+  constructor(private formService: ServiceGeneralService) {}
 
   ngOnInit(): void {
-    const group: any = {};
-    this.fields.forEach(field => {
-      group[field.name] = field.required ? ['', Validators.required] : [''];
+    this.loadForms();
+  }
+
+  // Helper para crear un formulario vacío
+  getEmptyForm(): IForm {
+    return {
+      Id: 0,
+      Name: '',
+      Description: '',
+      IsDeleted: true
+    };
+  }
+
+  loadForms(): void {
+    this.formService.get<IForm[]>('form').subscribe({
+      next: data => this.forms = data,
+      error: err => console.error('Error al cargar los formularios', err)
     });
+  }
 
-    this.form = this.fb.group(group);
-
-    const idParam = this.route.snapshot.paramMap.get('id');
-    if (idParam) {
-      this.id = +idParam;
-      this.isEditMode = true;
-      this.service.getById<any>(this.endpoint, this.id).subscribe(data => {
-        this.form.patchValue(data);
-      });
+  // Maneja tanto la creación como la actualización
+  submitForm(): void {
+    if (this.isEditing) {
+      this.updateForm();
+    } else {
+      this.addForm();
     }
   }
 
-  onSubmit() {
-    if (this.form.invalid) return;
-
-    const request = this.isEditMode
-      ? this.service.put(this.endpoint, this.id, this.form.value)
-      : this.service.post(this.endpoint, this.form.value);
-
-    request.subscribe(() => {
-      this.router.navigate(['/' + this.endpoint]);
+  addForm(): void {
+    this.formService.post<IForm>('form', this.currentForm).subscribe({
+      next: form => {
+        this.forms.push(form);
+        this.resetForm();
+      },
+      error: err => console.error('Error al agregar formulario', err)
     });
+  }
+
+  editForm(form: IForm): void {
+    this.isEditing = true;
+    this.currentForm = { ...form };
+    this.showForm = true;
+  }
+
+  updateForm(): void {
+    this.formService.put<IForm>('form', this.currentForm.Id, this.currentForm).subscribe({
+      next: updatedForm => {
+        const index = this.forms.findIndex(f => f.Id === updatedForm.Id);
+        if (index > -1) this.forms[index] = updatedForm;
+        this.resetForm();
+      },
+      error: err => console.error('Error al actualizar formulario', err)
+    });
+  }
+
+  deleteForm(id: number): void {
+    this.formService.delete<IForm>('form', id).subscribe({
+      next: () => this.forms = this.forms.filter(f => f.Id !== id),
+      error: err => console.error('Error al eliminar formulario', err)
+    });
+  }
+
+  deleteFormLogic(id: number): void {
+    this.formService.deleteLogic<IForm>('form', id).subscribe({
+      next: () => this.forms = this.forms.filter(f => f.Id !== id),
+      error: err => console.error('Error al eliminar lógicamente', err)
+    });
+  }
+
+  toggleForm(mode: 'create' | 'edit'): void {
+    if (mode === 'create') {
+      this.isEditing = false;
+      this.currentForm = this.getEmptyForm();
+    }
+    this.showForm = !this.showForm;
+  }
+
+  cancelForm(): void {
+    this.resetForm();
+  }
+
+  resetForm(): void {
+    this.showForm = false;
+    this.isEditing = false;
+    this.currentForm = this.getEmptyForm();
   }
 }
 
