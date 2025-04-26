@@ -3,5 +3,5 @@ export interface IForm {
     name: string;
     description: string ;
     url: string;
-    IsDeleted : boolean;
+    isDeleted : boolean;
 }

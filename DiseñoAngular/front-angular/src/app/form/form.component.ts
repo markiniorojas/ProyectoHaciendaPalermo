@@ -30,19 +30,21 @@ export class FormComponent implements OnInit {
       name:  '',
       description: '',
       url:'',
-      IsDeleted: true
+      isDeleted: false
     };
   }
 
   loadForms(): void {
     this.formService.get<IForm[]>('form').subscribe({
       next: data => {
-        console.log('Formularios cargados:', data);
-        this.forms = data;
+        console.log('Datos recibidos:', data);
+        // Solo formularios que NO estén eliminados (IsDeleted == false)
+        this.forms = data.filter(form => form.isDeleted === false);
       },
       error: err => console.error('Error al cargar los formularios', err),
     });
   }
+  
   
 
   // Maneja tanto la creación como la actualización

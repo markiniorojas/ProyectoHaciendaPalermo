@@ -17,7 +17,7 @@
     <tr *ngFor="let form of forms">
       <td>{{ form.name }}</td>
       <td>{{ form.description }}</td>
-      <td>{{ form.url }}</td> <td>{{ form.IsDeleted ? 'Sí' : 'No' }}</td> <td>
+      <td>{{ form.url }}</td> <td>{{ form.isDeleted ? 'Sí' : 'No' }}</td> <td>
         <button (click)="editForm(form)">Editar</button>
         <button (click)="deleteForm(form.id)">Eliminar</button>
         <button (click)="deleteFormLogic(form.id)">Eliminar Lógico</button>
@@ -43,9 +43,9 @@
     </div>
     <div>
       <label for="isDeleted">Activo:</label>
-      <input type="checkbox" id="isDeleted" name="isDeleted" [(ngModel)]="currentForm.IsDeleted">
+      <input type="checkbox" id="isDeleted" name="isDeleted" [(ngModel)]="currentForm.isDeleted">
     </div>
     <button type="submit">Guardar</button>
     <button type="button" (click)="cancelForm()">Cancelar</button>
   </form>
-</div>
+</div>  

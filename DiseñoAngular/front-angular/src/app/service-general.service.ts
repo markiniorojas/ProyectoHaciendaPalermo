@@ -32,7 +32,7 @@ export class ServiceGeneralService {
 
 
   deleteLogic<T>(endpoint: string, id: number | string) {
-    return this.http.delete<T>(`${this.baseUrl}/${endpoint}/Logico/${id}`);
+    return this.http.put<T>(`${this.baseUrl}/${endpoint}/Logico/${id}`, {});
   }
 
   patchRestore<T>(endpoint: string, id: number | string, data: any) {
