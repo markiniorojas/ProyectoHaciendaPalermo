@@ -100,7 +100,7 @@ namespace Web.Controllers
             }
         }
 
-        [HttpPut]
+        [HttpPut("{id:int}")]
         [ProducesResponseType(typeof(UserDTO), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]

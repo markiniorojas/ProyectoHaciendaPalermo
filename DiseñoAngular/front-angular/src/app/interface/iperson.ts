@@ -1,10 +1,10 @@
     export interface IPerson{
         id: number;
-        firtsName: string;
+        firstName: string;
         lastName: string;
         documentType: string;
         document: string;
-        dataBorn: Date;
+        dateBorn: Date;
         phoneNumber: string;
         eps: string;
         genero: string;

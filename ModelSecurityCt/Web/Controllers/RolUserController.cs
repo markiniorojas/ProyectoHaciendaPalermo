@@ -102,7 +102,7 @@ namespace Web.Controllers
 
 
 
-        [HttpPut]
+        [HttpPut("{id:int}")]
         [ProducesResponseType(typeof(RolUserDTO), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]

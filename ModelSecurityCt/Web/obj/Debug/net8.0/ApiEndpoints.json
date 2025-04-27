@@ -60,26 +60,19 @@
   },
   {
     "ContainingType": "Web.Controllers.FormController",
-    "Method": "UpdateModule",
-    "RelativePath": "api/Form",
-    "HttpMethod": "PUT",
+    "Method": "GetFormById",
+    "RelativePath": "api/Form/{id}",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "formDTO",
-        "Type": "Entity.DTO.FormDTO",
+        "Name": "id",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
-      {
-        "Type": "Entity.DTO.FormDTO",
-        "MediaTypes": [
-          "application/json"
-        ],
-        "StatusCode": 200
-      },
       {
         "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
         "MediaTypes": [
@@ -103,19 +96,31 @@
   },
   {
     "ContainingType": "Web.Controllers.FormController",
-    "Method": "GetFormById",
+    "Method": "UpdateModule",
     "RelativePath": "api/Form/{id}",
-    "HttpMethod": "GET",
+    "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
+        "Name": "formDTO",
+        "Type": "Entity.DTO.FormDTO",
+        "IsRequired": true
+      },
+      {
         "Name": "id",
-        "Type": "System.Int32",
+        "Type": "",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
+      {
+        "Type": "Entity.DTO.FormDTO",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      },
       {
         "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
         "MediaTypes": [
@@ -321,26 +326,19 @@
   },
   {
     "ContainingType": "Web.Controllers.FormModuleController",
-    "Method": "UpdateFormModule",
-    "RelativePath": "api/FormModule",
-    "HttpMethod": "PUT",
+    "Method": "GetFormModuleById",
+    "RelativePath": "api/FormModule/{id}",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "FormModuleDTO",
-        "Type": "Entity.DTO.FormModuleDTO",
+        "Name": "id",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
-      {
-        "Type": "Entity.DTO.FormModuleDTO",
-        "MediaTypes": [
-          "application/json"
-        ],
-        "StatusCode": 200
-      },
       {
         "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
         "MediaTypes": [
@@ -364,19 +362,31 @@
   },
   {
     "ContainingType": "Web.Controllers.FormModuleController",
-    "Method": "GetFormModuleById",
+    "Method": "UpdateFormModule",
     "RelativePath": "api/FormModule/{id}",
-    "HttpMethod": "GET",
+    "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
+        "Name": "FormModuleDTO",
+        "Type": "Entity.DTO.FormModuleDTO",
+        "IsRequired": true
+      },
+      {
         "Name": "id",
-        "Type": "System.Int32",
+        "Type": "",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
+      {
+        "Type": "Entity.DTO.FormModuleDTO",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      },
       {
         "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
         "MediaTypes": [
@@ -582,26 +592,19 @@
   },
   {
     "ContainingType": "Web.Controllers.ModuleController",
-    "Method": "UpdateModule",
-    "RelativePath": "api/Module",
-    "HttpMethod": "PUT",
+    "Method": "GetModuleById",
+    "RelativePath": "api/Module/{id}",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "moduleDTO",
-        "Type": "Entity.DTO.ModuleDTO",
+        "Name": "id",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
-      {
-        "Type": "Entity.DTO.ModuleDTO",
-        "MediaTypes": [
-          "application/json"
-        ],
-        "StatusCode": 200
-      },
       {
         "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
         "MediaTypes": [
@@ -625,19 +628,31 @@
   },
   {
     "ContainingType": "Web.Controllers.ModuleController",
-    "Method": "GetModuleById",
+    "Method": "UpdateModule",
     "RelativePath": "api/Module/{id}",
-    "HttpMethod": "GET",
+    "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
+        "Name": "moduleDTO",
+        "Type": "Entity.DTO.ModuleDTO",
+        "IsRequired": true
+      },
+      {
         "Name": "id",
-        "Type": "System.Int32",
+        "Type": "",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
+      {
+        "Type": "Entity.DTO.ModuleDTO",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      },
       {
         "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
         "MediaTypes": [
@@ -843,26 +858,19 @@
   },
   {
     "ContainingType": "Web.Controllers.PermissionController",
-    "Method": "UpdatePermission",
-    "RelativePath": "api/Permission",
-    "HttpMethod": "PUT",
+    "Method": "GetPermissionById",
+    "RelativePath": "api/Permission/{id}",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "permissionDTO",
-        "Type": "Entity.DTO.PermissionDTO",
+        "Name": "id",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
-      {
-        "Type": "Entity.DTO.PermissionDTO",
-        "MediaTypes": [
-          "application/json"
-        ],
-        "StatusCode": 200
-      },
       {
         "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
         "MediaTypes": [
@@ -886,19 +894,31 @@
   },
   {
     "ContainingType": "Web.Controllers.PermissionController",
-    "Method": "GetPermissionById",
+    "Method": "UpdatePermission",
     "RelativePath": "api/Permission/{id}",
-    "HttpMethod": "GET",
+    "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
+        "Name": "permissionDTO",
+        "Type": "Entity.DTO.PermissionDTO",
+        "IsRequired": true
+      },
+      {
         "Name": "id",
-        "Type": "System.Int32",
+        "Type": "",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
+      {
+        "Type": "Entity.DTO.PermissionDTO",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      },
       {
         "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
         "MediaTypes": [
@@ -1104,26 +1124,19 @@
   },
   {
     "ContainingType": "Web.Controllers.PersonController",
-    "Method": "UpdatePerson",
-    "RelativePath": "api/Person",
-    "HttpMethod": "PUT",
+    "Method": "GetPersonById",
+    "RelativePath": "api/Person/{id}",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "personDTO",
-        "Type": "Entity.DTO.PersonDTO",
+        "Name": "id",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
-      {
-        "Type": "Entity.DTO.PersonDTO",
-        "MediaTypes": [
-          "application/json"
-        ],
-        "StatusCode": 200
-      },
       {
         "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
         "MediaTypes": [
@@ -1147,19 +1160,31 @@
   },
   {
     "ContainingType": "Web.Controllers.PersonController",
-    "Method": "GetPersonById",
+    "Method": "UpdatePerson",
     "RelativePath": "api/Person/{id}",
-    "HttpMethod": "GET",
+    "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
+        "Name": "personDTO",
+        "Type": "Entity.DTO.PersonDTO",
+        "IsRequired": true
+      },
+      {
         "Name": "id",
-        "Type": "System.Int32",
+        "Type": "",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
+      {
+        "Type": "Entity.DTO.PersonDTO",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      },
       {
         "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
         "MediaTypes": [
@@ -1365,26 +1390,19 @@
   },
   {
     "ContainingType": "Web.Controllers.RolController",
-    "Method": "UpdateRol",
-    "RelativePath": "api/Rol",
-    "HttpMethod": "PUT",
+    "Method": "GetRolById",
+    "RelativePath": "api/Rol/{id}",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "rolDTO",
-        "Type": "Entity.DTO.RolDTO",
+        "Name": "id",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
-      {
-        "Type": "Entity.DTO.RolDTO",
-        "MediaTypes": [
-          "application/json"
-        ],
-        "StatusCode": 200
-      },
       {
         "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
         "MediaTypes": [
@@ -1408,19 +1426,31 @@
   },
   {
     "ContainingType": "Web.Controllers.RolController",
-    "Method": "GetRolById",
+    "Method": "UpdateRol",
     "RelativePath": "api/Rol/{id}",
-    "HttpMethod": "GET",
+    "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
+        "Name": "rolDTO",
+        "Type": "Entity.DTO.RolDTO",
+        "IsRequired": true
+      },
+      {
         "Name": "id",
-        "Type": "System.Int32",
+        "Type": "",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
+      {
+        "Type": "Entity.DTO.RolDTO",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      },
       {
         "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
         "MediaTypes": [
@@ -1626,26 +1656,19 @@
   },
   {
     "ContainingType": "Web.Controllers.RolFormPermissionController",
-    "Method": "UpdateRolUser",
-    "RelativePath": "api/RolFormPermission",
-    "HttpMethod": "PUT",
+    "Method": "GetFormModuleById",
+    "RelativePath": "api/RolFormPermission/{id}",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "rolFormPermissionDTO",
-        "Type": "Entity.DTO.RolFormPermissionDTO",
+        "Name": "id",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
-      {
-        "Type": "Entity.DTO.RolFormPermissionDTO",
-        "MediaTypes": [
-          "application/json"
-        ],
-        "StatusCode": 200
-      },
       {
         "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
         "MediaTypes": [
@@ -1669,19 +1692,31 @@
   },
   {
     "ContainingType": "Web.Controllers.RolFormPermissionController",
-    "Method": "GetFormModuleById",
+    "Method": "UpdateRolUser",
     "RelativePath": "api/RolFormPermission/{id}",
-    "HttpMethod": "GET",
+    "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
+        "Name": "rolFormPermissionDTO",
+        "Type": "Entity.DTO.RolFormPermissionDTO",
+        "IsRequired": true
+      },
+      {
         "Name": "id",
-        "Type": "System.Int32",
+        "Type": "",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
+      {
+        "Type": "Entity.DTO.RolFormPermissionDTO",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      },
       {
         "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
         "MediaTypes": [
@@ -1887,15 +1922,15 @@
   },
   {
     "ContainingType": "Web.Controllers.RolUserController",
-    "Method": "UpdateRolUser",
-    "RelativePath": "api/RolUser",
-    "HttpMethod": "PUT",
+    "Method": "GetRolUserByIdAsync",
+    "RelativePath": "api/RolUser/{id}",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "RolUserDto",
-        "Type": "Entity.DTO.RolUserDTO",
+        "Name": "id",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
@@ -1930,15 +1965,20 @@
   },
   {
     "ContainingType": "Web.Controllers.RolUserController",
-    "Method": "GetRolUserByIdAsync",
+    "Method": "UpdateRolUser",
     "RelativePath": "api/RolUser/{id}",
-    "HttpMethod": "GET",
+    "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
+        "Name": "RolUserDto",
+        "Type": "Entity.DTO.RolUserDTO",
+        "IsRequired": true
+      },
+      {
         "Name": "id",
-        "Type": "System.Int32",
+        "Type": "",
         "IsRequired": true
       }
     ],
@@ -2155,26 +2195,19 @@
   },
   {
     "ContainingType": "Web.Controllers.UserController",
-    "Method": "UpdateRol",
-    "RelativePath": "api/User",
-    "HttpMethod": "PUT",
+    "Method": "GetRolById",
+    "RelativePath": "api/User/{id}",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "userDTO",
-        "Type": "Entity.DTO.UserDTO",
+        "Name": "id",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
-      {
-        "Type": "Entity.DTO.UserDTO",
-        "MediaTypes": [
-          "application/json"
-        ],
-        "StatusCode": 200
-      },
       {
         "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
         "MediaTypes": [
@@ -2198,19 +2231,31 @@
   },
   {
     "ContainingType": "Web.Controllers.UserController",
-    "Method": "GetRolById",
+    "Method": "UpdateRol",
     "RelativePath": "api/User/{id}",
-    "HttpMethod": "GET",
+    "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
+        "Name": "userDTO",
+        "Type": "Entity.DTO.UserDTO",
+        "IsRequired": true
+      },
+      {
         "Name": "id",
-        "Type": "System.Int32",
+        "Type": "",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
+      {
+        "Type": "Entity.DTO.UserDTO",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      },
       {
         "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
         "MediaTypes": [

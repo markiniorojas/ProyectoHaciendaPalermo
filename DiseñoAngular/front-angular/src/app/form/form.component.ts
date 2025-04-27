@@ -3,11 +3,35 @@ import { FormBuilder, FormGroup, FormsModule, Validators } from '@angular/forms'
 import { ServiceGeneralService } from '../service-general.service';
 import { CommonModule } from '@angular/common';
 import { IForm } from '../interface/iform';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import Swal from 'sweetalert2';
+
+
 
 @Component({
   selector: 'app-form-example',
   standalone: true,
-  imports: [CommonModule,FormsModule ],
+  imports: [CommonModule,FormsModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatCardModule,
+    MatButtonModule,
+    MatIconModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatSlideToggleModule,
+    MatChipsModule,
+    MatTooltipModule
+   ],
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.css']
 })
@@ -59,12 +83,27 @@ export class FormComponent implements OnInit {
   addForm(): void {
     this.formService.post<IForm>('form', this.currentForm).subscribe({
       next: form => {
+        Swal.fire({
+          icon: 'success',
+          title: '¡Éxito!',
+          text: 'Formulario creado correctamente',
+          timer: 1500,
+          showConfirmButton: false
+        });
         this.forms.push(form);
         this.resetForm();
       },
-      error: err => console.error('Error al agregar formulario', err)
+      error: err => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'No se pudo crear el formulario'
+        });
+        console.error('Error al agregar formulario', err);
+      }
     });
   }
+  
 
   editForm(form: IForm): void {
     this.isEditing = true;
@@ -74,28 +113,100 @@ export class FormComponent implements OnInit {
   }
 
   updateForm(): void {
-    console.log(this.currentForm)
+    console.log(this.currentForm);
     this.formService.put<IForm>('form', this.currentForm.id, this.currentForm).subscribe({
       next: updatedForm => {
+        Swal.fire({
+          icon: 'success',
+          title: '¡Éxito!',
+          text: 'Formulario actualizado correctamente',
+          timer: 1500,
+          showConfirmButton: false
+        });
         const index = this.forms.findIndex(f => f.id === updatedForm.id);
         if (index > -1) this.forms[index] = updatedForm;
         this.resetForm();
       },
-      error: err => console.error('Error al actualizar formulario', err)
+      error: err => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'No se pudo actualizar el formulario'
+        });
+        console.error('Error al actualizar formulario', err);
+      }
     });
   }
 
   deleteForm(id: number): void {
-    this.formService.delete<IForm>('form', id).subscribe({
-      next: () => this.forms = this.forms.filter(f => f.id !== id),
-      error: err => console.error('Error al eliminar formulario', err)
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: "¡Esta acción eliminará permanentemente el formulario!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.formService.delete<IForm>('form', id).subscribe({
+          next: () => {
+            Swal.fire({
+              icon: 'success',
+              title: 'Eliminado',
+              text: 'El formulario ha sido eliminado permanentemente',
+              timer: 1500,
+              showConfirmButton: false
+            });
+            this.forms = this.forms.filter(f => f.id !== id);
+          },
+          error: err => {
+            Swal.fire({
+              icon: 'error',
+              title: 'Error',
+              text: 'No se pudo eliminar el formulario'
+            });
+            console.error('Error al eliminar formulario', err);
+          }
+        });
+      }
     });
   }
 
   deleteFormLogic(id: number): void {
-    this.formService.deleteLogic<IForm>('form', id).subscribe({
-      next: () => this.forms = this.forms.filter(f => f.id !== id),
-      error: err => console.error('Error al eliminar lógicamente', err)
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: "Este formulario se desactivará pero no se eliminará permanentemente",
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, desactivar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.formService.deleteLogic<IForm>('form', id).subscribe({
+          next: () => {
+            Swal.fire({
+              icon: 'success',
+              title: 'Desactivado',
+              text: 'El formulario ha sido desactivado correctamente',
+              timer: 1500,
+              showConfirmButton: false
+            });
+            this.forms = this.forms.filter(f => f.id !== id);
+          },
+          error: err => {
+            Swal.fire({
+              icon: 'error',
+              title: 'Error',
+              text: 'No se pudo desactivar el formulario'
+            });
+            console.error('Error al eliminar lógicamente', err);
+          }
+        });
+      }
     });
   }
 
@@ -108,7 +219,24 @@ export class FormComponent implements OnInit {
   }
 
   cancelForm(): void {
-    this.resetForm();
+    if (this.currentForm.name || this.currentForm.description || this.currentForm.url) {
+      Swal.fire({
+        title: '¿Estás seguro?',
+        text: 'Perderás los cambios no guardados',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí, cancelar',
+        cancelButtonText: 'Seguir editando'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.resetForm();
+        }
+      });
+    } else {
+      this.resetForm();
+    }
   }
 
   resetForm(): void {

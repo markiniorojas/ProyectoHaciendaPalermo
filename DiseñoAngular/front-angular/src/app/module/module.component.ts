@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, Validators } from '@angular/forms';
 import { ServiceGeneralService } from '../service-general.service';
 import { CommonModule } from '@angular/common';
-import { IPerson } from '../interface/iperson';
+import { IModule } from '../interface/imodule';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatCardModule } from '@angular/material/card';
@@ -14,8 +14,6 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import Swal from 'sweetalert2';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
 
 
 
@@ -32,126 +30,117 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatFormFieldModule,
     MatSlideToggleModule,
     MatChipsModule,
-    MatTooltipModule,
-    MatDatepickerModule,
-    MatNativeDateModule
+    MatTooltipModule
    ],
-  templateUrl: './person.component.html',
-  styleUrls: ['./person.component.css']
+  templateUrl: './module.component.html',
+  styleUrls: ['./module.component.css']
 })
-export class PersonComponent implements OnInit {
-  persons: IPerson[] = [];
-  currentPerson: IPerson = this.getEmptyPerson();
+export class ModuleComponent implements OnInit {
+  modules: IModule[] = [];
+  currentModule: IModule = this.getEmptyModel();
   showForm: boolean = false;
   isEditing: boolean = false;
   
-  constructor(private personService: ServiceGeneralService) {}
+  constructor(private moduleService: ServiceGeneralService) {}
 
   ngOnInit(): void {
-    this.loadPersons();
+    this.loadModel();
   }
 
   // Helper para crear un formulario vacío
-  getEmptyPerson(): IPerson {
+  getEmptyModel(): IModule {
     return {
       id: 0,
-      firstName:  '',
-      lastName:  '',
-      documentType:  '',
-      document:  '',
-      dateBorn: new Date(),
-      phoneNumber:  '',
-      eps:  '',
-      genero:  '',
-      relatedPerson: false,
+      name:  '',
+      description: '',
       isDeleted: false
     };
   }
 
-  loadPersons(): void {
-    this.personService.get<IPerson[]>('person').subscribe({
+  loadModel(): void {
+    this.moduleService.get<IModule[]>('module').subscribe({
       next: data => {
         console.log('Datos recibidos:', data);
         // Solo formularios que NO estén eliminados (IsDeleted == false)
-        this.persons = data.filter(person => person.isDeleted === false);
+        this.modules = data.filter(module => module.isDeleted === false);
       },
-      error: err => console.error('Error al cargar los formularios', err),
+      error: err => console.error('Error al cargar los modulos', err),
     });
   }
   
   
 
   // Maneja tanto la creación como la actualización
-  submitPerson(): void {
+  submitModel(): void {
     if (this.isEditing) {
-      this.updatePerson();
+      this.updateModel();
     } else {
-      this.addPerson();
+      this.addModel();
     }
   }
 
-  addPerson(): void {
-    this.personService.post<IPerson>('person', this.currentPerson).subscribe({
-      next: person => {
+  addModel(): void {
+    this.moduleService.post<IModule>('module', this.currentModule).subscribe({
+      next: module => {
         Swal.fire({
           icon: 'success',
           title: '¡Éxito!',
-          text: 'Persona creada correctamente',
+          text: 'modulo creado correctamente',
           timer: 1500,
           showConfirmButton: false
         });
-        this.persons.push(person);
-        this.resetPerson();
+        this.modules.push(module);
+        this.resetModel();
       },
       error: err => {
         Swal.fire({
           icon: 'error',
           title: 'Error',
-          text: 'No se pudo crear la persona'
+          text: 'No se pudo crear el modulo'
         });
-        console.error('Error al agregar persona', err);
+        console.error('Error al agregar modulo', err);
       }
     });
   }
   
 
-  editPerson(person: IPerson): void {
+  editModel(module: IModule): void {
     this.isEditing = true;
-    // console.log('Datos enviados para actualizar:', this.currentForm);
-    this.currentPerson = { ...person };
+    // console.log('Datos enviados para actualizar:', this.currentModule);
+    this.currentModule = { ...module };
     this.showForm = true;
   }
 
-  updatePerson(): void {
-    console.log(this.currentPerson);
-    this.personService.put<IPerson>('person', this.currentPerson.id, this.currentPerson).subscribe({
-      next: updatedPerson => {
+  updateModel(): void {
+    console.log(this.currentModule);
+    this.moduleService.put<IModule>('module', this.currentModule.id, this.currentModule).subscribe({
+      next: updatedModule => {
         Swal.fire({
           icon: 'success',
           title: '¡Éxito!',
-          text: 'Persona actualizada correctamente',
+          text: 'modulo actualizado correctamente',
           timer: 1500,
           showConfirmButton: false
         });
-        const index = this.persons.findIndex(f => f.id === updatedPerson.id);
-        if (index > -1) this.persons[index] = updatedPerson;
-        this.resetPerson();
+        const index = this.modules.findIndex(m => m.id === updatedModule.id);
+        if (index > -1) this.modules[index] = updatedModule;
+        this.resetModel();
       },
       error: err => {
         Swal.fire({
           icon: 'error',
           title: 'Error',
-          text: 'No se pudo actualizar los datos de la persona'
+          text: 'No se pudo actualizar el modulo'
         });
-        console.error('Error al actualizar la persona', err);
+        console.error('Error al actualizar el modulo', err);
       }
     });
   }
 
-  deletePerson(id: number): void {
+  deleteModel(id: number): void {
     Swal.fire({
       title: '¿Estás seguro?',
-      text: "¡Esta acción eliminará permanentemente la persona!",
+      text: "¡Esta acción eliminará permanentemente el modulo!",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#d33',
@@ -160,34 +149,34 @@ export class PersonComponent implements OnInit {
       cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.personService.delete<IPerson>('person', id).subscribe({
+        this.moduleService.delete<IModule>('module', id).subscribe({
           next: () => {
             Swal.fire({
               icon: 'success',
               title: 'Eliminado',
-              text: 'La persona ha sido eliminada permanentemente',
+              text: 'El modulo ha sido eliminado permanentemente',
               timer: 1500,
               showConfirmButton: false
             });
-            this.persons = this.persons.filter(p => p.id !== id);
+            this.modules = this.modules.filter(m => m.id !== id);
           },
           error: err => {
             Swal.fire({
               icon: 'error',
               title: 'Error',
-              text: 'No se pudo eliminar la persona'
+              text: 'No se pudo eliminar el modulo'
             });
-            console.error('Error al eliminar la persona', err);
+            console.error('Error al eliminar modulo', err);
           }
         });
       }
     });
   }
 
-  deleteFormLogic(id: number): void {
+  deleteModelLogic(id: number): void {
     Swal.fire({
       title: '¿Estás seguro?',
-      text: "Esta persona se desactivará pero no se eliminará permanentemente",
+      text: "Este modulo se desactivará pero no se eliminará permanentemente",
       icon: 'question',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -196,40 +185,40 @@ export class PersonComponent implements OnInit {
       cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.personService.deleteLogic<IPerson>('person', id).subscribe({
+        this.moduleService.deleteLogic<IModule>('module', id).subscribe({
           next: () => {
             Swal.fire({
               icon: 'success',
               title: 'Desactivado',
-              text: 'La persona ha sido desactivado correctamente',
+              text: 'El modulo ha sido desactivado correctamente',
               timer: 1500,
               showConfirmButton: false
             });
-            this.persons = this.persons.filter(p => p.id !== id);
+            this.modules = this.modules.filter(m => m.id !== id);
           },
           error: err => {
             Swal.fire({
               icon: 'error',
               title: 'Error',
-              text: 'No se pudo desactivar la persona'
+              text: 'No se pudo desactivar el modulo'
             });
-            console.error('Error al eliminar persona', err);
+            console.error('Error al eliminar lógicamente', err);
           }
         });
       }
     });
   }
 
-  togglePerson(mode: 'create' | 'edit'): void {
+  toggleModel(mode: 'create' | 'edit'): void {
     if (mode === 'create') {
       this.isEditing = false;
-      this.currentPerson = this.getEmptyPerson();
+      this.currentModule = this.getEmptyModel();
     }
     this.showForm = !this.showForm;
   }
 
-  cancelPerson(): void {
-    if (this.currentPerson.firstName || this.currentPerson.lastName || this.currentPerson.documentType || this.currentPerson.document || this.currentPerson.dateBorn || this.currentPerson.phoneNumber || this.currentPerson.eps || this.currentPerson.genero) {
+  cancelModel(): void {
+    if (this.currentModule.name || this.currentModule.description) {
       Swal.fire({
         title: '¿Estás seguro?',
         text: 'Perderás los cambios no guardados',
@@ -241,18 +230,18 @@ export class PersonComponent implements OnInit {
         cancelButtonText: 'Seguir editando'
       }).then((result) => {
         if (result.isConfirmed) {
-          this.resetPerson();
+          this.resetModel();
         }
       });
     } else {
-      this.resetPerson();
+      this.resetModel();
     }
   }
 
-  resetPerson(): void {
+  resetModel(): void {
     this.showForm = false;
     this.isEditing = false;
-    this.currentPerson = this.getEmptyPerson();
+    this.currentModule = this.getEmptyModel();
   }
 }
 
