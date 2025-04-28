@@ -13,6 +13,8 @@ var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
 var dbProvider = configuration["DatabaseProvider"];
 
+
+
 // Add services to the container.
 
 builder.Services.AddControllersWithViews(); // Soporta vistas Razor además de API

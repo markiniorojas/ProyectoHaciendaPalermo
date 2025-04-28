@@ -2620,7 +2620,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/RolDTO"
+                    "$ref": "#/components/schemas/UserDTO"
                   }
                 }
               }
@@ -2698,6 +2698,16 @@
           }
         ],
         "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserDTO"
+                }
+              }
+            }
+          },
           "400": {
             "description": "Bad Request",
             "content": {
@@ -3221,7 +3231,7 @@
             "type": "integer",
             "format": "int32"
           },
-          "namePerson": {
+          "firstName": {
             "type": "string",
             "nullable": true
           }

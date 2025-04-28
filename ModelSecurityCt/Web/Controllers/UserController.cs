@@ -13,137 +13,141 @@ namespace Web.Controllers
         private readonly UserService _userBusiness;
         private readonly ILogger<UserController> _logger;
 
-        public UserController(UserService _userBusiness, ILogger<UserController> _logger)
+        public UserController(UserService userBusiness, ILogger<UserController> logger)
         {
-            this._userBusiness = _userBusiness;
-            this._logger = _logger;
+            _userBusiness = userBusiness;
+            _logger = logger;
         }
+
         /// <summary>
-        /// Obtiene todos los users del sistema
+        /// Obtiene todos los usuarios del sistema
         /// </summary>
-        /// <returns>Lista de users</returns>
-        /// <response code="200">Retorna la lista de users</response>
+        /// <returns>Lista de usuarios</returns>
+        /// <response code="200">Retorna la lista de usuarios</response>
         /// <response code="500">Error interno del servidor</response>
-        /// 
         [HttpGet]
-        [ProducesResponseType(typeof(IEnumerable<RolDTO>), 200)]
+        [ProducesResponseType(typeof(IEnumerable<UserDTO>), 200)]
         [ProducesResponseType(500)]
-        public async Task<IActionResult> GetAllRols()
+        public async Task<IActionResult> GetAllUsers()
         {
             try
             {
-                var Rols = await _userBusiness.GetAllAsync();
-                return Ok(Rols);
-
+                var users = await _userBusiness.GetAllAsync();
+                return Ok(users);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error al obtener Roles");
+                _logger.LogError(ex, "Error al obtener usuarios");
                 return StatusCode(500, new { message = ex.Message });
             }
         }
 
+        /// <summary>
+        /// Obtiene un usuario por su ID
+        /// </summary>
+        /// <param name="id">ID del usuario</param>
+        /// <returns>Usuario encontrado</returns>
         [HttpGet("{id:int}")]
+        [ProducesResponseType(typeof(UserDTO), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
         [ProducesResponseType(500)]
-        public async Task<IActionResult> GetRolById(int id)
+        public async Task<IActionResult> GetUserById(int id)
         {
             try
             {
-
-                var Rol = await _userBusiness.GetByIdAsync(id);
-                return Ok(Rol);
-
+                var user = await _userBusiness.GetByIdAsync(id);
+                return Ok(user);
             }
             catch (ValidationException ex)
             {
-                _logger.LogWarning(ex, "Validación fallida para el user con ID:" + id);
-                return BadRequest(new { Mesagge = ex.Message });
+                _logger.LogWarning(ex, "Validación fallida para el usuario con ID: {UserId}", id);
+                return BadRequest(new { message = ex.Message });
             }
             catch (EntityNotFoundException ex)
             {
-                _logger.LogInformation(ex, "Permiso no encontrado con ID: {RolId}", id);
+                _logger.LogInformation(ex, "Usuario no encontrado con ID: {UserId}", id);
                 return NotFound(new { message = ex.Message });
             }
             catch (ExternalServiceException ex)
             {
-                _logger.LogError(ex, "Error al obtener user con ID: {RolId}", id);
+                _logger.LogError(ex, "Error al obtener usuario con ID: {UserId}", id);
                 return StatusCode(500, new { message = ex.Message });
             }
         }
 
+        /// <summary>
+        /// Crea un nuevo usuario
+        /// </summary>
+        /// <param name="userDTO">Datos del usuario</param>
+        /// <returns>Usuario creado</returns>
         [HttpPost]
         [ProducesResponseType(typeof(UserDTO), 201)]
         [ProducesResponseType(400)]
         [ProducesResponseType(500)]
-        public async Task<IActionResult> CreateFormModule([FromBody] UserDTO UserDTO)
+        public async Task<IActionResult> CreateUser([FromBody] UserDTO userDTO)
         {
             try
             {
-                var createFormModule = await _userBusiness.CreateAsync(UserDTO);
-                return CreatedAtAction(nameof(GetRolById), new
-                {
-                    id = createFormModule.Id
-                }, createFormModule);
-
+                var createdUser = await _userBusiness.CreateAsync(userDTO);
+                return CreatedAtAction(nameof(GetUserById), new { id = createdUser.Id }, createdUser);
             }
             catch (ValidationException ex)
             {
-                _logger.LogWarning(ex, "Validación fallida");
-                return BadRequest(new { mesagge = ex.Message });
+                _logger.LogWarning(ex, "Validación fallida al crear el usuario");
+                return BadRequest(new { message = ex.Message });
             }
             catch (ExternalServiceException ex)
             {
-                _logger.LogError(ex, "Error al crear el formModule");
-                return StatusCode(500, new { mesagge = ex.Message });
+                _logger.LogError(ex, "Error al crear el usuario");
+                return StatusCode(500, new { message = ex.Message });
             }
         }
 
+        /// <summary>
+        /// Actualiza un usuario existente
+        /// </summary>
+        /// <param name="userDTO">Datos del usuario</param>
+        /// <returns>Usuario actualizado</returns>
         [HttpPut("{id:int}")]
         [ProducesResponseType(typeof(UserDTO), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
         [ProducesResponseType(500)]
-        public async Task<IActionResult> UpdateRol([FromBody] UserDTO userDTO)
+        public async Task<IActionResult> UpdateUser([FromBody] UserDTO userDTO)
         {
             try
             {
                 if (userDTO == null || userDTO.Id <= 0)
                 {
-                    return BadRequest(new { message = "El ID del user debe ser mayor que cero y no nulo" });
+                    return BadRequest(new { message = "El ID del usuario debe ser mayor que cero y no nulo" });
                 }
 
-                var updateUSer = await _userBusiness.UpdateAsync(userDTO);
-                return Ok(updateUSer);
+                var updatedUser = await _userBusiness.UpdateAsync(userDTO);
+                return Ok(updatedUser);
             }
             catch (ValidationException ex)
             {
-                _logger.LogWarning(ex, "Validación fallida al actualizar el user");
+                _logger.LogWarning(ex, "Validación fallida al actualizar el usuario");
                 return BadRequest(new { message = ex.Message });
             }
             catch (EntityNotFoundException ex)
             {
-                _logger.LogInformation(ex, "user no encontrado con ID: {user}", userDTO.Id);
+                _logger.LogInformation(ex, "Usuario no encontrado con ID: {UserId}", userDTO.Id);
                 return NotFound(new { message = ex.Message });
             }
             catch (ExternalServiceException ex)
             {
-                _logger.LogError(ex, "Error al actualizar el user con ID:", userDTO.Id);
+                _logger.LogError(ex, "Error al actualizar el usuario con ID: {UserId}", userDTO.Id);
                 return StatusCode(500, new { message = ex.Message });
             }
         }
 
-
         /// <summary>
-        /// Elimina un rol por su ID
+        /// Elimina permanentemente un usuario por su ID
         /// </summary>
-        /// <param name="id">ID del rol a eliminar</param>
+        /// <param name="id">ID del usuario</param>
         /// <returns>Mensaje de éxito</returns>
-        /// <response code="200">Rol eliminado exitosamente</response>
-        /// <response code="400">ID no válido</response>
-        /// <response code="404">Rol no encontrado</response>
-        /// <response code="500">Error interno del servidor</response>
         [HttpDelete("permanent/{id:int}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
@@ -155,83 +159,90 @@ namespace Web.Controllers
             {
                 if (id <= 0)
                 {
-                    return BadRequest(new { message = "El ID del user debe ser mayor que cero" });
+                    return BadRequest(new { message = "El ID del usuario debe ser mayor que cero" });
                 }
 
                 await _userBusiness.DeletePermanentAsync(id);
-                return Ok(new { message = "user eliminado correctamente" });
+                return Ok(new { message = "Usuario eliminado correctamente" });
             }
             catch (EntityNotFoundException ex)
             {
-                _logger.LogInformation(ex, "user no encontrado con ID: {RolId}", id);
+                _logger.LogInformation(ex, "Usuario no encontrado con ID: {UserId}", id);
                 return NotFound(new { message = ex.Message });
             }
             catch (ExternalServiceException ex)
             {
-                _logger.LogError(ex, "Error al eliminar el user con ID: {RolId}", id);
+                _logger.LogError(ex, "Error al eliminar el usuario con ID: {UserId}", id);
                 return StatusCode(500, new { message = ex.Message });
             }
         }
 
+        /// <summary>
+        /// Elimina lógicamente un usuario
+        /// </summary>
+        /// <param name="id">ID del usuario</param>
+        /// <returns>Mensaje de éxito</returns>
         [HttpPut("Logico/{id:int}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
         [ProducesResponseType(500)]
-
         public async Task<IActionResult> DeleteUserLogical(int id)
         {
             try
             {
                 if (id <= 0)
                 {
-                    return BadRequest(new { message = "El ID del user debe ser mayor que cero" });
+                    return BadRequest(new { message = "El ID del usuario debe ser mayor que cero" });
                 }
 
                 await _userBusiness.DeleteLogicalAsync(id);
-                return Ok(new { message = "user eliminado lógico correctamente" });
+                return Ok(new { message = "Usuario eliminado lógicamente correctamente" });
             }
             catch (EntityNotFoundException ex)
             {
-                _logger.LogInformation(ex, "user no encontrado con ID: " + id);
+                _logger.LogInformation(ex, "Usuario no encontrado con ID: {UserId}", id);
                 return NotFound(new { message = ex.Message });
             }
             catch (ExternalServiceException ex)
             {
-                _logger.LogError(ex, "Error al eliminar lógicamente  el user con ID:" + id);
+                _logger.LogError(ex, "Error al eliminar lógicamente el usuario con ID: {UserId}", id);
                 return StatusCode(500, new { message = ex.Message });
             }
         }
 
+        /// <summary>
+        /// Recupera lógicamente un usuario eliminado
+        /// </summary>
+        /// <param name="id">ID del usuario</param>
+        /// <returns>Mensaje de éxito</returns>
         [HttpPatch("recuperarLogica/{id:int}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
         [ProducesResponseType(500)]
-
         public async Task<IActionResult> PatchLogicalAsync(int id)
         {
             try
             {
                 if (id <= 0)
                 {
-                    return BadRequest(new { message = "El ID del user debe igual a cero" });
+                    return BadRequest(new { message = "El ID del usuario debe ser mayor que cero" });
                 }
 
                 await _userBusiness.PatchLogicalAsync(id);
-                return Ok(new { message = "user restablecido lógico correctamente" });
+                return Ok(new { message = "Usuario restablecido lógicamente correctamente" });
             }
             catch (EntityNotFoundException ex)
             {
-                _logger.LogInformation(ex, "user no encontrado con ID: " + id);
+                _logger.LogInformation(ex, "Usuario no encontrado con ID: {UserId}", id);
                 return NotFound(new { message = ex.Message });
             }
             catch (ExternalServiceException ex)
             {
-                _logger.LogError(ex, "Error al eliminar lógicamente  el user con ID:" + id);
+                _logger.LogError(ex, "Error al restablecer lógicamente el usuario con ID: {UserId}", id);
                 return StatusCode(500, new { message = ex.Message });
             }
         }
-
     }
 }

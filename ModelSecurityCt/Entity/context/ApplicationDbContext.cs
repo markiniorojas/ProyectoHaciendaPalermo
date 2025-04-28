@@ -26,11 +26,19 @@ namespace Entity.context
         }
 
 
+        // En la clase Entity.context.ApplicationDbContext
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
+            // Agrega esta configuración:
+            modelBuilder.Entity<User>()
+                .HasOne(u => u.Person)
+                .WithMany() // Si Person no tiene una colección de User
+                .HasForeignKey(u => u.PersonId)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.Restrict); // Evita eliminación en cascada
         }
 
 

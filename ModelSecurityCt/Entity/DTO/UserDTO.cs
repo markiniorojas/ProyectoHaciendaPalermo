@@ -15,6 +15,6 @@ namespace Entity.DTO
         public bool IsDeleted { get; set; }
         public DateTime RegistrationDate { get; set; }
         public int PersonId { get; set; }
-        public string NamePerson { get; set; }
+        public string firstName { get; set; }
     }
 }

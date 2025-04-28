@@ -2136,7 +2136,7 @@
   },
   {
     "ContainingType": "Web.Controllers.UserController",
-    "Method": "GetAllRols",
+    "Method": "GetAllUsers",
     "RelativePath": "api/User",
     "HttpMethod": "GET",
     "IsController": true,
@@ -2144,7 +2144,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[Entity.DTO.RolDTO, Entity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Entity.DTO.UserDTO, Entity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "application/json"
         ],
@@ -2159,14 +2159,14 @@
   },
   {
     "ContainingType": "Web.Controllers.UserController",
-    "Method": "CreateFormModule",
+    "Method": "CreateUser",
     "RelativePath": "api/User",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "UserDTO",
+        "Name": "userDTO",
         "Type": "Entity.DTO.UserDTO",
         "IsRequired": true
       }
@@ -2195,7 +2195,7 @@
   },
   {
     "ContainingType": "Web.Controllers.UserController",
-    "Method": "GetRolById",
+    "Method": "GetUserById",
     "RelativePath": "api/User/{id}",
     "HttpMethod": "GET",
     "IsController": true,
@@ -2208,6 +2208,13 @@
       }
     ],
     "ReturnTypes": [
+      {
+        "Type": "Entity.DTO.UserDTO",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      },
       {
         "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
         "MediaTypes": [
@@ -2231,7 +2238,7 @@
   },
   {
     "ContainingType": "Web.Controllers.UserController",
-    "Method": "UpdateRol",
+    "Method": "UpdateUser",
     "RelativePath": "api/User/{id}",
     "HttpMethod": "PUT",
     "IsController": true,

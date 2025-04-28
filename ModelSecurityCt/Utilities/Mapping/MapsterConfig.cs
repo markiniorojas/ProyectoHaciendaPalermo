@@ -31,6 +31,12 @@ namespace Utilities.Mapping
             TypeAdapterConfig<RolFormPermission, RolFormPermissionDTO>.NewConfig();
             TypeAdapterConfig<FormModuleDTO, FormModule>.NewConfig();
             TypeAdapterConfig<FormModule, FormModuleDTO>.NewConfig();
+
+            TypeAdapterConfig<User, UserDTO>
+            .NewConfig()
+            .Map(dest => dest.firstName, src => src.Person != null ? src.Person.FirstName : string.Empty);
+
+            TypeAdapterConfig<UserDTO, User>.NewConfig();
             // Agrega más mapeos aquí si lo necesitas
         }
     }
