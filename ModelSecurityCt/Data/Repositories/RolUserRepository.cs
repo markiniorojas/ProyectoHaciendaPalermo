@@ -18,7 +18,6 @@ namespace Data.Repositories
         : base(context, logger) { }
         public async Task<IEnumerable<RolUser>> GetAllAsync()
         {
-
             return await _context.RolUser
            .Include(fm => fm.Rol)
            .Include(fm => fm.User)  
