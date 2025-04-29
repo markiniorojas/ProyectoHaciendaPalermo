@@ -2364,16 +2364,6 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/RolUserDTO"
-                }
-              }
-            }
-          },
           "400": {
             "description": "Bad Request",
             "content": {

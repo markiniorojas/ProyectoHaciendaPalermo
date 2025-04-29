@@ -1,4 +1,5 @@
-﻿using Business.Services;
+﻿using Entity.DTO.DTOUpdate;
+using Business.Services;
 using Entity.DTO;
 using Microsoft.AspNetCore.Mvc;
 using Utilities;
@@ -11,12 +12,12 @@ namespace Web.Controllers
     [Produces("application/json")]
     public class RolUserController : ControllerBase
     {
-        private readonly RolUserService _RolUserBusiness;
+        private readonly RolUserService _rolUserBusiness;
         private readonly ILogger<RolUserController> _logger;
 
         public RolUserController(RolUserService rolUserBusiness, ILogger<RolUserController> _logger)
         {
-            _RolUserBusiness = rolUserBusiness;
+            _rolUserBusiness = rolUserBusiness;
             _logger = _logger;
         }
 
@@ -27,7 +28,7 @@ namespace Web.Controllers
         {
             try
             {
-                var RolUsers = await _RolUserBusiness.GetAllAsync();
+                var RolUsers = await _rolUserBusiness.GetAllAsync();
                 return Ok(RolUsers);
             }
             catch (ExternalServiceException ex)
@@ -37,31 +38,30 @@ namespace Web.Controllers
             }
         }
 
-        [HttpGet("{id}")]
-        [ProducesResponseType(typeof(RolUserDTO), 200)]
+        [HttpGet("{id:int}")]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
         [ProducesResponseType(500)]
-        public async Task<IActionResult> GetRolUserByIdAsync(int id)
+        public async Task<IActionResult> GetRolUserById(int id)
         {
             try
             {
-                var RolUser = await _RolUserBusiness.GetByIdAsync(id);
+                var RolUser = await _rolUserBusiness.GetByIdAsync(id);
                 return Ok(RolUser);
             }
             catch (ValidationException ex)
             {
-                _logger.LogWarning(ex, "Validación fallida por el RolUser con ID: {RolUserId}", id);
+                _logger.LogWarning(ex, "Validación fallida por el RolUser con ID", id);
                 return BadRequest(new { message = ex.Message });
             }
             catch (EntityNotFoundException ex)
             {
-                _logger.LogInformation(ex, "RolUser no encontrado con ID: {RolUser}", id);
+                _logger.LogInformation(ex, "RolUser no encontrado con ID: {rol}", id);
                 return NotFound(new { message = ex.Message });
             }
             catch (ExternalServiceException ex)
             {
-                _logger.LogError(ex, "Error al obtner RolUser con ID: {RolUserId}", id);
+                _logger.LogError(ex, "Error al obtner RolUser con ID: {userId}", id);
                 return StatusCode(500, new { message = ex.Message });
             }
         }
@@ -71,17 +71,16 @@ namespace Web.Controllers
         [ProducesResponseType(typeof(RolUserDTO), 201)]
         [ProducesResponseType(400)]
         [ProducesResponseType(500)]
-
-        [HttpPost]
         public async Task<IActionResult> CreateRolUser([FromBody] RolUserDTO rolUserDto)
         {
-            if (rolUserDto == null)
-                return BadRequest(new { message = "El objeto RolUser no puede ser nulo." });
-
+          
             try
             {
-                var newRolUser = await _RolUserBusiness.CreateAsync(rolUserDto);
-                return Ok(newRolUser);
+                var createRolUser = await _rolUserBusiness.CreateAsync(rolUserDto);
+                return CreatedAtAction(nameof(GetRolUserById), new
+                {
+                    id = createRolUser.Id
+                }, createRolUser);
             }
             catch (ValidationException ex)
             {
@@ -92,11 +91,6 @@ namespace Web.Controllers
             {
                 _logger.LogError(ex, "Error en la base de datos al crear un RolUser");
                 return StatusCode(500, new { message = "Error interno del servidor al procesar la solicitud." });
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error desconocido al crear un RolUser");
-                return StatusCode(500, new { message = "Ocurrió un error inesperado." });
             }
         }
 
@@ -113,8 +107,12 @@ namespace Web.Controllers
 
             try
             {
-                var updatedForm = await _RolUserBusiness.UpdateAsync(RolUserDto);
-                return Ok(updatedForm);
+                if(RolUserDto == null || RolUserDto.Id <= 0)
+                {
+                    return BadRequest(new { message = "El ID del rol debe ser mayor que cero y no nulo" });
+                }
+                var updatedRolUser = await _rolUserBusiness.UpdateAsync(RolUserDto);
+                return Ok(updatedRolUser);
             }
             catch (ValidationException ex)
             {
@@ -123,12 +121,12 @@ namespace Web.Controllers
             }
             catch (EntityNotFoundException ex)
             {
-                _logger.LogInformation(ex, "rolUser no encontrado con ID {RolUserId}");
+                _logger.LogInformation(ex, "rolUser no encontrado con ID {rolId}", RolUserDto.Id);
                 return NotFound(new { message = ex.Message });
             }
             catch (ExternalServiceException ex)
             {
-                _logger.LogError(ex, "Error al rolUser Form con ID {RolUserId}");
+                _logger.LogError(ex, "Error al rolUser Form con ID {RolUserId}", RolUserDto.Id);
                 return StatusCode(500, new { message = ex.Message });
             }
         }
@@ -138,7 +136,7 @@ namespace Web.Controllers
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
         [ProducesResponseType(500)]
-        public async Task<IActionResult> DeleteRol(int id)
+        public async Task<IActionResult> DeleteRolUser(int id)
         {
             try
             {
@@ -147,7 +145,7 @@ namespace Web.Controllers
                     return BadRequest(new { message = "El ID del rolUser debe ser mayor que cero" });
                 }
 
-                await _RolUserBusiness.DeletePermanentAsync(id);
+                await _rolUserBusiness.DeletePermanentAsync(id);
                 return Ok(new { message = "RolUser eliminado correctamente" });
             }
             catch (EntityNotFoundException ex)
@@ -168,7 +166,7 @@ namespace Web.Controllers
         [ProducesResponseType(404)]
         [ProducesResponseType(500)]
 
-        public async Task<IActionResult> DeleteRolLogical(int id)
+        public async Task<IActionResult> DeleteRolUserLogical(int id)
         {
             try
             {
@@ -177,7 +175,7 @@ namespace Web.Controllers
                     return BadRequest(new { message = "El ID del rolUser debe ser mayor que cero" });
                 }
 
-                await _RolUserBusiness.DeleteLogicalAsync(id);
+                await _rolUserBusiness.DeleteLogicalAsync(id);
                 return Ok(new { message = "rolUser  eliminado lógico correctamente" });
             }
             catch (EntityNotFoundException ex)
@@ -207,7 +205,7 @@ namespace Web.Controllers
                     return BadRequest(new { message = "El ID de el rol debe igual a cero" });
                 }
 
-                await _RolUserBusiness.PatchLogicalAsync(id);
+                await _rolUserBusiness.PatchLogicalAsync(id);
                 return Ok(new { message = "rol  restablecido lógico correctamente" });
             }
             catch (EntityNotFoundException ex)

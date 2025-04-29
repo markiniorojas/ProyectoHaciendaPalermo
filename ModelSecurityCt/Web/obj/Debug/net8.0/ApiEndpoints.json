@@ -1922,7 +1922,7 @@
   },
   {
     "ContainingType": "Web.Controllers.RolUserController",
-    "Method": "GetRolUserByIdAsync",
+    "Method": "GetRolUserById",
     "RelativePath": "api/RolUser/{id}",
     "HttpMethod": "GET",
     "IsController": true,
@@ -1935,13 +1935,6 @@
       }
     ],
     "ReturnTypes": [
-      {
-        "Type": "Entity.DTO.RolUserDTO",
-        "MediaTypes": [
-          "application/json"
-        ],
-        "StatusCode": 200
-      },
       {
         "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
         "MediaTypes": [
@@ -2013,7 +2006,7 @@
   },
   {
     "ContainingType": "Web.Controllers.RolUserController",
-    "Method": "DeleteRolLogical",
+    "Method": "DeleteRolUserLogical",
     "RelativePath": "api/RolUser/Logico/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
@@ -2054,7 +2047,7 @@
   },
   {
     "ContainingType": "Web.Controllers.RolUserController",
-    "Method": "DeleteRol",
+    "Method": "DeleteRolUser",
     "RelativePath": "api/RolUser/permanent/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,

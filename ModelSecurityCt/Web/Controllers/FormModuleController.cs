@@ -163,7 +163,7 @@ namespace Web.Controllers
             }
             catch (EntityNotFoundException ex)
             {
-                _logger.LogInformation(ex, "FormModule no encontrado con ID: {RolId}", FormModuleDTO.Id);
+                _logger.LogInformation(ex, "FormModule no encontrado con ID: {formId}", FormModuleDTO.Id);
                 return NotFound(new { message = ex.Message });
             }
             catch (ExternalServiceException ex)

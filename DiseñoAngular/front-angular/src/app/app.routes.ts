@@ -6,6 +6,8 @@ import { ModuleComponent } from './module/module.component';
 import { PermissionComponent } from './permission/permission.component';
 import { RolComponent } from './rol/rol.component';
 import { UserComponent } from './user/user.component';
+import { RoluserComponent } from './roluser/roluser.component';
+import { FormmoduleComponent } from './formmodule/formmodule.component';
 
 
 
@@ -19,6 +21,8 @@ export const routes: Routes = [
             { path: 'permission', component: PermissionComponent },
             { path: 'rol', component: RolComponent},
             { path: 'user', component: UserComponent},
+            { path: 'roluser', component: RoluserComponent},
+            { path: 'formmodule', component: FormmoduleComponent},
             { path: '', redirectTo: '', pathMatch: 'full'}
         ]
     }

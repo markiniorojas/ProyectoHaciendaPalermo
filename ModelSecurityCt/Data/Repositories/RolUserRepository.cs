@@ -21,8 +21,7 @@ namespace Data.Repositories
 
             return await _context.RolUser
            .Include(fm => fm.Rol)
-           .Include(fm => fm.User)
-           .Where(fm => fm.IsDeleted)
+           .Include(fm => fm.User)  
            .ToListAsync();
         }
 
