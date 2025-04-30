@@ -6,7 +6,12 @@ using Data.Repositories;
 using Entity.context;
 using Mapster;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 using Utilities.Mapping;
+using System.Text;
+using Web.Custom;
+using Entity.Model;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -53,6 +58,8 @@ builder.Services.AddScoped<RolFormPermissionService>();
 builder.Services.AddMapster(); // agrega IMapper
 MapsterConfig.RegisterMappings(); // registra los mapeos
 
+//Configuramos el switch para la escoger la base de datos
+
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     switch (dbProvider)
@@ -71,6 +78,32 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
             throw new Exception("Proveedor de base de datos no soportado");
     }
 });
+
+//Configuramos la autenticacion JWT
+
+builder.Services.AddSingleton<Utilidades>();
+
+builder.Services.AddAuthentication(config =>
+{
+    config.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    config.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(config => 
+{ 
+    config.RequireHttpsMetadata= false;
+    config.SaveToken = true;
+    config.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuerSigningKey = true,
+        ValidateIssuer = false,
+        ValidateAudience = false,
+        ValidateLifetime = true,
+        ClockSkew = TimeSpan.Zero,
+        IssuerSigningKey = new SymmetricSecurityKey
+        (Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!)),
+    };
+});
+
+
 
 ///<summary>
 ///Esto nos ayuda a proteger nuestra API mediante politicas de seguridad para que no se pueda acceder con peticiones desde diferentes origenes al servidor
@@ -111,6 +144,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+
+app.UseAuthentication();
 
 app.UseHttpsRedirection();
 

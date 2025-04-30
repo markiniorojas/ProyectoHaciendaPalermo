@@ -15,7 +15,7 @@ namespace Entity.Model
         public bool IsDeleted { get; set; }
         public int PersonId { get; set; }
 
-        public string PersonName { get; set; } // <--- ¡Agrega esta propiedad!
+        public string PersonName { get; set; } 
 
         public DateTime RegistrationDate { get; set; }
         public Person Person { get; set; }
