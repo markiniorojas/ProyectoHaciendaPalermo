@@ -13,14 +13,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSelectModule } from '@angular/material/select'; // Importa MatSelectModule
 import Swal from 'sweetalert2';
-
-
 
 @Component({
   selector: 'app-form-example',
   standalone: true,
-  imports: [CommonModule,FormsModule,
+  imports: [CommonModule, FormsModule,
     MatTableModule,
     MatPaginatorModule,
     MatCardModule,
@@ -30,8 +29,9 @@ import Swal from 'sweetalert2';
     MatFormFieldModule,
     MatSlideToggleModule,
     MatChipsModule,
-    MatTooltipModule
-   ],
+    MatTooltipModule,
+    MatSelectModule // Agrega MatSelectModule a los imports
+  ],
   templateUrl: './roluser.component.html',
   styleUrls: ['./roluser.component.css']
 })
@@ -40,36 +40,60 @@ export class RoluserComponent implements OnInit {
   currentRolUser: IRolUser = this.getEmptyRolUser();
   showForm: boolean = false;
   isEditing: boolean = false;
-  
-  constructor(private roluserService: ServiceGeneralService) {}
+  roles: any[] = []; // Ajusta el tipo según tu modelo de Rol
+  users: any[] = []; // Ajusta el tipo según tu modelo de Usuario
+
+  constructor(private roluserService: ServiceGeneralService) { }
 
   ngOnInit(): void {
     this.loadRolUser();
+    this.loadRoles();
+    this.loadUsers();
   }
+
+
 
   // Helper para crear un formulario vacío
   getEmptyRolUser(): IRolUser {
     return {
       id: 0,
-      rolId:  0,
-      userId: 0,
+      email: '',
+      personName: '',
       rolName: '',
-      isDeleted: false
+      isDeleted: false,
+      rolId: 0, // Asegúrate de que estas propiedades existan en tu interfaz IRolUser si las vas a usar para el envío
+      userId: 0, // Asegúrate de que estas propiedades existan en tu interfaz IRolUser si las vas a usar para el envío
+ // Asegúrate de que estas propiedades existan en tu interfaz IRolUser si las vas a usar para el envío
     };
   }
 
   loadRolUser(): void {
-    this.roluserService.get<IRolUser[]>('roluser').subscribe({
+    this.roluserService.get<IRolUser[]>('RolUser').subscribe({
       next: data => {
         console.log('Datos recibidos:', data);
-        // Solo formularios que NO estén eliminados (IsDeleted == false)
         this.rolusers = data.filter(roluser => roluser.isDeleted === false);
       },
       error: err => console.error('Error al cargar los rolUsers', err),
     });
   }
-  
-  
+
+  loadRoles(): void {
+    this.roluserService.get<any[]>('Rol').subscribe({ // Reemplaza 'roles' con la ruta correcta de tu API
+      next: data => {
+        this.roles = data;
+      },
+      error: err => console.error('Error al cargar los roles', err),
+    });
+  }
+
+  loadUsers(): void {
+    this.roluserService.get<any[]>('User').subscribe({ // Cambiado a 'User'
+      next: data => {
+        this.users = data;
+      },
+      error: err => console.error('Error al cargar los usuarios', err),
+    });
+  }
 
   // Maneja tanto la creación como la actualización
   submitRolUser(): void {
@@ -103,11 +127,9 @@ export class RoluserComponent implements OnInit {
       }
     });
   }
-  
 
   editRolUser(roluser: IRolUser): void {
     this.isEditing = true;
-    // console.log('Datos enviados para actualizar:', this.currentPermission);
     this.currentRolUser = { ...roluser };
     this.showForm = true;
   }
@@ -245,4 +267,3 @@ export class RoluserComponent implements OnInit {
     this.currentRolUser = this.getEmptyRolUser();
   }
 }
-

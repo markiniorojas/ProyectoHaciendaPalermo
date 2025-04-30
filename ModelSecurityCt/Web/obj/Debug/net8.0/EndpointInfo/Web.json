@@ -3178,7 +3178,7 @@
             "type": "string",
             "nullable": true
           },
-          "userName": {
+          "email": {
             "type": "string",
             "nullable": true
           },
@@ -3221,7 +3221,7 @@
             "type": "integer",
             "format": "int32"
           },
-          "firstName": {
+          "personName": {
             "type": "string",
             "nullable": true
           }

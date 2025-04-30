@@ -14,7 +14,9 @@ namespace Entity.Model
         public bool Active { get; set; }
         public bool IsDeleted { get; set; }
         public int PersonId { get; set; }
-       
+
+        public string PersonName { get; set; } // <--- ¡Agrega esta propiedad!
+
         public DateTime RegistrationDate { get; set; }
         public Person Person { get; set; }
         public List<RolUser> roleuser { get; set; } = new List<RolUser>();

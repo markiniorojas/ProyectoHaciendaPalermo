@@ -13,12 +13,8 @@
 
     <mat-card-content>
       <div class="mat-elevation-z1 table-container">
-        <table mat-table [dataSource]="dataSource" class="full-width-table">
-          <ng-container matColumnDef="formId">
-            <th mat-header-cell *matHeaderCellDef> Form Id </th>
-            <td mat-cell *matCellDef="let formmodule"> {{formmodule.formId}} </td>
-          </ng-container>
-
+        <table mat-table [dataSource]="formmodules" class="full-width-table">
+      
           <ng-container matColumnDef="moduleName">
             <th mat-header-cell *matHeaderCellDef> Nombre Modulo </th>
             <td mat-cell *matCellDef="let formmodule"> {{formmodule.moduleName}} </td>
@@ -27,11 +23,6 @@
           <ng-container matColumnDef="formName">
             <th mat-header-cell *matHeaderCellDef> Nombre formulario </th>
             <td mat-cell *matCellDef="let formmodule"> {{formmodule.formName}} </td>
-          </ng-container>
-
-          <ng-container matColumnDef="moduleId">
-            <th mat-header-cell *matHeaderCellDef> Modulo id </th>
-            <td mat-cell *matCellDef="let formmodule"> {{formmodule.moduleId}} </td>
           </ng-container>
 
           <ng-container matColumnDef="isDeleted">
@@ -58,8 +49,8 @@
             </td>
           </ng-container>
 
-          <tr mat-header-row *matHeaderRowDef="['formId','moduleName', 'formName','moduleId','isDeleted', 'actions']"></tr>
-          <tr mat-row *matRowDef="let row; columns: ['formId','moduleName', 'formName','moduleId','isDeleted', 'actions']"></tr>
+          <tr mat-header-row *matHeaderRowDef="['moduleName', 'formName','isDeleted', 'actions']"></tr>
+          <tr mat-row *matRowDef="let row; columns: ['moduleName', 'formName','isDeleted', 'actions']"></tr>
         </table>
 
         <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
@@ -82,33 +73,23 @@
 
       <mat-card-content>
         <form (ngSubmit)="submitFormModule()" #formElement="ngForm">
-          <div class="form-row">
-            <div class="form-column">
-              <mat-form-field appearance="outline" class="full-width">
-                <mat-label>Form Id</mat-label>
-                <input matInput id="formId" name="formId" [(ngModel)]="currentFormModule.formId" required>
-                <mat-error *ngIf="formElement.controls['formId']?.invalid">El Form Id es obligatorio</mat-error>
-              </mat-form-field>
 
-              <mat-form-field appearance="outline" class="full-width">
-                <mat-label>Module Name</mat-label>
-                <input matInput id="moduleName" name="moduleName" [(ngModel)]="currentFormModule.moduleName" required>
-                <mat-error *ngIf="formElement.controls['moduleName']?.invalid">El Nombre del Módulo es obligatorio</mat-error>
-              </mat-form-field>
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Formulario</mat-label>
+            <mat-select id="formId" name="formId" [(ngModel)]="currentFormModule.formId" required>
+              <mat-option *ngFor="let form of forms" [value]="form.id">{{ form.name }}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="formElement.controls['formId']?.invalid">El Formulario es obligatorio</mat-error>
+          </mat-form-field>
 
-              <mat-form-field appearance="outline" class="full-width">
-                <mat-label>Form Name</mat-label>
-                <input matInput id="formName" name="formName" [(ngModel)]="currentFormModule.formName" required>
-                <mat-error *ngIf="formElement.controls['formName']?.invalid">El Nombre del Formulario es obligatorio</mat-error>
-              </mat-form-field>
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Módulo</mat-label>
+            <mat-select id="moduleId" name="moduleId" [(ngModel)]="currentFormModule.moduleId" required>
+              <mat-option *ngFor="let module of modules" [value]="module.id">{{ module.moduleName }}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="formElement.controls['moduleId']?.invalid">El Módulo es obligatorio</mat-error>
+          </mat-form-field>
 
-              <mat-form-field appearance="outline" class="full-width">
-                <mat-label>Module Id</mat-label>
-                <input matInput id="moduleId" name="moduleId" [(ngModel)]="currentFormModule.moduleId" required>
-                <mat-error *ngIf="formElement.controls['moduleId']?.invalid">El Id del Módulo es obligatorio</mat-error>
-              </mat-form-field>
-            </div>
-          </div>
           <mat-slide-toggle color="primary" id="isDeleted" name="isDeleted" [(ngModel)]="currentFormModule.isDeleted">
             {{ currentFormModule.isDeleted ? 'Inactivo' : 'Activo' }}
           </mat-slide-toggle>

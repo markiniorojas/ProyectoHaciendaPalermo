@@ -13,6 +13,7 @@ namespace Entity.Model
         public int RolId { get; set; }
         public int UserId { get; set; }
         public bool IsDeleted { get; set; }
+        public string Email { get; set; }
 
         public Rol Rol { get; set; }    
         public User User { get; set; }
