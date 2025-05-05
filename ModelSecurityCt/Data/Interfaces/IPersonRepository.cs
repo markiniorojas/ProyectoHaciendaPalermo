@@ -1,25 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Data.Core;
+﻿using Data.Core;
 using Entity.Model;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Data.Interfaces
-{/// <summary>
- /// Repositorio específico para la entidad Form.
- /// Extiende la funcionalidad genérica del IRepository con la posibilidad
- /// de incluir métodos personalizados relacionados con formularios.
- /// 
- /// Mantener interfaces específicas por entidad facilita la extensión del repositorio
- /// con operaciones que no aplican a otras entidades (por ejemplo, GetFormsByUserId).
- /// </summary>
+{
+    /// <summary>
+    /// Interfaz para el repositorio de personas.
+    /// Extiende de IGenericRepository<Person> para heredar todos los métodos CRUD básicos,
+    /// y define métodos adicionales específicos para la entidad Person.
+    /// </summary>
     public interface IPersonRepository : IRepository<Person>
     {
+        // Aquí se definen métodos específicos para Person que no están en IGenericRepository<T>
 
-        // Aquí podrían agregarse métodos personalizados, como:
-        // Task<IEnumerable<Form>> GetFormsByUserIdAsync(int userId);
-        // Task<Form> GetLatestSubmittedFormAsync();
+    
+
+        // Puedes agregar más métodos específicos según necesites
+        // Por ejemplo:
+        // Task<Person> GetByDocumentAsync(string document);
+        // Task<IEnumerable<Person>> GetByAgeRangeAsync(int minAge, int maxAge);
     }
 }

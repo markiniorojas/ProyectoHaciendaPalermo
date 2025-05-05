@@ -15,9 +15,7 @@ namespace Utilities.Mapping
         {
             TypeAdapterConfig<Rol, RolDTO>.NewConfig();
             TypeAdapterConfig<RolDTO, Rol>.NewConfig();
-            TypeAdapterConfig<User, UserDTO>
-                .NewConfig()
-                .Map(dest => dest.personName, src => src.PersonName); // Mapea directamente desde User.PersonName
+            TypeAdapterConfig<User, UserDTO>.NewConfig();
             TypeAdapterConfig<UserDTO, User>.NewConfig();
             TypeAdapterConfig<Permission, PermissionDTO>.NewConfig();
             TypeAdapterConfig<PermissionDTO, Permission>.NewConfig();
@@ -25,9 +23,7 @@ namespace Utilities.Mapping
             TypeAdapterConfig<ModuleDTO, Module>.NewConfig();
             TypeAdapterConfig<Person, PersonDTO>.NewConfig();
             TypeAdapterConfig<PersonDTO, Person>.NewConfig();
-            TypeAdapterConfig<RolUser, RolUserDTO>
-                .NewConfig()
-                .Map(dest => dest.Email, src => src.Email);
+            TypeAdapterConfig<RolUser, RolUserDTO>.NewConfig();
             TypeAdapterConfig<RolUserDTO, RolUser>.NewConfig();
             TypeAdapterConfig<Form, FormDTO>.NewConfig();
             TypeAdapterConfig<FormDTO, Form>.NewConfig();

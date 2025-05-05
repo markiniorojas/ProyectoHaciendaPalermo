@@ -1,10 +1,11 @@
-﻿ using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
+using Business.Interfaces;
 using Utilities;
-using Data.Core;
 using Mapster;
+using Data.Core;
 
 namespace Business.Core
 {
@@ -14,7 +15,7 @@ namespace Business.Core
     /// </summary>
     /// <typeparam name="TDto">Tipo de objeto de transferencia de datos (DTO).</typeparam>
     /// <typeparam name="TEntity">Tipo de entidad del dominio correspondiente en la base de datos.</typeparam>
-    public abstract class ServiceBase<TDto, TEntity> : IServiceBase<TDto, TEntity>
+    public abstract class ServiceBase<TDTO, TEntity> : IServiceBase<TDTO, TEntity>
     {
         protected readonly IRepository<TEntity> _repository;
         protected readonly ILogger _logger;
@@ -25,12 +26,12 @@ namespace Business.Core
             _logger = logger;
         }
 
-        public virtual async Task<IEnumerable<TDto>> GetAllAsync()
+        public virtual async Task<IEnumerable<TDTO>> GetAllAsync()
         {
             try
             {
                 var entities = await _repository.GetAllAsync();
-                return entities.Adapt<IEnumerable<TDto>>();
+                return entities.Adapt<IEnumerable<TDTO>>();
             }
             catch (Exception ex)
             {
@@ -39,7 +40,7 @@ namespace Business.Core
             }
         }
 
-        public virtual async Task<TDto> GetByIdAsync(int id)
+        public virtual async Task<TDTO> GetByIdAsync(int id)
         {
             try
             {
@@ -47,7 +48,7 @@ namespace Business.Core
                 if (entity == null)
                     throw new EntityNotFoundException(typeof(TEntity).Name, id);
 
-                return entity.Adapt<TDto>();
+                return entity.Adapt<TDTO>();
             }
             catch (Exception ex)
             {
@@ -56,13 +57,13 @@ namespace Business.Core
             }
         }
 
-        public virtual async Task<TDto> CreateAsync(TDto dto)
+        public virtual async Task<TDTO> CreateAsync(TDTO dto)
         {
             try
             {
                 var entity = dto.Adapt<TEntity>();
                 var created = await _repository.AddAsync(entity);
-                return created.Adapt<TDto>();
+                return created.Adapt<TDTO>();
             }
             catch (Exception ex)
             {
@@ -71,7 +72,7 @@ namespace Business.Core
             }
         }
 
-        public virtual async Task<TDto> UpdateAsync(TDto dto)
+        public virtual async Task<TDTO> UpdateAsync(TDTO dto)
         {
             try
             {

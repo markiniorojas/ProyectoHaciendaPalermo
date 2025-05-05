@@ -1,4 +1,5 @@
-﻿using Business.Services;
+﻿using Business.Interfaces;
+using Business.Services;
 using Entity.DTO;
 using Microsoft.AspNetCore.Mvc;
 using Utilities;
@@ -10,13 +11,13 @@ namespace Web.Controllers
     [Produces("application/json")]
     public class UserController : ControllerBase
     {
-        private readonly UserService _userBusiness;
+        private readonly IUserService _userBusiness;
         private readonly ILogger<UserController> _logger;
 
-        public UserController(UserService userBusiness, ILogger<UserController> logger)
+        public UserController(IUserService _userBusiness, ILogger<UserController> _logger)
         {
-            _userBusiness = userBusiness;
-            _logger = logger;
+            this._userBusiness = _userBusiness;
+            this._logger = _logger;
         }
 
         /// <summary>
@@ -109,7 +110,7 @@ namespace Web.Controllers
         /// </summary>
         /// <param name="userDTO">Datos del usuario</param>
         /// <returns>Usuario actualizado</returns>
-        [HttpPut("{id:int}")]
+        [HttpPut]
         [ProducesResponseType(typeof(UserDTO), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]

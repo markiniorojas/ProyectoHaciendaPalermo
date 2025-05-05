@@ -142,7 +142,7 @@ namespace Web.Controllers
         /// <response code="400">Datos no válidos</response>
         /// <response code="404">persona no encontrado</response>
         /// <response code="500">Error interno del servidor</response>
-        [HttpPut("{id:int}")]
+        [HttpPut]
         [ProducesResponseType(typeof(PersonDTO), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]

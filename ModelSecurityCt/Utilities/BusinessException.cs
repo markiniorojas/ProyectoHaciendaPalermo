@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Utilities
 {
-    public class BusinessException: Exception
+    public class BusinessException : Exception
     {
 
         /// <summary>

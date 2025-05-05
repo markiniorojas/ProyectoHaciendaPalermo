@@ -59,6 +59,12 @@ namespace Data.Core
         /// <param name="id">Identificador de la entidad a marcar como eliminada.</param>
         /// <returns>True si se marcó como eliminada, False si no fue posible.</returns>
         Task<bool> DeleteLogicalAsync(int id);
+
+        /// <summary>
+        /// Restablece una entidad eliminada lógicamente, cambiando su estado a no eliminada.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         Task<bool> PatchLogicalAsync(int id);
     }
 

@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,48 +7,33 @@ using Data.Core;
 using Data.Interfaces;
 using Entity.context;
 using Entity.Model;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace Data.Repositories
 {
-
     /// <summary>
     /// Repositorio concreto para la entidad User.
     /// Hereda los métodos genéricos de GenericRepository e implementa IUserRepository,
-    /// permitiendo así extender o sobreescribir funcionalidades específicas si es necesario.
-    /// 
-    /// Esta clase actúa como punto central para acceder a la información de personas,
-    /// y puede crecer con operaciones específicas de la entidad (ej. búsqueda por DNI, nombre, etc.).
+    /// permitiendo así extender o sobreescribir funcionalidades específicas para usuarios.
     /// </summary>
     public class UserRepository : GenericRepository<User>, IUserRepository
     {
-        private readonly ApplicationDbContext _context;
+
         /// <summary>
-        /// Constructor del repositorio de personas.
+        /// Constructor del repositorio de usuarios.
         /// Recibe el contexto de base de datos y el logger para rastreo de operaciones.
-        /// Estos se pasan al repositorio base para ser utilizados en operaciones comunes.
         /// </summary>
         /// <param name="context">Instancia de ApplicationDbContext para acceso a datos.</param>
         /// <param name="logger">Instancia de ILogger para registrar logs y advertencias.</param>
         public UserRepository(ApplicationDbContext context, ILogger<UserRepository> logger)
-        : base(context, logger) 
+            : base(context, logger)
         {
-            _context = context;
         }
 
-        public async Task<User?> GetUserWithPersonAsync(int id)
-        {
-            // Asegúrate de que la consulta incluya Person y que Person no sea null
-            return await _context.User
-                .Include(u => u.Person)
-                .AsNoTracking() // Para mejor rendimiento si solo lees datos
-                .FirstOrDefaultAsync(u => u.Id == id);
-
-        }
-        // Aquí pueden agregarse métodos específicos para User, por ejemplo:
-        // public async Task<User?> GetByDocumentAsync(string dni)
-        // {
-        //     return await _context.People.FirstOrDefaultAsync(p => p.Document == dni);
-        // }
+        /// <summary>
+        /// Obtiene un usuario con sus datos de persona relacionados
+        /// </summary>
+       
     }
 }

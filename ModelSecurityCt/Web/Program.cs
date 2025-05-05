@@ -6,25 +6,21 @@ using Data.Repositories;
 using Entity.context;
 using Mapster;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
 using Utilities.Mapping;
 using System.Text;
-using Web.Custom;
-using Entity.Model;
+using Business.Core;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Obtener configuración desde appsettings.json
 var configuration = builder.Configuration;
 var dbProvider = configuration["DatabaseProvider"];
 
 
+// Servicios del negocio (Business Layer)
 
-// Add services to the container.
+builder.Services.AddControllers();
 
-builder.Services.AddControllersWithViews(); // Soporta vistas Razor además de API
-
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -44,8 +40,7 @@ builder.Services.AddScoped<IRolRepository, RolRepository>();
 builder.Services.AddScoped<RolService>();
 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
-builder.Services.AddScoped<UserService>();
-
+builder.Services.AddScoped<IUserService,UserService>();
 
 builder.Services.AddScoped<IFormModuleRepository, FormModuleRepository>();
 builder.Services.AddScoped<FormModuleService>();
@@ -55,11 +50,12 @@ builder.Services.AddScoped<RolUserService>();
 
 builder.Services.AddScoped<IRolFormPermissionRepository, RolFormPermissionRepository>();
 builder.Services.AddScoped<RolFormPermissionService>();
-builder.Services.AddMapster(); // agrega IMapper
-MapsterConfig.RegisterMappings(); // registra los mapeos
 
-//Configuramos el switch para la escoger la base de datos
+// Registro de Mapster para mapeo de modelos
+builder.Services.AddMapster();
+MapsterConfig.RegisterMappings(); // Registra los mapeos
 
+// Configuración de la base de datos
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     switch (dbProvider)
@@ -79,81 +75,37 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     }
 });
 
-//Configuramos la autenticacion JWT
 
-builder.Services.AddSingleton<Utilidades>();
+// Configuración de CORS (para permitir acceso desde cualquier origen)
 
-builder.Services.AddAuthentication(config =>
-{
-    config.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    config.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-}).AddJwtBearer(config => 
-{ 
-    config.RequireHttpsMetadata= false;
-    config.SaveToken = true;
-    config.TokenValidationParameters = new TokenValidationParameters
-    {
-        ValidateIssuerSigningKey = true,
-        ValidateIssuer = false,
-        ValidateAudience = false,
-        ValidateLifetime = true,
-        ClockSkew = TimeSpan.Zero,
-        IssuerSigningKey = new SymmetricSecurityKey
-        (Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!)),
-    };
-});
-
-
-
-///<summary>
-///Esto nos ayuda a proteger nuestra API mediante politicas de seguridad para que no se pueda acceder con peticiones desde diferentes origenes al servidor
-///</summary>
-
-//var OrigenesPermitidos = builder.Configuration.GetValue<string>("OrigenesPermitidos")!.Split(",");
-
-//builder.Services.AddCors(opciones =>
-//{
-//    opciones.AddDefaultPolicy(politica =>
-//    {
-//        politica.WithOrigins(OrigenesPermitidos).AllowAnyHeader().AllowAnyMethod();
-//    });
-//});
+var origenesPermitidos = builder.Configuration
+    .GetValue<string>("OrigenesPermitidos")!
+    .Split(",");
 
 builder.Services.AddCors(options =>
 {
-    options.AddDefaultPolicy(policy =>
+    options.AddPolicy("AllowFrontend",
+        policy =>
     {
-        policy.AllowAnyOrigin()
+        policy.WithOrigins(origenesPermitidos) // Usar los orígenes configurados
               .AllowAnyHeader()
               .AllowAnyMethod();
     });
 });
 
-
-
-
-//builder.Services.AddDbContext<ApplicationDbContext>(opciones =>
-//opciones.UseSqlServer("name=DefaultConnection"));
-
-
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Configuración de la canalización de solicitudes HTTP
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
+    app.UseSwagger(); // Habilitar Swagger solo en desarrollo
     app.UseSwaggerUI();
 }
 
+app.UseHttpsRedirection(); // Redirigir a HTTPS
+app.UseCors("AllowFrontend"); // Habilitar CORS
+app.UseAuthorization(); // Activar autorización
 
-app.UseAuthentication();
-
-app.UseHttpsRedirection();
-
-app.UseCors();
-
-app.UseAuthorization();
-
-app.MapControllers();
+app.MapControllers(); // Mapear controladores
 
 app.Run();

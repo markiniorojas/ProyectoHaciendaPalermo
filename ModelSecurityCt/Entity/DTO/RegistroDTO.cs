@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Entity.DTO
 {
-    class RegistroDTO
+    public class RegistroDTO
     {
-
+        // Información de Person
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string DocumentType { get; set; }
@@ -18,10 +18,8 @@ namespace Entity.DTO
         public string Eps { get; set; }
         public string Genero { get; set; }
 
-
+        // Información de User
         public string Email { get; set; }
         public string Password { get; set; }
-
-
     }
 }
