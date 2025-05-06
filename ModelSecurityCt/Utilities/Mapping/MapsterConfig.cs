@@ -31,7 +31,10 @@ namespace Utilities.Mapping
             TypeAdapterConfig<RolFormPermission, RolFormPermissionDTO>.NewConfig();
             TypeAdapterConfig<FormModuleDTO, FormModule>.NewConfig();
             TypeAdapterConfig<FormModule, FormModuleDTO>.NewConfig();
+            TypeAdapterConfig<UserDTO, LoginDTO>.NewConfig();
+            TypeAdapterConfig<LoginDTO, User>.NewConfig();
+
             // Agrega más mapeos aquí si lo necesitas
         }
     }
-}
+} 

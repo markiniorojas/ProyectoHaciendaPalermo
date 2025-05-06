@@ -21,5 +21,8 @@ namespace Entity.DTO
         // Información de User
         public string Email { get; set; }
         public string Password { get; set; }
+
+        public List<int> RolIds { get; set; } = new List<int>();
+
     }
 }

@@ -1,5 +1,87 @@
 [
   {
+    "ContainingType": "Web.Controllers.AccesoController",
+    "Method": "Login",
+    "RelativePath": "api/Acceso",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "loginDTO",
+        "Type": "Entity.DTO.LoginDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 400
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 401
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 500
+      }
+    ]
+  },
+  {
+    "ContainingType": "Web.Controllers.AccesoController",
+    "Method": "Register",
+    "RelativePath": "api/Acceso/Registro",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "registroDTO",
+        "Type": "Entity.DTO.RegistroDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 400
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 401
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 500
+      }
+    ]
+  },
+  {
     "ContainingType": "Web.Controllers.FormController",
     "Method": "GetAllForm",
     "RelativePath": "api/Form",
@@ -1124,19 +1206,26 @@
   },
   {
     "ContainingType": "Web.Controllers.PersonController",
-    "Method": "GetPersonById",
-    "RelativePath": "api/Person/{id}",
-    "HttpMethod": "GET",
+    "Method": "UpdatePerson",
+    "RelativePath": "api/Person",
+    "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
-        "Type": "System.Int32",
+        "Name": "personDTO",
+        "Type": "Entity.DTO.PersonDTO",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
+      {
+        "Type": "Entity.DTO.PersonDTO",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      },
       {
         "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
         "MediaTypes": [
@@ -1160,31 +1249,19 @@
   },
   {
     "ContainingType": "Web.Controllers.PersonController",
-    "Method": "UpdatePerson",
+    "Method": "GetPersonById",
     "RelativePath": "api/Person/{id}",
-    "HttpMethod": "PUT",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "personDTO",
-        "Type": "Entity.DTO.PersonDTO",
-        "IsRequired": true
-      },
-      {
         "Name": "id",
-        "Type": "",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
-      {
-        "Type": "Entity.DTO.PersonDTO",
-        "MediaTypes": [
-          "application/json"
-        ],
-        "StatusCode": 200
-      },
       {
         "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
         "MediaTypes": [
@@ -2128,6 +2205,26 @@
     ]
   },
   {
+    "ContainingType": "Web.Controllers.TestController",
+    "Method": "Protegido",
+    "RelativePath": "api/Test/protegido",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Web.Controllers.TestController",
+    "Method": "Publico",
+    "RelativePath": "api/Test/publico",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Web.Controllers.UserController",
     "Method": "GetAllUsers",
     "RelativePath": "api/User",
@@ -2188,15 +2285,15 @@
   },
   {
     "ContainingType": "Web.Controllers.UserController",
-    "Method": "GetUserById",
-    "RelativePath": "api/User/{id}",
-    "HttpMethod": "GET",
+    "Method": "UpdateUser",
+    "RelativePath": "api/User",
+    "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
-        "Type": "System.Int32",
+        "Name": "userDTO",
+        "Type": "Entity.DTO.UserDTO",
         "IsRequired": true
       }
     ],
@@ -2231,20 +2328,15 @@
   },
   {
     "ContainingType": "Web.Controllers.UserController",
-    "Method": "UpdateUser",
+    "Method": "GetUserById",
     "RelativePath": "api/User/{id}",
-    "HttpMethod": "PUT",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "userDTO",
-        "Type": "Entity.DTO.UserDTO",
-        "IsRequired": true
-      },
-      {
         "Name": "id",
-        "Type": "",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],

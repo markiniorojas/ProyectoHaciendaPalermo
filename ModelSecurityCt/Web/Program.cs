@@ -4,11 +4,14 @@ using Business.Services;
 using Data.Interfaces;
 using Data.Repositories;
 using Entity.context;
+using Entity.Model;
 using Mapster;
 using Microsoft.EntityFrameworkCore;
 using Utilities.Mapping;
+using Utilities;
 using System.Text;
-using Business.Core;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,6 +26,30 @@ builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+
+
+builder.Services.AddAuthorization();
+builder.Services.AddAuthentication(config =>
+{
+    config.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    config.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+
+}).AddJwtBearer(config =>
+{
+    config.RequireHttpsMetadata = false;
+    config.SaveToken = true;
+    config.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuerSigningKey = true,
+        ValidateIssuer = false,
+        ValidateAudience = false,
+        ValidateLifetime = true,
+        IssuerSigningKey = new SymmetricSecurityKey
+        (Encoding.UTF8.GetBytes(configuration["Jwt:Key"]!))
+    };
+});
+
 
 builder.Services.AddScoped<IPersonRepository, PersonRepository>();
 builder.Services.AddScoped<PersonService>();
@@ -44,12 +71,17 @@ builder.Services.AddScoped<IUserService,UserService>();
 
 builder.Services.AddScoped<IFormModuleRepository, FormModuleRepository>();
 builder.Services.AddScoped<FormModuleService>();
-
+ 
 builder.Services.AddScoped<IRolUserRepository, RolUserRepository>();
 builder.Services.AddScoped<RolUserService>();
 
 builder.Services.AddScoped<IRolFormPermissionRepository, RolFormPermissionRepository>();
 builder.Services.AddScoped<RolFormPermissionService>();
+
+builder.Services.AddScoped<RegistroRepository>();
+builder.Services.AddScoped<RegistroService>();
+
+builder.Services.AddScoped<Jwt>();
 
 // Registro de Mapster para mapeo de modelos
 builder.Services.AddMapster();

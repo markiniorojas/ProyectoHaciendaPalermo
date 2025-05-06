@@ -32,13 +32,7 @@ namespace Entity.context
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
-            // Agrega esta configuración:
-            modelBuilder.Entity<User>()
-                .HasOne(u => u.Person)
-                .WithMany() // Si Person no tiene una colección de User
-                .HasForeignKey(u => u.PersonId)
-                .IsRequired()
-                .OnDelete(DeleteBehavior.Restrict); // Evita eliminación en cascada
+         
         }
 
 
@@ -136,9 +130,6 @@ namespace Entity.context
         public DbSet<RolUser> RolUser { get; set; }
         public DbSet<FormModule> FormModule { get; set; }
         public DbSet<RolFormPermission> RolFormPermission { get; set; }
-
-
-
-
+    
     }
 }
