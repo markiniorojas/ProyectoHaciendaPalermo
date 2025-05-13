@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using Utilities;
+using Business.Token;
 
 namespace Web.Controllers;
 
@@ -17,8 +18,8 @@ public class AccesoController : ControllerBase
 {
     private readonly RegistroService _registroService;
     private readonly ILogger<AccesoController> _logger;
-    private readonly Jwt _jwt;
-    public AccesoController(RegistroService registroService, ILogger<AccesoController> logger, Jwt jwt)
+    private readonly generarToken _jwt;
+    public AccesoController(RegistroService registroService, ILogger<AccesoController> logger, generarToken jwt)
     {
         _registroService = registroService;
         _logger = logger;
@@ -26,40 +27,18 @@ public class AccesoController : ControllerBase
     }
 
     [HttpPost]
-    [ProducesResponseType(200)]
-    [ProducesResponseType(400)]
-    [ProducesResponseType(401)]
-    [ProducesResponseType(500)]
-    public async Task<IActionResult> Login([FromBody] LoginDTO loginDTO)
-    {
 
-        if (!ModelState.IsValid)
-        {
-            return BadRequest(ModelState);
-        }
+    public async Task<IActionResult> login([FromBody] LoginDTO dto)
+    {
         try
         {
-            var result = await _registroService.Login(loginDTO);
-
-            if (result == null)
-            {
-                return Unauthorized(new { message = "Usuario o contraseña incorrectos" });
-            }
-
-            var rol = await _registroService.getRolUserWithId(result.Id);
-
-            var token = _jwt.GenerarJwt(result, rol.RolId);
-
-            return StatusCode(StatusCodes.Status200OK, new
-            {
-                isSucces = true,
-                token = token
-            });
+            var token = await _jwt.crearToken(dto);
+            return StatusCode(StatusCodes.Status200OK, new { isSucces = true, token });
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error al iniciar sesión");
-            return StatusCode(500, new { message = "Error interno del servidor" });
+            _logger.LogWarning(ex, "validacion fallida ,error al crear el token");
+            return BadRequest(new { message = ex.Message });
         }
     }
 

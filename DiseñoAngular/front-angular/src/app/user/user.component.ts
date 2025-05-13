@@ -59,7 +59,6 @@ export class UserComponent implements OnInit {
       password:  '',
       isDeleted:  false,
       registrationDate: new Date(),
-      personId:  0,
       namePerson:  ''
     };
   }
@@ -67,7 +66,7 @@ export class UserComponent implements OnInit {
   loadUser(): void {
     this.userService.get<IUser[]>('user').subscribe({
       next: data => {
-        console.log('Datos recibidos:', data);
+
         // Solo formularios que NO estén eliminados (IsDeleted == false)
         this.users = data.filter(user => user.isDeleted === false);
       },
@@ -119,18 +118,9 @@ export class UserComponent implements OnInit {
   }
 
   updateUser(): void {
-    console.log(this.currentUser);
-    this.userService.put<IUser>('user', this.currentUser.id, this.currentUser).subscribe({
-      next: updatedUser => {
-        Swal.fire({
-          icon: 'success',
-          title: '¡Éxito!',
-          text: 'usuario actualizada correctamente',
-          timer: 1500,
-          showConfirmButton: false
-        });
-        const index = this.users.findIndex(u => u.id === updatedUser.id);
-        if (index > -1) this.users[index] = updatedUser;
+    this.userService.put<IUser>('User', this.currentUser).subscribe({
+      next: () => {
+        this.loadUser(); // Recargar todo para mantener la consistencia
         this.resetUser();
       },
       error: err => {

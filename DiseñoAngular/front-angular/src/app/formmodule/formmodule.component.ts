@@ -122,13 +122,10 @@ export class FormmoduleComponent implements OnInit {
   }
 
   submitFormModule(): void {
-    if (this.isEditing) {
-      this.updateFormModule();
-    } else {
-      this.addFormModule();
+      const existingFormModule = this.formmodules.find(fm =>
+        fm.formId === this.currentFormModule.formId
+      );
     }
-  }
-
   addFormModule(): void {
     this.formmoduleService.post<IFormModule>('formmodule', this.currentFormModule).subscribe({
       next: formmodule => {
@@ -149,20 +146,23 @@ export class FormmoduleComponent implements OnInit {
     this.showForm = true;
   }
 
-  updateFormModule(): void {
-    this.formmoduleService.put<IFormModule>('formmodule', this.currentFormModule.id, this.currentFormModule).subscribe({
-      next: updatedFormModule => {
-        Swal.fire({ icon: 'success', title: '¡Éxito!', text: 'form module actualizado correctamente', timer: 1500, showConfirmButton: false });
-        const index = this.formmodules.findIndex(fm => fm.id === updatedFormModule.id);
-        if (index > -1) this.formmodules[index] = updatedFormModule;
-        this.resetFormModule();
-      },
-      error: err => {
-        Swal.fire({ icon: 'error', title: 'Error', text: 'No se pudo actualizar el form modules' });
-        console.error('Error al actualizar el form module', err);
+  updateFormModuleNames(): void {
+      if (this.forms.length > 0 && this.modules.length > 0) {
+        // Si ya tenemos los forms y modules cargados, actualizar los nombres
+        this.formmodules.forEach(fm => {
+          const form = this.forms.find(f => f.id === fm.formId);
+          const module = this.modules.find(m => m.id === fm.moduleId);
+
+          if (form) {
+            fm.formName = form.name;
+          }
+
+          if (module) {
+            fm.moduleName = module.name;
+          }
+        });
       }
-    });
-  }
+    }
 
   deleteFormModule(id: number): void {
     Swal.fire({ title: '¿Estás seguro?', text: "¡Esta acción eliminará permanentemente el form module!", icon: 'warning', showCancelButton: true, confirmButtonColor: '#d33', cancelButtonColor: '#3085d6', confirmButtonText: 'Sí, eliminar', cancelButtonText: 'Cancelar' }).then((result) => {

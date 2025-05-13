@@ -8,13 +8,15 @@ import { RolComponent } from './rol/rol.component';
 import { UserComponent } from './user/user.component';
 import { RoluserComponent } from './roluser/roluser.component';
 import { FormmoduleComponent } from './formmodule/formmodule.component';
+import { LoginComponent } from './login/login.component';
 
 
 
 export const routes: Routes = [
-    {path: '', redirectTo: 'principal', pathMatch: 'full'},
-    {path: 'principal',component: PrincipalComponent,
+    {path: '', redirectTo: 'login', pathMatch: 'full'},
+    {path: 'login',component: LoginComponent,
         children: [
+            { path: 'principal', component: PrincipalComponent},
             { path: 'form', component: FormComponent },
             { path: 'person', component: PersonComponent },
             { path: 'module', component: ModuleComponent },
@@ -23,7 +25,7 @@ export const routes: Routes = [
             { path: 'user', component: UserComponent},
             { path: 'roluser', component: RoluserComponent},
             { path: 'formmodule', component: FormmoduleComponent},
-            { path: '', redirectTo: '', pathMatch: 'full'}
+            { path: '', redirectTo: 'login', pathMatch: 'full'}
         ]
     }
 ];  

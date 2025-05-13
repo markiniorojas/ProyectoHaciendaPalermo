@@ -7,7 +7,7 @@ namespace Entity.Model
     /// <summary>
     /// Entidad que representa un usuario del sistema
     /// </summary>
-    public class User
+    public class  User
     {
         public int Id { get; set; }
         public string Email { get; set; }

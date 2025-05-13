@@ -22,8 +22,8 @@ export class ServiceGeneralService {
     return this.http.post<T>(`${this.baseUrl}/${endpoint}`, data);
   }
 
-  put<T>(endpoint: string, id: number | string, data: any) {
-    return this.http.put<T>(`${this.baseUrl}/${endpoint}/${id}`, data);
+  put<T>(endpoint: string,data: any) {
+    return this.http.put<T>(`${this.baseUrl}/${endpoint}`, data);
   }
 
   delete<T>(endpoint: string, id: number | string) {

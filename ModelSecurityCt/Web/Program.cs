@@ -12,6 +12,7 @@ using Utilities;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using Business.Token;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -81,7 +82,9 @@ builder.Services.AddScoped<RolFormPermissionService>();
 builder.Services.AddScoped<RegistroRepository>();
 builder.Services.AddScoped<RegistroService>();
 
-builder.Services.AddScoped<Jwt>();
+builder.Services.AddScoped<generarToken>();
+
+
 
 // Registro de Mapster para mapeo de modelos
 builder.Services.AddMapster();

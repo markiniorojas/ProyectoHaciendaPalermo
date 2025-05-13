@@ -112,18 +112,9 @@ export class PermissionComponent implements OnInit {
   }
 
   updatePermission(): void {
-    console.log(this.currentPermission);
-    this.permissionService.put<IPermission>('permission', this.currentPermission.id, this.currentPermission).subscribe({
-      next: updatedPermission => {
-        Swal.fire({
-          icon: 'success',
-          title: '¡Éxito!',
-          text: 'permiso actualizado correctamente',
-          timer: 1500,
-          showConfirmButton: false
-        });
-        const index = this.permissions.findIndex(pr => pr.id === updatedPermission.id);
-        if (index > -1) this.permissions[index] = updatedPermission;
+    this.permissionService.put<IPermission>('Permission', this.currentPermission).subscribe({
+      next: () => {
+        this.loadPermission();
         this.resetPermission();
       },
       error: err => {

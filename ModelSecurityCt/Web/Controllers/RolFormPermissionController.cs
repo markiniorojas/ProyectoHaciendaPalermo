@@ -127,7 +127,7 @@ namespace Web.Controllers
 
 
 
-        [HttpPut("{id:int}")]
+        [HttpPut]
         [ProducesResponseType(typeof(RolFormPermissionDTO), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]

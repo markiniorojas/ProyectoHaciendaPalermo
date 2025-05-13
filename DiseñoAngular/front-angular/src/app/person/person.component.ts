@@ -123,19 +123,11 @@ export class PersonComponent implements OnInit {
   }
 
   updatePerson(): void {
-    console.log(this.currentPerson);
-    this.personService.put<IPerson>('person', this.currentPerson.id, this.currentPerson).subscribe({
-      next: updatedPerson => {
-        Swal.fire({
-          icon: 'success',
-          title: '¡Éxito!',
-          text: 'Persona actualizada correctamente',
-          timer: 1500,
-          showConfirmButton: false
-        });
-        const index = this.persons.findIndex(f => f.id === updatedPerson.id);
-        if (index > -1) this.persons[index] = updatedPerson;
-        this.resetPerson();
+    this.currentPerson.phoneNumber = (this.currentPerson.phoneNumber);
+    this.personService.put<IPerson>('person', this.currentPerson).subscribe({
+      next:() => {
+        this.loadPersons();
+        this.resetPerson(); 
       },
       error: err => {
         Swal.fire({
@@ -145,7 +137,9 @@ export class PersonComponent implements OnInit {
         });
         console.error('Error al actualizar la persona', err);
       }
-    });
+    })
+      
+
   }
 
   deletePerson(id: number): void {

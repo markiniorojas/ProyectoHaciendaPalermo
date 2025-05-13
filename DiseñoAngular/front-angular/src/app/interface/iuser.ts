@@ -5,6 +5,5 @@ export interface IUser {
     namePerson: string;
     isDeleted: boolean;
     registrationDate: Date;
-    personId: number;
     
 }

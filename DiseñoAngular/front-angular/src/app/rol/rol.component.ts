@@ -112,18 +112,9 @@ export class RolComponent implements OnInit {
   }
 
   updateRol(): void {
-    console.log(this.currentRol);
-    this.rolService.put<IRol>('rol', this.currentRol.id, this.currentRol).subscribe({
-      next: updatedRol => {
-        Swal.fire({
-          icon: 'success',
-          title: '¡Éxito!',
-          text: 'rol actualizado correctamente',
-          timer: 1500,
-          showConfirmButton: false
-        });
-        const index = this.rols.findIndex(r => r.id === updatedRol.id);
-        if (index > -1) this.rols[index] = updatedRol;
+    this.rolService.put<IRol>('Rol', this.currentRol).subscribe({
+      next: () => {
+        this.loadRol();
         this.resetRol();
       },
       error: err => {

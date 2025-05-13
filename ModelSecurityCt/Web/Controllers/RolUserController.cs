@@ -1,5 +1,4 @@
-﻿using Entity.DTO.DTOUpdate;
-using Business.Services;
+﻿using Business.Services;
 using Entity.DTO;
 using Microsoft.AspNetCore.Mvc;
 using Utilities;
@@ -96,7 +95,7 @@ namespace Web.Controllers
 
 
 
-        [HttpPut("{id:int}")]
+        [HttpPut]
         [ProducesResponseType(typeof(RolUserDTO), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]

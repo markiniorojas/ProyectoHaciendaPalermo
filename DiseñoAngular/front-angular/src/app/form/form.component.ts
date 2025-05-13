@@ -113,18 +113,9 @@ export class FormComponent implements OnInit {
   }
 
   updateForm(): void {
-    console.log(this.currentForm);
-    this.formService.put<IForm>('form', this.currentForm.id, this.currentForm).subscribe({
-      next: updatedForm => {
-        Swal.fire({
-          icon: 'success',
-          title: '¡Éxito!',
-          text: 'Formulario actualizado correctamente',
-          timer: 1500,
-          showConfirmButton: false
-        });
-        const index = this.forms.findIndex(f => f.id === updatedForm.id);
-        if (index > -1) this.forms[index] = updatedForm;
+   this.formService.put<IForm>('Form', this.currentForm).subscribe({
+      next: () => {
+        this.loadForms();
         this.resetForm();
       },
       error: err => {

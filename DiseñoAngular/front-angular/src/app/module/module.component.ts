@@ -73,7 +73,7 @@ export class ModuleComponent implements OnInit {
   // Maneja tanto la creación como la actualización
   submitModel(): void {
     if (this.isEditing) {
-      this.updateModel();
+      this.updateModule();
     } else {
       this.addModel();
     }
@@ -111,20 +111,11 @@ export class ModuleComponent implements OnInit {
     this.showForm = true;
   }
 
-  updateModel(): void {
-    console.log(this.currentModule);
-    this.moduleService.put<IModule>('module', this.currentModule.id, this.currentModule).subscribe({
-      next: updatedModule => {
-        Swal.fire({
-          icon: 'success',
-          title: '¡Éxito!',
-          text: 'modulo actualizado correctamente',
-          timer: 1500,
-          showConfirmButton: false
-        });
-        const index = this.modules.findIndex(m => m.id === updatedModule.id);
-        if (index > -1) this.modules[index] = updatedModule;
-        this.resetModel();
+  updateModule(): void {
+        this.moduleService.put<IModule>('Module', this.currentModule).subscribe({
+          next: () => {
+            this.loadModel();
+            this.resetModel();
       },
       error: err => {
         Swal.fire({

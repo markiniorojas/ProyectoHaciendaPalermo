@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Data.Core;
 using Data.Interfaces;
 using Entity.context;
+using Entity.DTO;
 using Entity.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -34,6 +35,20 @@ namespace Data.Repositories
         /// <summary>
         /// Obtiene un usuario con sus datos de persona relacionados
         /// </summary>
-       
+        /// 
+        public async Task<User> validacionUser(LoginDTO dto)
+        {
+            bool sucess = false;
+
+            var user = await _context.Set<User>().FirstOrDefaultAsync(u =>
+                u.Email == dto.Email &&
+                u.Password == dto.Password
+            );
+
+            sucess = (user != null) ? true : throw new UnauthorizedAccessException("credenciales Incorrectas");
+
+            return user;
+        }
+
     }
 }

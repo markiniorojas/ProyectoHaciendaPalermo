@@ -1,5 +1,4 @@
-﻿using Entity.DTO.DTOUpdate;
-using Entity.DTO;
+﻿using Entity.DTO;
 using Microsoft.AspNetCore.Mvc;
 using Utilities;
 using Business.Services;
@@ -139,7 +138,7 @@ namespace Web.Controllers
         /// <response code="400">Datos no válidos</response>
         /// <response code="404">form no encontrado</response>
         /// <response code="500">Error interno del servidor</response>
-        [HttpPut("{id:int}")]
+        [HttpPut]
         [ProducesResponseType(typeof(FormModuleDTO), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
