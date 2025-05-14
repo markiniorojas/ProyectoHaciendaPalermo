@@ -61,9 +61,9 @@ export class RoluserComponent implements OnInit {
       personName: '',
       rolName: '',
       isDeleted: false,
-      rolId: 0, // Asegúrate de que estas propiedades existan en tu interfaz IRolUser si las vas a usar para el envío
-      userId: 0, // Asegúrate de que estas propiedades existan en tu interfaz IRolUser si las vas a usar para el envío
- // Asegúrate de que estas propiedades existan en tu interfaz IRolUser si las vas a usar para el envío
+      rolId: 0, 
+      userId: 0, 
+ 
     };
   }
 

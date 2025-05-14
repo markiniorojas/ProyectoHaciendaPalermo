@@ -6,6 +6,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { AuthService } from '../service/acceso.service';
+
 
 @Component({
   selector: 'app-login',
@@ -25,8 +27,9 @@ import { MatIconModule } from '@angular/material/icon';
 export class LoginComponent {
   loginForm: FormGroup;
   hidePassword = true;
+  router: any;
   
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private auth: AuthService) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]]
@@ -34,9 +37,24 @@ export class LoginComponent {
   }
   
   onSubmit() {
-    if (this.loginForm.valid) {
-      console.log('Formulario enviado:', this.loginForm.value);
-      // Aquí implementarías la lógica de autenticación
-    }
+  if (this.loginForm.valid) {
+    const { email, password } = this.loginForm.value;
+
+    this.auth.login(email, password).subscribe({
+      next: (res) => {
+        if (res.isSucces && res.token) {
+          localStorage.setItem('token', res.token);
+          console.log('Login exitoso. Token guardado.');
+          // Redirige al dashboard o home
+          this.router.navigate(['/principal']);
+        }
+      },
+      error: (err) => {
+        console.error('Error al iniciar sesión:', err);
+        alert('Credenciales inválidas o error en el servidor.');
+      }
+    });
   }
+}
+
 }
