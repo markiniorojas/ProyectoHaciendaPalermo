@@ -38,7 +38,7 @@ export class AuthService {
        return Date.now() < expiracion * 1000;
 
      } catch{
-       return false
+       return true;
      }
   }
 }
