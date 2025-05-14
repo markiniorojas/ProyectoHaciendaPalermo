@@ -43,6 +43,7 @@ public class AccesoController : ControllerBase
     }
 
     [HttpPost("Registro")]
+    [Authorize]
     [ProducesResponseType(200)]
     [ProducesResponseType(400)]
     [ProducesResponseType(401)]

@@ -1,22 +1,17 @@
 import { bootstrapApplication } from '@angular/platform-browser';
-import { ApplicationConfig } from '@angular/core';
+import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { routes } from './app.routes'; 
-import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { AuthService } from './service/acceso.service';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptors, withInterceptorsFromDi } from '@angular/common/http';
+import { authInterceptor } from './service/auth.interceptor';
+
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideZoneChangeDetection({ eventCoalescing : true}),
     provideRouter(routes),
-    provideHttpClient(withInterceptorsFromDi()),
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthService,
-      multi: true
-    }
-  ] 
+    provideHttpClient(
+      withInterceptors([authInterceptor]))
+  ]
 };
-
-bootstrapApplication(AppComponent, appConfig)
-  .catch((err) => console.error(err));  

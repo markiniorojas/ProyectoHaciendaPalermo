@@ -4,6 +4,7 @@ import { ILogin } from '../interface/login';
 import { Router } from '@angular/router';
 import {jwtDecode} from 'jwt-decode';
 import { environment } from '../../environments/environment.development';
+import { Observable } from 'rxjs';
 
 
 @Injectable({ providedIn: 'root' })
@@ -12,9 +13,10 @@ export class AuthService {
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  login(dto: ILogin, password?: any) {
-    return this.http.post<{ isSucces: boolean; token: string }>(this.baseUrl, dto);
-  }
+  login(email: string, password: string): Observable<any> {
+     const url = `${this.baseUrl}/Acceso`; 
+     return this.http.post(url, { email, password });
+   }
 
   saveToken(token: string) {
     localStorage.setItem('auth_token', token);
@@ -29,16 +31,15 @@ export class AuthService {
     this.router.navigate(['/login']);
   }
 
-  isTokenExpired(): boolean {
-    const token = this.getToken();
-    if (!token) return true;
+  isTokenExpired(token : string ): boolean {
+    try{
+       const decode:any = jwtDecode(token)
+       const expiracion = decode.exp;
+       return Date.now() < expiracion * 1000;
 
-    try {
-      const { exp }: any = jwtDecode(token);
-      const now = Math.floor(Date.now() / 1000);
-      return now > exp;
-    } catch (e) {
-      return true;
-    }
+     } catch{
+       return false
+     }
   }
 }
+

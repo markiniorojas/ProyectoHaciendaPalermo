@@ -7,6 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { AuthService } from '../service/acceso.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -27,9 +28,8 @@ import { AuthService } from '../service/acceso.service';
 export class LoginComponent {
   loginForm: FormGroup;
   hidePassword = true;
-  router: any;
   
-  constructor(private fb: FormBuilder, private auth: AuthService) {
+  constructor(private fb: FormBuilder,private router: Router, private auth: AuthService) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]]
@@ -43,7 +43,7 @@ export class LoginComponent {
     this.auth.login(email, password).subscribe({
       next: (res) => {
         if (res.isSucces && res.token) {
-          localStorage.setItem('token', res.token);
+        this.auth.saveToken(res.token)
           console.log('Login exitoso. Token guardado.');
           // Redirige al dashboard o home
           this.router.navigate(['/principal']);
