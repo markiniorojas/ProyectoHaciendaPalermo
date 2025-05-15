@@ -15,7 +15,7 @@ export class AuthService {
 
   login(email: string, password: string): Observable<any> {
      const url = `${this.baseUrl}/Acceso`; 
-     return this.http.post(url, { email, password });
+      return this.http.post(url, { email, password });
    }
 
   saveToken(token: string) {
@@ -31,15 +31,13 @@ export class AuthService {
     this.router.navigate(['/login']);
   }
 
-  isTokenExpired(token : string ): boolean {
-    try{
-       const decode:any = jwtDecode(token)
-       const expiracion = decode.exp;
-       return Date.now() < expiracion * 1000;
-
-     } catch{
-       return true;
-     }
+  isTokenExpired(token: string): boolean {
+  try {
+        const decode: any = jwtDecode(token);
+        const expiracion = decode.exp;
+        return Date.now() > expiracion * 1000;
+      } catch {
+        return true; 
+    }
   }
 }
-

@@ -9,8 +9,7 @@ import { UserComponent } from './user/user.component';
 import { RoluserComponent } from './roluser/roluser.component';
 import { FormmoduleComponent } from './formmodule/formmodule.component';
 import { LoginComponent } from './login/login.component';
-
-
+import { AuthGuard } from './auth/auth.guard'; 
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -19,6 +18,7 @@ export const routes: Routes = [
   {
     path: 'principal',
     component: PrincipalComponent,
+    canActivate: [AuthGuard], 
     children: [
       { path: 'form', component: FormComponent },
       { path: 'person', component: PersonComponent },
