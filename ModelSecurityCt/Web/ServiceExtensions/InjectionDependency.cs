@@ -31,6 +31,7 @@ namespace WebServiceExtensions
                 services.AddScoped<RolService>();
 
                 services.AddScoped<IUserRepository, UserRepository>();
+                services.AddScoped<UserRepository>();
                 services.AddScoped<IUserService, UserService>();
 
                 services.AddScoped<IFormModuleRepository, FormModuleRepository>();

@@ -10,6 +10,7 @@ using Business.Token;
 using Google.Apis.Auth;
 using Data.Repositories;
 using Microsoft.AspNetCore.Identity.Data;
+using Data.Interfaces;
 
 namespace Web.Controllers;
 
@@ -23,8 +24,8 @@ public class AccesoController : ControllerBase
     private readonly ILogger<AccesoController> _logger;
     private readonly IConfiguration _configuration;
     private readonly generarToken _jwt;
-    private readonly UserRepository _user;
-    public AccesoController(RegistroService registroService, ILogger<AccesoController> logger,IConfiguration configuration, generarToken jwt, UserRepository user)
+    private readonly IUserRepository _user;
+    public AccesoController(RegistroService registroService, ILogger<AccesoController> logger,IConfiguration configuration, generarToken jwt, IUserRepository user)
     {
         _registroService = registroService;
         _logger = logger;
@@ -50,7 +51,7 @@ public class AccesoController : ControllerBase
     }
 
     [HttpPost("google")]
-    [Authorize]
+    [AllowAnonymous]
     [ProducesResponseType(200)]
     [ProducesResponseType(400)]
     [ProducesResponseType(401)]

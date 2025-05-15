@@ -1933,12 +1933,6 @@ C:\Angular\ProyectoHaciendaPalermo\ModelSecurityCt\Web\obj\Debug\net8.0\scopedcs
 C:\Angular\ProyectoHaciendaPalermo\ModelSecurityCt\Web\obj\Debug\net8.0\staticwebassets.build.json
 C:\Angular\ProyectoHaciendaPalermo\ModelSecurityCt\Web\obj\Debug\net8.0\staticwebassets.development.json
 C:\Angular\ProyectoHaciendaPalermo\ModelSecurityCt\Web\obj\Debug\net8.0\staticwebassets.build.endpoints.json
-C:\Angular\ProyectoHaciendaPalermo\ModelSecurityCt\Web\obj\Debug\net8.0\staticwebassets\msbuild.Web.Microsoft.AspNetCore.StaticWebAssets.props
-C:\Angular\ProyectoHaciendaPalermo\ModelSecurityCt\Web\obj\Debug\net8.0\staticwebassets\msbuild.Web.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
-C:\Angular\ProyectoHaciendaPalermo\ModelSecurityCt\Web\obj\Debug\net8.0\staticwebassets\msbuild.build.Web.props
-C:\Angular\ProyectoHaciendaPalermo\ModelSecurityCt\Web\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.Web.props
-C:\Angular\ProyectoHaciendaPalermo\ModelSecurityCt\Web\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.Web.props
-C:\Angular\ProyectoHaciendaPalermo\ModelSecurityCt\Web\obj\Debug\net8.0\staticwebassets.pack.json
 C:\Angular\ProyectoHaciendaPalermo\ModelSecurityCt\Web\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 C:\Angular\ProyectoHaciendaPalermo\ModelSecurityCt\Web\obj\Debug\net8.0\Web.csproj.Up2Date
 C:\Angular\ProyectoHaciendaPalermo\ModelSecurityCt\Web\obj\Debug\net8.0\Web.dll
@@ -1951,3 +1945,4 @@ C:\Angular\ProyectoHaciendaPalermo\ModelSecurityCt\Web\bin\Debug\net8.0\Google.A
 C:\Angular\ProyectoHaciendaPalermo\ModelSecurityCt\Web\bin\Debug\net8.0\Google.Apis.Core.dll
 C:\Angular\ProyectoHaciendaPalermo\ModelSecurityCt\Web\bin\Debug\net8.0\System.Management.dll
 C:\Angular\ProyectoHaciendaPalermo\ModelSecurityCt\Web\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Management.dll
+C:\Angular\ProyectoHaciendaPalermo\ModelSecurityCt\Web\obj\Debug\net8.0\staticwebassets.build.json.cache

@@ -7,7 +7,7 @@ using Utilities;
 namespace Web.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
+    //[ApiController]
     [Produces("application/json")]
     public class UserController : ControllerBase
     {
