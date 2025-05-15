@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using Utilities;
 using Business.Token;
+using Google.Apis.Auth;
+using Data.Repositories;
+using Microsoft.AspNetCore.Identity.Data;
 
 namespace Web.Controllers;
 
@@ -18,12 +21,16 @@ public class AccesoController : ControllerBase
 {
     private readonly RegistroService _registroService;
     private readonly ILogger<AccesoController> _logger;
+    private readonly IConfiguration _configuration;
     private readonly generarToken _jwt;
-    public AccesoController(RegistroService registroService, ILogger<AccesoController> logger, generarToken jwt)
+    private readonly UserRepository _user;
+    public AccesoController(RegistroService registroService, ILogger<AccesoController> logger,IConfiguration configuration, generarToken jwt, UserRepository user)
     {
         _registroService = registroService;
         _logger = logger;
         _jwt = jwt;
+        _configuration = configuration;
+        _user = user;
     }
 
     [HttpPost]
@@ -42,25 +49,42 @@ public class AccesoController : ControllerBase
         }
     }
 
-    [HttpPost("Registro")]
+    [HttpPost("google")]
     [Authorize]
     [ProducesResponseType(200)]
     [ProducesResponseType(400)]
     [ProducesResponseType(401)]
     [ProducesResponseType(500)]
-    public async Task<IActionResult> Register([FromBody] RegistroDTO registroDTO) 
+    public async Task<IActionResult> GoogleLogin([FromBody] GoogleTokenDto tokenDto) 
     {
         try
         {
-            if (registroDTO == null)
-                return BadRequest(new { message = "Datos de registro inválidos. " });
+            var payload = await GoogleJsonWebSignature.ValidateAsync(tokenDto.Token, new GoogleJsonWebSignature.ValidationSettings
+            {
+                Audience = new[] { _configuration["Google:ClientId"] }
+            });
 
-            if (string.IsNullOrWhiteSpace(registroDTO.Email) || string.IsNullOrWhiteSpace(registroDTO.Password))
-                return BadRequest(new { message = "Email y contraseña son obligatorios." });
+            var user = await _user.getByEmail(payload.Email);
 
-            var result = await _registroService.Registro(registroDTO);
 
-            return Ok(result);
+            if (user == null)
+            {
+                return NotFound(new
+                {
+                    isSuccess = false,
+                    message = "El usuario no existe"
+                });
+            }
+
+            var dto = new LoginDTO
+            {
+                Email = user.Email,
+                Password = user.Password
+            };
+
+            var token = await _jwt.crearToken(dto);
+
+            return Ok(new { token });
         }
         catch (Exception ex)
         {

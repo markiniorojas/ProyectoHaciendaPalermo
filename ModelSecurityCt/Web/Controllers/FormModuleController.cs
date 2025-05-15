@@ -2,10 +2,12 @@
 using Microsoft.AspNetCore.Mvc;
 using Utilities;
 using Business.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Web.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize]
     [ApiController]
     [Produces("application/json")]
     public class FormModuleController : ControllerBase

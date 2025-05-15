@@ -36,7 +36,7 @@
         }
       }
     },
-    "/api/Acceso/Registro": {
+    "/api/Acceso/google": {
       "post": {
         "tags": [
           "Acceso"
@@ -45,17 +45,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/RegistroDTO"
+                "$ref": "#/components/schemas/GoogleTokenDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/RegistroDTO"
+                "$ref": "#/components/schemas/GoogleTokenDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/RegistroDTO"
+                "$ref": "#/components/schemas/GoogleTokenDto"
               }
             }
           }
@@ -2602,30 +2602,6 @@
         }
       }
     },
-    "/api/Test/publico": {
-      "get": {
-        "tags": [
-          "Test"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Test/protegido": {
-      "get": {
-        "tags": [
-          "Test"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
     "/api/User": {
       "get": {
         "tags": [
@@ -3007,6 +2983,16 @@
         },
         "additionalProperties": false
       },
+      "GoogleTokenDto": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "LoginDTO": {
         "type": "object",
         "properties": {
@@ -3137,60 +3123,6 @@
           }
         },
         "additionalProperties": { }
-      },
-      "RegistroDTO": {
-        "type": "object",
-        "properties": {
-          "firstName": {
-            "type": "string",
-            "nullable": true
-          },
-          "lastName": {
-            "type": "string",
-            "nullable": true
-          },
-          "documentType": {
-            "type": "string",
-            "nullable": true
-          },
-          "document": {
-            "type": "string",
-            "nullable": true
-          },
-          "dateBorn": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "phoneNumber": {
-            "type": "string",
-            "nullable": true
-          },
-          "eps": {
-            "type": "string",
-            "nullable": true
-          },
-          "genero": {
-            "type": "string",
-            "nullable": true
-          },
-          "email": {
-            "type": "string",
-            "nullable": true
-          },
-          "password": {
-            "type": "string",
-            "nullable": true
-          },
-          "rolIds": {
-            "type": "array",
-            "items": {
-              "type": "integer",
-              "format": "int32"
-            },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
       },
       "RolDTO": {
         "type": "object",

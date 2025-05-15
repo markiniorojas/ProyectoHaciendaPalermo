@@ -1,11 +1,13 @@
 ﻿using Business.Services;
 using Entity.DTO;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Utilities;
 
 namespace Web.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize]
     [ApiController]
     [Produces("application/json")]
     public class RolFormPermissionController : ControllerBase

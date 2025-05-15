@@ -17,15 +17,15 @@
   },
   {
     "ContainingType": "Web.Controllers.AccesoController",
-    "Method": "Register",
-    "RelativePath": "api/Acceso/Registro",
+    "Method": "GoogleLogin",
+    "RelativePath": "api/Acceso/google",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "registroDTO",
-        "Type": "Entity.DTO.RegistroDTO",
+        "Name": "tokenDto",
+        "Type": "Entity.DTO.GoogleTokenDto",
         "IsRequired": true
       }
     ],
@@ -2143,26 +2143,6 @@
         "StatusCode": 500
       }
     ]
-  },
-  {
-    "ContainingType": "Web.Controllers.TestController",
-    "Method": "Protegido",
-    "RelativePath": "api/Test/protegido",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Web.Controllers.TestController",
-    "Method": "Publico",
-    "RelativePath": "api/Test/publico",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
   },
   {
     "ContainingType": "Web.Controllers.UserController",

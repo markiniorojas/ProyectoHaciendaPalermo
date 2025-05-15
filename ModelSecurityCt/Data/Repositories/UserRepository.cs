@@ -32,6 +32,7 @@ namespace Data.Repositories
         {
         }
 
+
         /// <summary>
         /// Obtiene un usuario con sus datos de persona relacionados
         /// </summary>
@@ -48,6 +49,16 @@ namespace Data.Repositories
             sucess = (user != null) ? true : throw new UnauthorizedAccessException("credenciales Incorrectas");
 
             return user;
+        }
+
+        ///<Summary>
+        ///Metodo para el auth con google
+        /// </Summary>
+        /// 
+
+        public async Task<User?> getByEmail(string email)
+        {
+            return await _context.user.FirstOrDefaultAsync(u => u.Email == email);
         }
 
     }

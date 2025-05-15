@@ -126,7 +126,7 @@ namespace Entity.context
         public DbSet<Rol> Role { get; set; }
         public DbSet<Permission> Permission { get; set; }
         public DbSet<Module> Module { get; set; }
-        public DbSet<User> User { get; set; }
+        public DbSet<User> user { get; set; }
         public DbSet<RolUser> RolUser { get; set; }
         public DbSet<FormModule> FormModule { get; set; }
         public DbSet<RolFormPermission> RolFormPermission { get; set; }

@@ -70,7 +70,7 @@ namespace Data.Repositories;
                     IsDeleted = false
                 };
 
-                await _context.User.AddAsync(user);
+                await _context.user.AddAsync(user);
                 await _context.SaveChangesAsync();
 
                 foreach (var rolId in registroDTO.RolIds)
