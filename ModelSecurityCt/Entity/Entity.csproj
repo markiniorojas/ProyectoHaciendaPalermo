@@ -25,6 +25,7 @@
 
   <ItemGroup>
     <Folder Include="DDL\" />
+    <Folder Include="RelacionesModel\" />
   </ItemGroup>
 
 </Project>
