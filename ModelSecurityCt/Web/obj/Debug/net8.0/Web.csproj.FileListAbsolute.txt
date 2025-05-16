@@ -1946,3 +1946,8 @@ C:\Angular\ProyectoHaciendaPalermo\ModelSecurityCt\Web\bin\Debug\net8.0\Google.A
 C:\Angular\ProyectoHaciendaPalermo\ModelSecurityCt\Web\bin\Debug\net8.0\System.Management.dll
 C:\Angular\ProyectoHaciendaPalermo\ModelSecurityCt\Web\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Management.dll
 C:\Angular\ProyectoHaciendaPalermo\ModelSecurityCt\Web\obj\Debug\net8.0\staticwebassets.build.json.cache
+C:\ProyectoAngular\ProyectoHaciendaPalermo\ModelSecurityCt\Web\bin\Debug\net8.0\Google.Apis.dll
+C:\ProyectoAngular\ProyectoHaciendaPalermo\ModelSecurityCt\Web\bin\Debug\net8.0\Google.Apis.Auth.dll
+C:\ProyectoAngular\ProyectoHaciendaPalermo\ModelSecurityCt\Web\bin\Debug\net8.0\Google.Apis.Core.dll
+C:\ProyectoAngular\ProyectoHaciendaPalermo\ModelSecurityCt\Web\bin\Debug\net8.0\System.Management.dll
+C:\ProyectoAngular\ProyectoHaciendaPalermo\ModelSecurityCt\Web\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Management.dll

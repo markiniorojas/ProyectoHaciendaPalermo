@@ -29,6 +29,7 @@ export class AuthService {
   logout() {
     localStorage.removeItem('auth_token');
     this.router.navigate(['/login']);
+    sessionStorage.clear();
   }
 
   isTokenExpired(token: string): boolean {
@@ -39,5 +40,10 @@ export class AuthService {
       } catch {
         return true; 
     }
+  }
+
+  loginWithGoogle(idToken: string): Observable<any> {
+    const url = `${this.baseUrl}/Acceso/google`; 
+    return this.http.post(url, { token: idToken });
   }
 }
