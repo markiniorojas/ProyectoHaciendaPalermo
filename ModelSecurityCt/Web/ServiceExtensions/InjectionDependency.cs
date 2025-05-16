@@ -8,6 +8,8 @@ using Data.Repositories;
 using Business.Services;
 using Business.Token;
 using Business.Interfaces;
+using Email.Interface;
+using Email.Mensajes;
 
 namespace WebServiceExtensions
 {
@@ -47,6 +49,9 @@ namespace WebServiceExtensions
                 services.AddScoped<RegistroService>();
 
                 services.AddScoped<generarToken>();
+
+                services.AddScoped<IMensajeEmail, CorreoMensaje>();
+                services.AddScoped<IMensajeTelegram, MensajeTelegram>();
 
             return services;
 

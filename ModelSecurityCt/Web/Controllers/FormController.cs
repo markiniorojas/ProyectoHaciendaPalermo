@@ -4,6 +4,7 @@ using Entity.DTO;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Utilities;
+using Web.Exceptions;
 
 namespace Web.Controllers
 {
@@ -37,23 +38,19 @@ namespace Web.Controllers
         /// <response code="500">Error interno del servidor</response>
         /// 
         [HttpGet]
-        [ProducesResponseType(typeof(IEnumerable<FormDTO>), 200)]
-        [ProducesResponseType(500)]
         public async Task<IActionResult> GetAllForm()
         {
             try
             {
-                var Form = await _formBusiness.GetAllAsync();
-                return Ok(Form);
-
+                var forms = await _formBusiness.GetAllAsync();
+                return Ok(forms);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error al obtener los Form");
-                return StatusCode(500, new { message = ex.Message });
+                _logger.LogError(ex, "Error al obtener los Forms");
+                throw new RequestProcessingException("Ocurrió un error al procesar la solicitud para obtener los Forms.", ex);
             }
         }
-
 
         /// <summary>
         /// Obtiene un Form específico por su ID
@@ -74,25 +71,23 @@ namespace Web.Controllers
         {
             try
             {
-
                 var form = await _formBusiness.GetByIdAsync(id);
                 return Ok(form);
-
             }
             catch (ValidationException ex)
             {
-                _logger.LogWarning(ex, "Validación fallida para el form con ID:" + id);
-                return BadRequest(new { Mesagge = ex.Message });
+                _logger.LogWarning(ex, $"Validación fallida para el Form con ID: {id}");
+                throw new ApiValidationException($"Validación fallida: {ex.Message}", ex);
             }
             catch (EntityNotFoundException ex)
             {
-                _logger.LogInformation(ex, "form no encontrado con ID: {form}", id);
+                _logger.LogInformation(ex, $"Form no encontrado con ID: {id}");
                 return NotFound(new { message = ex.Message });
             }
             catch (ExternalServiceException ex)
             {
-                _logger.LogError(ex, "Error al obtener form con ID: {module}", id);
-                return StatusCode(500, new { message = ex.Message });
+                _logger.LogError(ex, $"Error externo al obtener Form con ID: {id}");
+                throw new ExternalIntegrationException($"Error al integrar con servicios externos al obtener el Form con ID {id}.", ex);
             }
         }
 
@@ -114,22 +109,18 @@ namespace Web.Controllers
         {
             try
             {
-                var createForm = await _formBusiness.CreateAsync(FormDTO);
-                return CreatedAtAction(nameof(GetFormById), new
-                {
-                    id = createForm.Id
-                }, createForm);
-
+                var createdForm = await _formBusiness.CreateAsync(FormDTO);
+                return CreatedAtAction(nameof(GetFormById), new { id = createdForm.Id }, createdForm);
             }
             catch (ValidationException ex)
             {
-                _logger.LogWarning(ex, "Validación fallida");
-                return BadRequest(new { mesagge = ex.Message });
+                _logger.LogWarning(ex, "Error de validación al crear el Form");
+                throw new ApiValidationException("Los datos del Form no son válidos.", ex);
             }
             catch (ExternalServiceException ex)
             {
-                _logger.LogError(ex, "Error al crear el form");
-                return StatusCode(500, new { mesagge = ex.Message });
+                _logger.LogError(ex, "Error externo al crear el Form");
+                throw new ExternalIntegrationException("Error al integrar con servicios externos al crear el Form.", ex);
             }
         }
 
@@ -154,26 +145,26 @@ namespace Web.Controllers
             {
                 if (formDTO == null || formDTO.Id <= 0)
                 {
-                    return BadRequest(new { message = "El ID del form debe ser mayor que cero y no nulo" });
+                    throw new ApiValidationException("El ID del Form debe ser mayor que cero y no nulo.");
                 }
 
-                var updateForm = await _formBusiness.UpdateAsync(formDTO);
-                return Ok(updateForm);
+                var updatedForm = await _formBusiness.UpdateAsync(formDTO);
+                return Ok(updatedForm);
             }
             catch (ValidationException ex)
             {
-                _logger.LogWarning(ex, "Validación fallida al actualizar el form");
-                return BadRequest(new { message = ex.Message });
+                _logger.LogWarning(ex, "Error de validación al actualizar el Form");
+                throw new ApiValidationException("Los datos del Form no son válidos.", ex);
             }
             catch (EntityNotFoundException ex)
             {
-                _logger.LogInformation(ex, "form no encontrado con ID: {RolId}", formDTO.Id);
+                _logger.LogInformation(ex, $"Form no encontrado con ID: {formDTO.Id}");
                 return NotFound(new { message = ex.Message });
             }
             catch (ExternalServiceException ex)
             {
-                _logger.LogError(ex, "Error al actualizar el form con ID: {RolId}", formDTO.Id);
-                return StatusCode(500, new { message = ex.Message });
+                _logger.LogError(ex, $"Error externo al actualizar el Form con ID: {formDTO.Id}");
+                throw new ExternalIntegrationException($"Error al integrar con servicios externos al actualizar el Form con ID {formDTO.Id}.", ex);
             }
         }
 
@@ -198,21 +189,21 @@ namespace Web.Controllers
             {
                 if (id <= 0)
                 {
-                    return BadRequest(new { message = "El ID del form debe ser mayor que cero" });
+                    throw new ApiValidationException("El ID del Form debe ser mayor que cero.");
                 }
 
                 await _formBusiness.DeletePermanentAsync(id);
-                return Ok(new { message = "module eliminado correctamente" });
+                return Ok(new { message = "Form eliminado correctamente" });
             }
             catch (EntityNotFoundException ex)
             {
-                _logger.LogInformation(ex, "form no encontrado con ID: {permission}", id);
+                _logger.LogInformation(ex, $"Form no encontrado con ID: {id}");
                 return NotFound(new { message = ex.Message });
             }
             catch (ExternalServiceException ex)
             {
-                _logger.LogError(ex, "Error al eliminar el form con  ", id);
-                return StatusCode(500, new { message = ex.Message });
+                _logger.LogError(ex, $"Error externo al eliminar el Form con ID: {id}");
+                throw new ExternalIntegrationException($"Error al integrar con servicios externos al eliminar el Form con ID {id}.", ex);
             }
         }
 
@@ -228,21 +219,21 @@ namespace Web.Controllers
             {
                 if (id <= 0)
                 {
-                    return BadRequest(new { message = "El ID del form debe ser mayor que cero" });
+                    throw new ApiValidationException("El ID del Form debe ser mayor que cero.");
                 }
 
                 await _formBusiness.DeleteLogicalAsync(id);
-                return Ok(new { message = "form eliminado lógico correctamente" });
+                return Ok(new { message = "Form eliminado lógicamente correctamente" });
             }
             catch (EntityNotFoundException ex)
             {
-                _logger.LogInformation(ex, "form no encontrado con ID: " + id);
+                _logger.LogInformation(ex, $"Form no encontrado con ID: {id}");
                 return NotFound(new { message = ex.Message });
             }
             catch (ExternalServiceException ex)
             {
-                _logger.LogError(ex, "Error al eliminar lógicamente  el form con ID:" + id);
-                return StatusCode(500, new { message = ex.Message });
+                _logger.LogError(ex, $"Error externo al eliminar lógicamente el Form con ID: {id}");
+                throw new ExternalIntegrationException($"Error al integrar con servicios externos al eliminar lógicamente el Form con ID {id}.", ex);
             }
         }
 
@@ -258,21 +249,21 @@ namespace Web.Controllers
             {
                 if (id <= 0)
                 {
-                    return BadRequest(new { message = "El ID del formulario debe igual a cero" });
+                    throw new ApiValidationException("El ID del Form debe ser mayor que cero.");
                 }
 
                 await _formBusiness.PatchLogicalAsync(id);
-                return Ok(new { message = "user restablecido lógico correctamente" });
+                return Ok(new { message = "Form restaurado correctamente" });
             }
             catch (EntityNotFoundException ex)
             {
-                _logger.LogInformation(ex, "user no encontrado con ID: " + id);
+                _logger.LogInformation(ex, $"Form no encontrado con ID: {id}");
                 return NotFound(new { message = ex.Message });
             }
             catch (ExternalServiceException ex)
             {
-                _logger.LogError(ex, "Error al eliminar lógicamente  el user con ID:" + id);
-                return StatusCode(500, new { message = ex.Message });
+                _logger.LogError(ex, $"Error externo al restaurar lógicamente el Form con ID: {id}");
+                throw new ExternalIntegrationException($"Error al integrar con servicios externos al restaurar lógicamente el Form con ID {id}.", ex);
             }
         }
 

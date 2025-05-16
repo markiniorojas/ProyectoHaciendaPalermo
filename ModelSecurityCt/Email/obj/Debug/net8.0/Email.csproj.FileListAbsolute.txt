@@ -1,0 +1,13 @@
+C:\ProyectoAngular\ProyectoHaciendaPalermo\ModelSecurityCt\Email\bin\Debug\net8.0\Email.deps.json
+C:\ProyectoAngular\ProyectoHaciendaPalermo\ModelSecurityCt\Email\bin\Debug\net8.0\Email.dll
+C:\ProyectoAngular\ProyectoHaciendaPalermo\ModelSecurityCt\Email\bin\Debug\net8.0\Email.pdb
+C:\ProyectoAngular\ProyectoHaciendaPalermo\ModelSecurityCt\Email\obj\Debug\net8.0\Email.csproj.AssemblyReference.cache
+C:\ProyectoAngular\ProyectoHaciendaPalermo\ModelSecurityCt\Email\obj\Debug\net8.0\Email.GeneratedMSBuildEditorConfig.editorconfig
+C:\ProyectoAngular\ProyectoHaciendaPalermo\ModelSecurityCt\Email\obj\Debug\net8.0\Email.AssemblyInfoInputs.cache
+C:\ProyectoAngular\ProyectoHaciendaPalermo\ModelSecurityCt\Email\obj\Debug\net8.0\Email.AssemblyInfo.cs
+C:\ProyectoAngular\ProyectoHaciendaPalermo\ModelSecurityCt\Email\obj\Debug\net8.0\Email.csproj.CoreCompileInputs.cache
+C:\ProyectoAngular\ProyectoHaciendaPalermo\ModelSecurityCt\Email\obj\Debug\net8.0\Email.sourcelink.json
+C:\ProyectoAngular\ProyectoHaciendaPalermo\ModelSecurityCt\Email\obj\Debug\net8.0\Email.dll
+C:\ProyectoAngular\ProyectoHaciendaPalermo\ModelSecurityCt\Email\obj\Debug\net8.0\refint\Email.dll
+C:\ProyectoAngular\ProyectoHaciendaPalermo\ModelSecurityCt\Email\obj\Debug\net8.0\Email.pdb
+C:\ProyectoAngular\ProyectoHaciendaPalermo\ModelSecurityCt\Email\obj\Debug\net8.0\ref\Email.dll

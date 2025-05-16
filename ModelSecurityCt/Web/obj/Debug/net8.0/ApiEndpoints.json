@@ -57,6 +57,22 @@
     ]
   },
   {
+    "ContainingType": "Web.Controllers.EmailController",
+    "Method": "EnviarCorreo",
+    "RelativePath": "api/Email/enviar-correo",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "email",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Web.Controllers.FormController",
     "Method": "GetAllForm",
     "RelativePath": "api/Form",
@@ -64,20 +80,7 @@
     "IsController": true,
     "Order": 0,
     "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[Entity.DTO.FormDTO, Entity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "application/json"
-        ],
-        "StatusCode": 200
-      },
-      {
-        "Type": "System.Void",
-        "MediaTypes": [],
-        "StatusCode": 500
-      }
-    ]
+    "ReturnTypes": []
   },
   {
     "ContainingType": "Web.Controllers.FormController",
@@ -577,6 +580,22 @@
         "StatusCode": 500
       }
     ]
+  },
+  {
+    "ContainingType": "Web.Controllers.mensajeTelegram",
+    "Method": "EnviarMensajeTelegram",
+    "RelativePath": "api/mensajeTelegram/telegram",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "mensaje",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "Web.Controllers.ModuleController",

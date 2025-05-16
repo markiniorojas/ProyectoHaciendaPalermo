@@ -16,5 +16,22 @@ namespace Data.Interfaces
         /// </Summary>
         ///
         Task<User?> getByEmail(string email);
+
+        /////<Summary>
+        /////Metodo para notificar por correo
+        ///// </Summary>
+        /////
+        //Task<User?> NotificarPorCorreo(string email);
+
+
+        /////<Summary>
+        /////Metodo para notificar por telegram
+        ///// </Summary>
+        /////
+        //Task<User?> NotificarTelegram(string email);
+
+
+
+
     }
 }
