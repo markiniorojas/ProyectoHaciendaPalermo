@@ -15,11 +15,17 @@ namespace Data.Interfaces
     {
         // Aquí se definen métodos específicos para Person que no están en IGenericRepository<T>
 
-    
+
 
         // Puedes agregar más métodos específicos según necesites
         // Por ejemplo:
         // Task<Person> GetByDocumentAsync(string document);
         // Task<IEnumerable<Person>> GetByAgeRangeAsync(int minAge, int maxAge);
+
+
+        Task<List<Person>> ObtenerTodasAsync();
+        
+        
+        Task<List<Person>> ObtenerActivasAsync();
     }
 }

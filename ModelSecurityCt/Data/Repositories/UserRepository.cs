@@ -11,7 +11,6 @@ using Entity.DTO;
 using Entity.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-
 namespace Data.Repositories
 {
     /// <summary>
@@ -24,59 +23,55 @@ namespace Data.Repositories
         private readonly ApplicationDbContext _context;
         private readonly IMensajeEmail _mensaje;
         private readonly IMensajeTelegram _mensajeTelegram;
+        private readonly ILogger<UserRepository> _logger;
+      
         /// <summary>
         /// Constructor del repositorio de usuarios.
         /// Recibe el contexto de base de datos y el logger para rastreo de operaciones.
         /// </summary>
         /// <param name="context">Instancia de ApplicationDbContext para acceso a datos.</param>
         /// <param name="logger">Instancia de ILogger para registrar logs y advertencias.</param>
-        public UserRepository(ApplicationDbContext context, IMensajeEmail mensaje, IMensajeTelegram mensajeTelegram, ILogger<UserRepository> logger)
+        public UserRepository(ApplicationDbContext context, IMensajeEmail mensaje, IMensajeTelegram mensajeTelegram,
+            ILogger<UserRepository> logger)
             : base(context, logger)
         {
+            _context = context;
+            _mensaje = mensaje;
+            _mensajeTelegram = mensajeTelegram;
+            _logger = logger;
         }
-
-
         /// <summary>
         /// Obtiene un usuario con sus datos de persona relacionados
         /// </summary>
         /// 
-        public async Task<User> validacionUser(LoginDTO dto)
+        public async Task<User> validacionUser(LoginDTO dto)    
         {
             bool sucess = false;
-
             var user = await _context.Set<User>().FirstOrDefaultAsync(u =>
                 u.Email == dto.Email &&
                 u.Password == dto.Password
             );
-
             sucess = (user != null) ? true : throw new UnauthorizedAccessException("credenciales Incorrectas");
-
             return user;
         }
-
         ///<Summary>
         ///Metodo para el auth con google
         /// </Summary>
         /// 
-
         public async Task<User?> getByEmail(string email)
         {
             return await _context.user.FirstOrDefaultAsync(u => u.Email == email);
         }
-
         /// <summary> 
         /// Metodo para enviar un correo de notificacion
         /// </summary>
         /// 
-
         public async Task NotificarPorCorreo(string email)
         {
             string asunto = "Notificación importante";
             string contenido = "<h1>Hola, esto es un correo de prueba</h1>";
-
             await _mensaje.EnviarAsync(email, asunto, contenido);
         }
-
         /// <summary>
         /// Metodo para enviar un mensaje por telegram
         /// </summary>
@@ -87,5 +82,6 @@ namespace Data.Repositories
             await _mensajeTelegram.EnviarTelegram(texto);
         }
 
+        
     }
 }

@@ -3,6 +3,7 @@ using Business.Services;
 using Entity.DTO;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 using Utilities;
 
 namespace Web.Controllers
@@ -43,8 +44,9 @@ namespace Web.Controllers
         {
             try
             {
-                var Persons = await _personBusiness.GetAllAsync();
-                return Ok(Persons);
+                int userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
+                var personas = await _personBusiness.ObtenerPersonasSegunRolAsync(userId);
+                return Ok(personas);
             }
             catch (Exception ex)
             {

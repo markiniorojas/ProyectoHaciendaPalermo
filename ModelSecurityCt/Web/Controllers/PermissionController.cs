@@ -7,7 +7,7 @@ using Utilities;
 namespace Web.Controllers
 {
     [Route("api/[controller]")]
-    [Authorize]
+    ///[Authorize]
     [ApiController]
     [Produces("application/json")]
     public class PermissionController : ControllerBase

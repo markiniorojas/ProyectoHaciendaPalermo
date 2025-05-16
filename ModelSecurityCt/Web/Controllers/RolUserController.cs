@@ -8,7 +8,7 @@ namespace Web.Controllers
 {
 
     [Route("api/[controller]")]
-    [Authorize]
+    ///[Authorize]
     [ApiController]
     [Produces("application/json")]
     public class RolUserController : ControllerBase

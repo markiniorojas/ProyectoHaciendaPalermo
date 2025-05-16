@@ -12,7 +12,7 @@ namespace Web.Controllers
     /// </summary>
 
     [Route("api/[controller]")]
-    [Authorize]
+    ///[Authorize]
     [ApiController]
     [Produces("application/json")]
 

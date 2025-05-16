@@ -21,17 +21,14 @@ namespace Data.Interfaces
         /////Metodo para notificar por correo
         ///// </Summary>
         /////
-        //Task<User?> NotificarPorCorreo(string email);
+        Task NotificarPorCorreo(string email);
 
 
         /////<Summary>
         /////Metodo para notificar por telegram
         ///// </Summary>
         /////
-        //Task<User?> NotificarTelegram(string email);
-
-
-
+        Task NotificarPorTelegram(string texto);
 
     }
 }

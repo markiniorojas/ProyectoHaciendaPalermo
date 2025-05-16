@@ -21,5 +21,15 @@ namespace Data.Repositories
         {
         }
 
+        public async Task<List<Person>> ObtenerTodasAsync()
+        {
+            return await _context.Person.ToListAsync();
+        }
+
+        public async Task<List<Person>> ObtenerActivasAsync()
+        {
+            return await _context.Person.Where(p => !p.IsDeleted).ToListAsync();
+        }
+
     }
 }

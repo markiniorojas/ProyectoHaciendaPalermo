@@ -11,7 +11,12 @@ namespace Business.Interfaces
 {
     public interface IUserService : IServiceBase<UserDTO, User>
     {
-        
+        /////<Summary>
+        /////Metodo para verificar si es admin
+        ///// </Summary>
+        /////
+        Task<bool> EsAdminAsync(int userId);
+
     }
 
 }

@@ -13,6 +13,7 @@ using Dapper;
 using Microsoft.EntityFrameworkCore.Storage;
 using System.Reflection;
 using Module = Entity.Model.Module;
+using Entity.DataInit;
 
 namespace Entity.context
 {
@@ -44,7 +45,15 @@ namespace Entity.context
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
-         
+            modelBuilder.SeedPerson();
+            modelBuilder.SeedUser();
+            modelBuilder.SeedRol();
+            modelBuilder.SeedRolUser();
+            modelBuilder.SeedForm();
+            modelBuilder.SeedPermission();
+            modelBuilder.SeedModule();
+            modelBuilder.SeedFormModule();
+            modelBuilder.SeedRolFormPermission();
         }
 
 

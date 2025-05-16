@@ -3,10 +3,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Entity.context.Migrations
+namespace Entity.Migrations
 {
     /// <inheritdoc />
-    public partial class Inicial : Migration
+    public partial class migracionServer : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

@@ -51,7 +51,7 @@ namespace WebServiceExtensions
                 services.AddScoped<generarToken>();
 
                 services.AddScoped<IMensajeEmail, CorreoMensaje>();
-                services.AddScoped<IMensajeTelegram, MensajeTelegram>();
+                services.AddScoped<IMensajeTelegram, MensajeTelegram>();    
 
             return services;
 
