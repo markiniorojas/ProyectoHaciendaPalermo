@@ -1,10 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule, Validators } from '@angular/forms';
-import { ServiceGeneralService } from '../service-general.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IPerson } from '../interface/iperson';
+import { FormsModule, NgForm } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
-import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatPaginatorModule, MatPaginator } from '@angular/material/paginator';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -13,249 +11,319 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import Swal from 'sweetalert2';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import Swal from 'sweetalert2';
+
+import { IPerson } from '../interface/iperson';
+import { ServiceGeneralService } from '../service-general.service';
 import { AuthService } from '../service/acceso.service';
-
-
 
 @Component({
   selector: 'app-form-example',
   standalone: true,
-  imports: [CommonModule,FormsModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatCardModule,
-    MatButtonModule,
-    MatIconModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatSlideToggleModule,
-    MatChipsModule,
-    MatTooltipModule,
-    MatDatepickerModule,
-    MatNativeDateModule
-   ],
+  imports: [
+    CommonModule, FormsModule,
+    MatTableModule, MatPaginatorModule, MatCardModule,
+    MatButtonModule, MatIconModule, MatInputModule,
+    MatFormFieldModule, MatSlideToggleModule,
+    MatChipsModule, MatTooltipModule,
+    MatDatepickerModule, MatNativeDateModule
+  ],
   templateUrl: './person.component.html',
   styleUrls: ['./person.component.css']
 })
 export class PersonComponent implements OnInit {
   persons: IPerson[] = [];
   currentPerson: IPerson = this.getEmptyPerson();
-  showForm: boolean = false;
   isEditing: boolean = false;
-  userRole: string = '';
-  
+  showForm: boolean = false;
+  userRole: number = 0;
+  displayedColumns: string[] = ['firstName', 'lastName', 'documentType', 'document', 'dateBorn', 'phoneNumber', 'eps', 'genero', 'isDeleted', 'actions'];
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild('formElement') formElement!: NgForm;
+
   constructor(private personService: ServiceGeneralService, private authService: AuthService) {}
 
   ngOnInit(): void {
-    const token = this.authService.getToken();
-    if (token){
-      const decoded: any = this.authService.decodeToken(token);
-      this.userRole = decoded?.Role || '';
-    }
+    this.getUserRoleFromToken();
     this.loadPersons();
   }
 
-  // Helper para crear un formulario vacío
-  getEmptyPerson(): IPerson {
+  private getUserRoleFromToken(): void {
+    const token = this.authService.getToken();
+    if (token) {
+      const decoded: any = this.authService.decodeToken(token);
+      this.userRole = parseInt(decoded?.Role, 10) || 0;
+      console.log('User role from token:', this.userRole);
+    } else {
+      console.warn('No token available');
+    }
+  }
+
+  private getEmptyPerson(): IPerson {
     return {
       id: 0,
-      firstName:  '',
-      lastName:  '',
-      documentType:  '',
-      document:  '',
+      firstName: '',
+      lastName: '',
+      documentType: '',
+      document: '',
       dateBorn: new Date(),
-      phoneNumber:  '',
-      eps:  '',
-      genero:  '',
+      phoneNumber: '',
+      eps: '',
+      genero: '',
       relatedPerson: false,
       isDeleted: false
     };
   }
 
-  loadPersons(): void {
-   this.personService.get<IPerson[]>('person').subscribe({
-    next: data => {
-      if (this.userRole === 'admin') {
-        this.persons = data;
-      } else {
-        this.persons = data.filter(person => person.isDeleted === false);
-      }
-    },
-    error: err => console.error('Error al cargar personas', err),
-  });
+  private loadPersons(): void {
+    this.personService.get<IPerson[]>('person').subscribe({
+      next: (data) => {
+        console.log('Persons loaded:', data);
+        this.persons = data; // The backend already filters based on role
+      },
+      error: (err) => {
+        console.error('Error al cargar personas', err);
+        Swal.fire({ 
+          icon: 'error', 
+          title: 'Error', 
+          text: 'No se pudieron cargar las personas' 
+        });
+      },
+    });
   }
-  
-  
 
-  // Maneja tanto la creación como la actualización
-  submitPerson(): void {
-    if (this.isEditing) {
-      this.updatePerson();
-    } else {
-      this.addPerson();
+  togglePerson(action: string): void {
+    if (action === 'create') {
+      this.currentPerson = this.getEmptyPerson();
+      this.isEditing = false;
     }
+    this.showForm = !this.showForm;
+  }
+
+  submitPerson(): void {
+    if (this.formElement.invalid) {
+      return;
+    }
+    
+    this.isEditing ? this.updatePerson() : this.addPerson();
   }
 
   addPerson(): void {
     this.personService.post<IPerson>('person', this.currentPerson).subscribe({
-      next: person => {
-        Swal.fire({
-          icon: 'success',
-          title: '¡Éxito!',
-          text: 'Persona creada correctamente',
-          timer: 1500,
-          showConfirmButton: false
+      next: (person) => {
+        Swal.fire({ 
+          icon: 'success', 
+          title: '¡Éxito!', 
+          text: 'Persona creada correctamente', 
+          timer: 1500, 
+          showConfirmButton: false 
         });
-        this.persons.push(person);
-        this.resetPerson();
+        this.loadPersons(); // Reload all persons
+        this.resetForm();
       },
-      error: err => {
-        Swal.fire({
-          icon: 'error',
-          title: 'Error',
-          text: 'No se pudo crear la persona'
+      error: (err) => {
+        Swal.fire({ 
+          icon: 'error', 
+          title: 'Error', 
+          text: 'No se pudo crear la persona' 
         });
         console.error('Error al agregar persona', err);
       }
     });
   }
-  
 
   editPerson(person: IPerson): void {
-    this.isEditing = true;
-    // console.log('Datos enviados para actualizar:', this.currentForm);
     this.currentPerson = { ...person };
+    if (this.currentPerson.dateBorn) {
+      this.currentPerson.dateBorn = new Date(this.currentPerson.dateBorn);
+    }
+    this.isEditing = true;
     this.showForm = true;
   }
 
   updatePerson(): void {
-    this.currentPerson.phoneNumber = (this.currentPerson.phoneNumber);
     this.personService.put<IPerson>('person', this.currentPerson).subscribe({
-      next:() => {
+      next: () => {
+        Swal.fire({ 
+          icon: 'success', 
+          title: '¡Éxito!', 
+          text: 'Persona actualizada correctamente', 
+          timer: 1500, 
+          showConfirmButton: false 
+        });
         this.loadPersons();
-        this.resetPerson(); 
+        this.resetForm();
       },
-      error: err => {
-        Swal.fire({
-          icon: 'error',
-          title: 'Error',
-          text: 'No se pudo actualizar los datos de la persona'
+      error: (err) => {
+        Swal.fire({ 
+          icon: 'error', 
+          title: 'Error', 
+          text: 'No se pudo actualizar los datos de la persona' 
         });
         console.error('Error al actualizar la persona', err);
       }
-    })
-      
-
+    });
   }
 
-  deletePerson(id: number): void {
+  deletePerson(person: IPerson): void {
+    if (!person || !person.id) {
+      Swal.fire({ 
+        icon: 'error', 
+        title: 'Error', 
+        text: 'ID de persona no válido' 
+      });
+      return;
+    }
+
     Swal.fire({
       title: '¿Estás seguro?',
       text: "¡Esta acción eliminará permanentemente la persona!",
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#d33',
-      cancelButtonColor: '#3085d6',
       confirmButtonText: 'Sí, eliminar',
       cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.personService.delete<IPerson>('person', id).subscribe({
+        // Usando el método genérico delete con la ruta correcta
+        this.personService.delete('person/permanent', person.id).subscribe({
           next: () => {
-            Swal.fire({
-              icon: 'success',
-              title: 'Eliminado',
-              text: 'La persona ha sido eliminada permanentemente',
-              timer: 1500,
-              showConfirmButton: false
+            this.loadPersons();
+            Swal.fire({ 
+              icon: 'success', 
+              title: 'Eliminado', 
+              text: 'Persona eliminada permanentemente', 
+              timer: 1500, 
+              showConfirmButton: false 
             });
-            this.persons = this.persons.filter(p => p.id !== id);
           },
-          error: err => {
-            Swal.fire({
-              icon: 'error',
-              title: 'Error',
-              text: 'No se pudo eliminar la persona'
+          error: (err) => {
+            Swal.fire({ 
+              icon: 'error', 
+              title: 'Error', 
+              text: 'No se pudo eliminar la persona' 
             });
             console.error('Error al eliminar la persona', err);
           }
         });
       }
     });
-  }
+}
 
-  deleteFormLogic(id: number): void {
+  deleteFormLogic(person: IPerson): void {
+    if (!person || !person.id) {
+      Swal.fire({ 
+        icon: 'error', 
+        title: 'Error', 
+        text: 'ID de persona no válido' 
+      });
+      return;
+    }
+
     Swal.fire({
       title: '¿Estás seguro?',
-      text: "Esta persona se desactivará pero no se eliminará permanentemente",
+      text: "La persona se marcará como eliminada lógicamente",
       icon: 'question',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
       confirmButtonText: 'Sí, desactivar',
       cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.personService.deleteLogic<IPerson>('person', id).subscribe({
+        this.personService.put<void>(`person/Logico/${person.id}`, {}).subscribe({
           next: () => {
-            Swal.fire({
-              icon: 'success',
-              title: 'Desactivado',
-              text: 'La persona ha sido desactivado correctamente',
-              timer: 1500,
-              showConfirmButton: false
+            this.loadPersons(); // Reload persons after logical deletion
+            Swal.fire({ 
+              icon: 'success', 
+              title: 'Desactivado', 
+              text: 'Persona desactivada lógicamente', 
+              timer: 1500, 
+              showConfirmButton: false 
             });
-            this.persons = this.persons.filter(p => p.id !== id);
           },
-          error: err => {
-            Swal.fire({
-              icon: 'error',
-              title: 'Error',
-              text: 'No se pudo desactivar la persona'
+          error: (err) => {
+            Swal.fire({ 
+              icon: 'error', 
+              title: 'Error', 
+              text: 'No se pudo desactivar la persona' 
             });
-            console.error('Error al eliminar persona', err);
+            console.error('Error al desactivar persona', err);
           }
         });
       }
     });
   }
 
-  togglePerson(mode: 'create' | 'edit'): void {
-    if (mode === 'create') {
-      this.isEditing = false;
-      this.currentPerson = this.getEmptyPerson();
+  reactivatePerson(person: IPerson): void {
+    if (!person || !person.id) {
+      Swal.fire({ 
+        icon: 'error', 
+        title: 'Error', 
+        text: 'ID de persona no válido' 
+      });
+      return;
     }
-    this.showForm = !this.showForm;
+
+  Swal.fire({
+  title: '¿Estás seguro?',
+  text: "¿Deseas reactivar esta persona?",
+  icon: 'question',
+  showCancelButton: true,
+  confirmButtonText: 'Sí, reactivar',
+  cancelButtonText: 'Cancelar'
+}).then((result) => {
+  if (result.isConfirmed) {
+    this.personService.patchRestore<void>('person', person.id, {}).subscribe({
+      next: () => {
+        this.loadPersons(); // Reload persons after reactivation
+        Swal.fire({ 
+          icon: 'success', 
+          title: 'Reactivado', 
+          text: 'Persona reactivada correctamente', 
+          timer: 1500, 
+          showConfirmButton: false 
+        });
+      },
+      error: (err) => {
+        Swal.fire({ 
+          icon: 'error', 
+          title: 'Error', 
+          text: 'No se pudo reactivar la persona' 
+        });
+        console.error('Error al reactivar persona', err);
+      }
+    });
+  }
+});
   }
 
   cancelPerson(): void {
-    if (this.currentPerson.firstName || this.currentPerson.lastName || this.currentPerson.documentType || this.currentPerson.document || this.currentPerson.dateBorn || this.currentPerson.phoneNumber || this.currentPerson.eps || this.currentPerson.genero) {
+    if (this.isEditing || Object.values(this.currentPerson).some(v => v !== '' && v !== 0 && v !== false)) {
       Swal.fire({
         title: '¿Estás seguro?',
         text: 'Perderás los cambios no guardados',
         icon: 'question',
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
         confirmButtonText: 'Sí, cancelar',
         cancelButtonText: 'Seguir editando'
       }).then((result) => {
         if (result.isConfirmed) {
-          this.resetPerson();
+          this.resetForm();
+          this.showForm = false;
         }
       });
     } else {
-      this.resetPerson();
+      this.resetForm();
+      this.showForm = false;
     }
   }
 
-  resetPerson(): void {
-    this.showForm = false;
-    this.isEditing = false;
+  private resetForm(): void {
     this.currentPerson = this.getEmptyPerson();
+    this.isEditing = false;
+    if (this.formElement) {
+      this.formElement.resetForm();
+    }
   }
 }
-

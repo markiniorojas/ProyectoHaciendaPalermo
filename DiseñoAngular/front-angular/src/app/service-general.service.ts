@@ -27,7 +27,9 @@ export class ServiceGeneralService {
   }
 
   delete<T>(endpoint: string, id: number | string) {
-    return this.http.delete<T>(`${this.baseUrl}/${endpoint}/permanent/${id}`);
+  const url = `${this.baseUrl}/${endpoint}/${id}`;
+  console.log('URL construida:', url);
+  return this.http.delete<T>(url);
   }
 
 
