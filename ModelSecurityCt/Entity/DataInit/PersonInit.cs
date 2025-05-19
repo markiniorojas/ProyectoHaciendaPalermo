@@ -16,12 +16,12 @@ namespace Entity.DataInit
                 new Person
                 {
                     Id = 1,
-                    FirstName = "Juan",
-                    LastName = "Pérez",
-                    DocumentType = "CC",
-                    Document = "123456789",
+                    FirstName = "Marcos",
+                    LastName = "Rojas Alvarez",
+                    DocumentType = "TI",
+                    Document = "1075455",
                     DateBorn = new DateTime(1990, 5, 15),
-                    PhoneNumber = "3001234567",
+                    PhoneNumber = "30012345",
                     Eps = "Nueva EPS",
                     Genero = "Masculino",
                     RelatedPerson = false,
@@ -30,14 +30,14 @@ namespace Entity.DataInit
                 new Person
                 {
                     Id = 2,
-                    FirstName = "María",
-                    LastName = "Gómez",
-                    DocumentType = "TI",
-                    Document = "987654321",
-                    DateBorn = new DateTime(2000, 8, 20),
-                    PhoneNumber = "3019876543",
+                    FirstName = "Gentil",
+                    LastName = "Rojas Cortes",
+                    DocumentType = "CC",
+                    Document = "121243333",
+                    DateBorn = new DateTime(1965, 3, 25),
+                    PhoneNumber = "30198763",
                     Eps = "Sura",
-                    Genero = "Femenino",
+                    Genero = "Masculino",
                     RelatedPerson = true,
                     IsDeleted = false
                 }

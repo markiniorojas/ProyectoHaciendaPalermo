@@ -1,8 +1,8 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "Web",
-    "version": "1.0"
+    "title": "Mi API",
+    "version": "v1"
   },
   "paths": {
     "/api/Acceso": {
@@ -3215,6 +3215,19 @@
         },
         "additionalProperties": false
       }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "http",
+        "description": "Ingrese 'Bearer' seguido del token JWT. Ejemplo: 'Bearer eyJhbGciOiJIUzI1NiIs...'",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
     }
-  }
+  },
+  "security": [
+    {
+      "Bearer": [ ]
+    }
+  ]
 }

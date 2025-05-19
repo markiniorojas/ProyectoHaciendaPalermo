@@ -17,6 +17,6 @@ namespace Entity.Model
         public virtual Person Person { get; set; }
         public bool IsDeleted { get; set; } 
 
-        public List<RolUser> rolUsers { get; set; } = new List<RolUser>();
+        public List<RolUser> RolUsers { get; set; } = new List<RolUser>();
     }
 }

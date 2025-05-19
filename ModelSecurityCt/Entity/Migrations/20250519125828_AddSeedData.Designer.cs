@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Entity.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250516204121_migracionServer")]
-    partial class migracionServer
+    [Migration("20250519125828_AddSeedData")]
+    partial class AddSeedData
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -35,14 +35,16 @@ namespace Entity.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Url")
                         .IsRequired()
@@ -50,7 +52,33 @@ namespace Entity.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Form");
+                    b.ToTable("form", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "Formulario principal del sistema",
+                            IsDeleted = false,
+                            Name = "Formulario Principal",
+                            Url = "/dashboard"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Description = "Formulario para administración de usuarios",
+                            IsDeleted = false,
+                            Name = "Gestión de Usuarios",
+                            Url = "/usuarios"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Description = "Formulario para visualizar reportes",
+                            IsDeleted = false,
+                            Name = "Reportes",
+                            Url = "/reportes"
+                        });
                 });
 
             modelBuilder.Entity("Entity.Model.FormModule", b =>
@@ -76,7 +104,30 @@ namespace Entity.Migrations
 
                     b.HasIndex("ModuleId");
 
-                    b.ToTable("FormModule");
+                    b.ToTable("formModule", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            FormId = 1,
+                            IsDeleted = false,
+                            ModuleId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            FormId = 2,
+                            IsDeleted = false,
+                            ModuleId = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            FormId = 2,
+                            IsDeleted = false,
+                            ModuleId = 2
+                        });
                 });
 
             modelBuilder.Entity("Entity.Model.Module", b =>
@@ -89,18 +140,43 @@ namespace Entity.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Module");
+                    b.ToTable("module", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "Módulo de administración general",
+                            IsDeleted = false,
+                            Name = "Administración"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Description = "Control y mantenimiento de usuarios",
+                            IsDeleted = false,
+                            Name = "Gestión de usuarios"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Description = "Visualización y exportación de reportes",
+                            IsDeleted = false,
+                            Name = "Reportes"
+                        });
                 });
 
             modelBuilder.Entity("Entity.Model.Permission", b =>
@@ -113,18 +189,50 @@ namespace Entity.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Permission");
+                    b.ToTable("permission", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "Permite crear registros",
+                            IsDeleted = false,
+                            Name = "Crear"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Description = "Permite editar registros",
+                            IsDeleted = false,
+                            Name = "Editar"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Description = "Permite eliminar registros",
+                            IsDeleted = false,
+                            Name = "Eliminar"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Description = "Permite ver registros",
+                            IsDeleted = false,
+                            Name = "Ver"
+                        });
                 });
 
             modelBuilder.Entity("Entity.Model.Person", b =>
@@ -140,7 +248,8 @@ namespace Entity.Migrations
 
                     b.Property<string>("Document")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("DocumentType")
                         .IsRequired()
@@ -152,18 +261,22 @@ namespace Entity.Migrations
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Genero")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
@@ -174,7 +287,37 @@ namespace Entity.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Person");
+                    b.ToTable("person", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            DateBorn = new DateTime(1990, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Document = "1075455",
+                            DocumentType = "TI",
+                            Eps = "Nueva EPS",
+                            FirstName = "Marcos",
+                            Genero = "Masculino",
+                            IsDeleted = false,
+                            LastName = "Rojas Alvarez",
+                            PhoneNumber = "30012345",
+                            RelatedPerson = false
+                        },
+                        new
+                        {
+                            Id = 2,
+                            DateBorn = new DateTime(1965, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Document = "121243333",
+                            DocumentType = "CC",
+                            Eps = "Sura",
+                            FirstName = "Gentil",
+                            Genero = "Masculino",
+                            IsDeleted = false,
+                            LastName = "Rojas Cortes",
+                            PhoneNumber = "30198763",
+                            RelatedPerson = true
+                        });
                 });
 
             modelBuilder.Entity("Entity.Model.Rol", b =>
@@ -187,18 +330,38 @@ namespace Entity.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Role");
+                    b.ToTable("rol", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "Rol con todos los permisos del sistema",
+                            IsDeleted = false,
+                            Name = "Administrador"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Description = "Rol con permisos limitados",
+                            IsDeleted = false,
+                            Name = "Usuario"
+                        });
                 });
 
             modelBuilder.Entity("Entity.Model.RolFormPermission", b =>
@@ -229,7 +392,33 @@ namespace Entity.Migrations
 
                     b.HasIndex("RolId");
 
-                    b.ToTable("RolFormPermission");
+                    b.ToTable("rolFormPermission", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            FormId = 1,
+                            IsDeleted = false,
+                            PermissionId = 1,
+                            RolId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            FormId = 1,
+                            IsDeleted = false,
+                            PermissionId = 2,
+                            RolId = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            FormId = 2,
+                            IsDeleted = false,
+                            PermissionId = 4,
+                            RolId = 2
+                        });
                 });
 
             modelBuilder.Entity("Entity.Model.RolUser", b =>
@@ -242,10 +431,13 @@ namespace Entity.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
 
                     b.Property<int>("RolId")
                         .HasColumnType("int");
@@ -259,7 +451,25 @@ namespace Entity.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("RolUser");
+                    b.ToTable("rolUser", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Email = "marcosrojasalvarez09172007@gmail.com",
+                            IsDeleted = false,
+                            RolId = 1,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Email = "gentilrojas@gmail.com",
+                            IsDeleted = false,
+                            RolId = 2,
+                            UserId = 2
+                        });
                 });
 
             modelBuilder.Entity("Entity.Model.User", b =>
@@ -271,18 +481,24 @@ namespace Entity.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<bool>("Active")
-                        .HasColumnType("bit");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<int?>("PersonId")
                         .HasColumnType("int");
@@ -291,7 +507,27 @@ namespace Entity.Migrations
 
                     b.HasIndex("PersonId");
 
-                    b.ToTable("user");
+                    b.ToTable("user", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Active = true,
+                            Email = "marcosrojasalvarez09172007@gmail.com",
+                            IsDeleted = false,
+                            Password = "1234",
+                            PersonId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Active = true,
+                            Email = "gentilrojas@gmail.com",
+                            IsDeleted = false,
+                            Password = "123",
+                            PersonId = 2
+                        });
                 });
 
             modelBuilder.Entity("Entity.Model.FormModule", b =>
@@ -343,13 +579,13 @@ namespace Entity.Migrations
             modelBuilder.Entity("Entity.Model.RolUser", b =>
                 {
                     b.HasOne("Entity.Model.Rol", "Rol")
-                        .WithMany("RolUser")
+                        .WithMany("RolUsers")
                         .HasForeignKey("RolId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Entity.Model.User", "User")
-                        .WithMany("rolUsers")
+                        .WithMany("RolUsers")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -362,8 +598,9 @@ namespace Entity.Migrations
             modelBuilder.Entity("Entity.Model.User", b =>
                 {
                     b.HasOne("Entity.Model.Person", "Person")
-                        .WithMany()
-                        .HasForeignKey("PersonId");
+                        .WithMany("Users")
+                        .HasForeignKey("PersonId")
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Person");
                 });
@@ -385,16 +622,21 @@ namespace Entity.Migrations
                     b.Navigation("RolFormPermission");
                 });
 
+            modelBuilder.Entity("Entity.Model.Person", b =>
+                {
+                    b.Navigation("Users");
+                });
+
             modelBuilder.Entity("Entity.Model.Rol", b =>
                 {
                     b.Navigation("RolFormPermission");
 
-                    b.Navigation("RolUser");
+                    b.Navigation("RolUsers");
                 });
 
             modelBuilder.Entity("Entity.Model.User", b =>
                 {
-                    b.Navigation("rolUsers");
+                    b.Navigation("RolUsers");
                 });
 #pragma warning restore 612, 618
         }

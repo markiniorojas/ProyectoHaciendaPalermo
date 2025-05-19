@@ -33,19 +33,27 @@ namespace Business.Token
                 throw new UnauthorizedAccessException("credenciales incorrectas");
             }
 
+            var roleIds = await _user.GetRoleIdsByUserIdAsync(user.Id);
+
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                new Claim(ClaimTypes.Name, user.Email),
-                new Claim(ClaimTypes.Name, user.Password)
+                new Claim(ClaimTypes.Name, user.Email)
 
             };
+
+            foreach (var roleId in roleIds)
+            {
+                claims.Add(new Claim(ClaimTypes.Role, roleId.ToString()));
+            }
 
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:key"]!));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256Signature);
 
             var jwtConfig = new JwtSecurityToken
             (
+                issuer: _configuration["Jwt:Issuer"] ?? "apiIssuer", // Añadir un valor por defecto
+                audience: _configuration["Jwt:Audience"] ?? "apiAudience", // Añadir un valor por defecto
                 claims: claims,
                 expires: DateTime.Now.AddMinutes(Convert.ToDouble(_configuration["Jwt:Expiration"])),
                 signingCredentials: credentials

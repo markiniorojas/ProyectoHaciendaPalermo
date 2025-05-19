@@ -17,6 +17,8 @@ namespace Business.Interfaces
         /////
         Task<bool> EsAdminAsync(int userId);
 
+        Task<List<int>> GetRoleIdsByUserIdAsync(int userId);
+
     }
 
 }

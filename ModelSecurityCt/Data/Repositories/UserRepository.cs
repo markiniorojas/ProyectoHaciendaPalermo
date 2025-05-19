@@ -82,6 +82,25 @@ namespace Data.Repositories
             await _mensajeTelegram.EnviarTelegram(texto);
         }
 
-        
+        public async Task<User> GetUserWithRolesAsync(int userId)
+        {
+            return await _context.user
+                .Include(u => u.RolUsers)
+                .FirstOrDefaultAsync(u => u.Id == userId);
+        }
+
+
+        public async Task<List<int>> GetRoleIdsByUserIdAsync(int userId)
+        {
+            var roleIds = await _context.RolUser
+                                        .Where(ru => ru.UserId == userId && !ru.IsDeleted)
+                                        .Select(ru => ru.RolId)
+                                        .ToListAsync();
+
+            return roleIds;
+        }
+
+
+
     }
 }

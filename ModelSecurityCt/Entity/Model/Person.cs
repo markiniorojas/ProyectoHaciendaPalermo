@@ -19,5 +19,7 @@ namespace Entity.Model
         public string Genero { get; set; }
         public bool RelatedPerson { get; set; }
         public bool IsDeleted { get; set; }
+
+        public List<User> Users { get; set; } = new List<User>();
     }
 }

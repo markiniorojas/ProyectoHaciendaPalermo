@@ -30,5 +30,11 @@ namespace Data.Interfaces
         /////
         Task NotificarPorTelegram(string texto);
 
+        Task<List<int>> GetRoleIdsByUserIdAsync(int userId);
+
+        Task<User> GetUserWithRolesAsync(int userId);
+
+
+
     }
 }

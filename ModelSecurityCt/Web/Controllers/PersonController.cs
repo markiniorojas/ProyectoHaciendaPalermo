@@ -1,6 +1,7 @@
 ﻿using Business;
 using Business.Services;
 using Entity.DTO;
+using Mapster;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
@@ -9,13 +10,14 @@ using Utilities;
 namespace Web.Controllers
 {
     [Route("api/[controller]")]
-    //[Authorize]
+    [Authorize]
     [ApiController]
     [Produces("application/json")]
     public class PersonController : ControllerBase
     {
         private readonly PersonService _personBusiness;
         private readonly ILogger<PersonController> _logger;
+
 
         /// <summary>
         /// Constructor del controlador de Personas
@@ -40,19 +42,38 @@ namespace Web.Controllers
         [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<PersonDTO>), 200)]
         [ProducesResponseType(500)]
-        public async Task<IActionResult> GetAllPersons()
+        public async Task<ActionResult<List<PersonDTO>>> ObtenerSegunRol()
         {
-            try
-            {
-                int userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
-                var personas = await _personBusiness.ObtenerPersonasSegunRolAsync(userId);
-                return Ok(personas);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error al obtener las personas");
-                return StatusCode(500, new { message = ex.Message });
-            }
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
+            if (userIdClaim == null)
+                return Unauthorized("No se encontro el identificador del usuario en el token");
+            
+            
+            if (!int.TryParse(userIdClaim.Value, out int userId))
+                return Unauthorized("El indentificador del usuario es invalido");
+
+            //Llamamos el metodo que se encuentra en el servicio dond verificara que rol tiene
+            var personas = await _personBusiness.ObtenerPersonasSegunRolAsync(userId);
+
+
+            //Mapeamos al DTO de persona
+            var personasDTO = personas.Adapt<List<PersonDTO>>();
+
+            return Ok(personasDTO);
+
+            
+
+            //try
+            //{
+            //    int userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
+            //    var personas = await _personBusiness.ObtenerPersonasSegunRolAsync(userId);
+            //    return Ok(personas);
+            //}
+            //catch (Exception ex)
+            //{
+            //    _logger.LogError(ex, "Error al obtener las personas");
+            //    return StatusCode(500, new { message = ex.Message });
+            //}
         }
 
         /// <summary>

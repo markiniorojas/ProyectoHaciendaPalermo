@@ -31,13 +31,23 @@ namespace Business.Services
         /// <returns></returns>
         public async Task<bool> EsAdminAsync(int userId)
         {
-            var user = await _userRepository.GetByIdAsync(userId);
+            var user = await _userRepository.GetUserWithRolesAsync(userId);
+
             // Verifica si el usuario existe
             if (user == null)
                 return false;
 
-            // Asumiendo que tienes una propiedad RoleId en tu clase User
-            return user.RoleId == 1; // 1 es el ID del rol admin
+            // Asegúrate de que la relación rolUsers esté cargada
+            // Si tu repositorio no carga automáticamente las relaciones, es posible que necesites
+            // un método específico para cargar un usuario con sus roles
+
+            // Verifica si el usuario tiene el rol de administrador (RolId = 1)
+            return user.RolUsers.Any(ru => ru.RolId == 1 && !ru.IsDeleted);
+        }
+
+        public async Task<List<int>> GetRoleIdsByUserIdAsync(int userId)
+        {
+            return await _userRepository.GetRoleIdsByUserIdAsync(userId);
         }
     }
 }

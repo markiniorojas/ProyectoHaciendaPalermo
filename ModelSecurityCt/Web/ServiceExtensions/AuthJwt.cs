@@ -29,6 +29,19 @@ namespace Web.ServiceExtensions
                         Encoding.UTF8.GetBytes(configuration["Jwt:Key"]!)
                     )
                 };
+                options.Events = new JwtBearerEvents
+                {
+                    OnAuthenticationFailed = context =>
+                    {
+                        Console.WriteLine("OnAuthenticationFailed: " + context.Exception.Message);
+                        return Task.CompletedTask;
+                    },
+                    OnTokenValidated = context =>
+                    {
+                        Console.WriteLine("OnTokenValidated: " + context.SecurityToken);
+                        return Task.CompletedTask;
+                    }
+                };
             });
 
             return services;

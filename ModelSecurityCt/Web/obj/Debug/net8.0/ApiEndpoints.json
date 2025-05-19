@@ -1121,7 +1121,7 @@
   },
   {
     "ContainingType": "Web.Controllers.PersonController",
-    "Method": "GetAllPersons",
+    "Method": "ObtenerSegunRol",
     "RelativePath": "api/Person",
     "HttpMethod": "GET",
     "IsController": true,

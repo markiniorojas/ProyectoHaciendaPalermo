@@ -29,7 +29,7 @@ var dbProvider = configuration["DatabaseProvider"];
 // 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddCustomSwagger();
 
 // 
 // Autenticación JWT
@@ -74,6 +74,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();      // Redirige a HTTPS
 app.UseCors("AllowFrontend");   // Aplica política de CORS
+app.UseAuthentication();
 app.UseAuthorization();         // Activa autorización
 
 app.MapControllers();          // Mapea los controladores

@@ -17,5 +17,7 @@ namespace Business.Interfaces
     {
         // Aquí se pueden agregar métodos específicos del negocio relacionados a Person,
         // como: BuscarPorDocumento, ObtenerFamiliares, ValidarMayorEdad, etc.
+
+        Task<List<Person>> ObtenerPersonasSegunRolAsync(int userId);
     }
 }

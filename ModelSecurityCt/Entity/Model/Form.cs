@@ -16,6 +16,6 @@ namespace Entity.Model
 
         public List<RolFormPermission> RolFormPermission { get; set; } = new List<RolFormPermission>();
 
-       public List<FormModule> FormModules { get; set; }
+        public List<FormModule> FormModules { get; set; } = new List<FormModule>();
     }
 }

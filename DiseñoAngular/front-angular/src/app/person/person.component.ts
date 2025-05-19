@@ -16,6 +16,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import Swal from 'sweetalert2';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { AuthService } from '../service/acceso.service';
 
 
 
@@ -44,10 +45,16 @@ export class PersonComponent implements OnInit {
   currentPerson: IPerson = this.getEmptyPerson();
   showForm: boolean = false;
   isEditing: boolean = false;
+  userRole: string = '';
   
-  constructor(private personService: ServiceGeneralService) {}
+  constructor(private personService: ServiceGeneralService, private authService: AuthService) {}
 
   ngOnInit(): void {
+    const token = this.authService.getToken();
+    if (token){
+      const decoded: any = this.authService.decodeToken(token);
+      this.userRole = decoded?.Role || '';
+    }
     this.loadPersons();
   }
 
@@ -69,14 +76,16 @@ export class PersonComponent implements OnInit {
   }
 
   loadPersons(): void {
-    this.personService.get<IPerson[]>('person').subscribe({
-      next: data => {
-        console.log('Datos recibidos:', data);
-        // Solo formularios que NO estén eliminados (IsDeleted == false)
+   this.personService.get<IPerson[]>('person').subscribe({
+    next: data => {
+      if (this.userRole === 'admin') {
+        this.persons = data;
+      } else {
         this.persons = data.filter(person => person.isDeleted === false);
-      },
-      error: err => console.error('Error al cargar los formularios', err),
-    });
+      }
+    },
+    error: err => console.error('Error al cargar personas', err),
+  });
   }
   
   

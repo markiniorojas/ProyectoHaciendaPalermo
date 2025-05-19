@@ -18,7 +18,7 @@ namespace Entity.DataInit
                     Id = 1,
                     RolId = 1,
                     UserId = 1,
-                    Email = "admin@example.com",
+                    Email = "marcosrojasalvarez09172007@gmail.com",
                     IsDeleted = false
                 },
                 new RolUser
@@ -26,7 +26,7 @@ namespace Entity.DataInit
                     Id = 2,
                     RolId = 2,
                     UserId = 2,
-                    Email = "user@example.com",
+                    Email = "gentilrojas@gmail.com",
                     IsDeleted = false
                 }
             );

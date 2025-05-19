@@ -16,7 +16,7 @@ namespace Entity.DataInit
                 new User
                 {
                     Id = 1,
-                    Email = "juan.perez@example.com",
+                    Email = "marcosrojasalvarez09172007@gmail.com",
                     Password = "1234", 
                     Active = true,
                     PersonId = 1,
@@ -25,8 +25,8 @@ namespace Entity.DataInit
                 new User
                 {
                     Id = 2,
-                    Email = "maria.gomez@example.com",
-                    Password = "abcd", 
+                    Email = "gentilrojas@gmail.com",
+                    Password = "123", 
                     Active = true,
                     PersonId = 2,
                     IsDeleted = false

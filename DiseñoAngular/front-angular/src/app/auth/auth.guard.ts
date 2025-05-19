@@ -10,8 +10,7 @@ export class AuthGuard implements CanActivate, CanActivateChild {
   constructor(private auth: AuthService, private router: Router) {}
 
   private checkAuth(): boolean {
-    const token = this.auth.getToken();
-    if (!token || this.auth.isTokenExpired(token)) {
+    if (!this.auth.isAuthenticated()) {
       alert('Tu sesión ha expirado. Por favor inicia sesión nuevamente.');
       this.auth.logout();
       return false;
