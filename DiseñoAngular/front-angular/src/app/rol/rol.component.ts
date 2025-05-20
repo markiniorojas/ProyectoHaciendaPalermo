@@ -128,7 +128,8 @@ export class RolComponent implements OnInit {
     });
   }
 
-  deleteRol(id: number): void {
+  deleteRol(rol: IRol): void {
+
     Swal.fire({
       title: '¿Estás seguro?',
       text: "¡Esta acción eliminará permanentemente el rol!",
@@ -140,8 +141,9 @@ export class RolComponent implements OnInit {
       cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.rolService.delete<IRol>('rol', id).subscribe({
+        this.rolService.delete<IRol>('rol/permanent', rol.id).subscribe({
           next: () => {
+            this.loadRol();
             Swal.fire({
               icon: 'success',
               title: 'Eliminado',
@@ -149,7 +151,6 @@ export class RolComponent implements OnInit {
               timer: 1500,
               showConfirmButton: false
             });
-            this.rols = this.rols.filter(r => r.id !== id);
           },
           error: err => {
             Swal.fire({
