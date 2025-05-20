@@ -13,7 +13,11 @@ namespace Entity.RelacionesModel
     {
         public void Configure(EntityTypeBuilder<Person> builder)
         {
-            builder.ToTable("person");
+            ///<Summary>
+            ///Implementacion del esquema de seguridad:
+            ///<Summary>
+
+            builder.ToTable("person", schema: "Seguridad");
 
 
             // Clave primaria

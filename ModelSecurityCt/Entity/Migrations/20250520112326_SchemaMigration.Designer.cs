@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Entity.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250519125828_AddSeedData")]
-    partial class AddSeedData
+    [Migration("20250520112326_SchemaMigration")]
+    partial class SchemaMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -202,7 +202,10 @@ namespace Entity.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("permission", (string)null);
+                    b.HasIndex("Name")
+                        .IsUnique();
+
+                    b.ToTable("permission", "Seguridad");
 
                     b.HasData(
                         new
@@ -287,7 +290,7 @@ namespace Entity.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("person", (string)null);
+                    b.ToTable("person", "Seguridad");
 
                     b.HasData(
                         new
@@ -345,7 +348,7 @@ namespace Entity.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("rol", (string)null);
+                    b.ToTable("rol", "Seguridad");
 
                     b.HasData(
                         new
@@ -451,7 +454,7 @@ namespace Entity.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("rolUser", (string)null);
+                    b.ToTable("rolUser", "Seguridad");
 
                     b.HasData(
                         new
@@ -507,7 +510,7 @@ namespace Entity.Migrations
 
                     b.HasIndex("PersonId");
 
-                    b.ToTable("user", (string)null);
+                    b.ToTable("user", "Seguridad");
 
                     b.HasData(
                         new

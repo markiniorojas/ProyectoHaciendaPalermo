@@ -3,28 +3,84 @@
   "WorkspaceRootPath": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A0AE2FA2-CA5C-4EF4-9A66-3D4DF791FA1B}|Data\\Data.csproj|c:\\proyectoangular\\proyectohaciendapalermo\\modelsecurityct\\data\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A0AE2FA2-CA5C-4EF4-9A66-3D4DF791FA1B}|Data\\Data.csproj|solutionrelative:data\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D0CA991D-E68C-4CBC-9CAC-9023621A1A69}|Web\\Web.csproj|c:\\proyectoangular\\proyectohaciendapalermo\\modelsecurityct\\web\\migrationfactory\\applicationdbcontextfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D0CA991D-E68C-4CBC-9CAC-9023621A1A69}|Web\\Web.csproj|solutionrelative:web\\migrationfactory\\applicationdbcontextfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A1B3D0D6-9009-4662-9A90-CAC30B7F1776}|Business\\Business.csproj|c:\\proyectoangular\\proyectohaciendapalermo\\modelsecurityct\\business\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A1B3D0D6-9009-4662-9A90-CAC30B7F1776}|Business\\Business.csproj|solutionrelative:business\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D0CA991D-E68C-4CBC-9CAC-9023621A1A69}|Web\\Web.csproj|c:\\proyectoangular\\proyectohaciendapalermo\\modelsecurityct\\web\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{D0CA991D-E68C-4CBC-9CAC-9023621A1A69}|Web\\Web.csproj|solutionrelative:web\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A0AE2FA2-CA5C-4EF4-9A66-3D4DF791FA1B}|Data\\Data.csproj|c:\\proyectoangular\\proyectohaciendapalermo\\modelsecurityct\\data\\interfaces\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A0AE2FA2-CA5C-4EF4-9A66-3D4DF791FA1B}|Data\\Data.csproj|solutionrelative:data\\interfaces\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D0CA991D-E68C-4CBC-9CAC-9023621A1A69}|Web\\Web.csproj|c:\\proyectoangular\\proyectohaciendapalermo\\modelsecurityct\\web\\motoresdb\\sqlserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D0CA991D-E68C-4CBC-9CAC-9023621A1A69}|Web\\Web.csproj|solutionrelative:web\\motoresdb\\sqlserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A1B3D0D6-9009-4662-9A90-CAC30B7F1776}|Business\\Business.csproj|c:\\proyectoangular\\proyectohaciendapalermo\\modelsecurityct\\business\\interfaces\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A1B3D0D6-9009-4662-9A90-CAC30B7F1776}|Business\\Business.csproj|solutionrelative:business\\interfaces\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D0CA991D-E68C-4CBC-9CAC-9023621A1A69}|Web\\Web.csproj|c:\\proyectoangular\\proyectohaciendapalermo\\modelsecurityct\\web\\serviceextensions\\databaseconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D0CA991D-E68C-4CBC-9CAC-9023621A1A69}|Web\\Web.csproj|solutionrelative:web\\serviceextensions\\databaseconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DE4B061F-A934-4C69-A06D-AAD45E8BAC71}|Entity\\Entity.csproj|c:\\proyectoangular\\proyectohaciendapalermo\\modelsecurityct\\entity\\migrations\\applicationdbcontextmodelsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DE4B061F-A934-4C69-A06D-AAD45E8BAC71}|Entity\\Entity.csproj|solutionrelative:entity\\migrations\\applicationdbcontextmodelsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D0CA991D-E68C-4CBC-9CAC-9023621A1A69}|Web\\Web.csproj|c:\\proyectoangular\\proyectohaciendapalermo\\modelsecurityct\\web\\motoresdb\\postgres.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D0CA991D-E68C-4CBC-9CAC-9023621A1A69}|Web\\Web.csproj|solutionrelative:web\\motoresdb\\postgres.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A1B3D0D6-9009-4662-9A90-CAC30B7F1776}|Business\\Business.csproj|c:\\proyectoangular\\proyectohaciendapalermo\\modelsecurityct\\business\\token\\generartoken.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A1B3D0D6-9009-4662-9A90-CAC30B7F1776}|Business\\Business.csproj|solutionrelative:business\\token\\generartoken.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D0CA991D-E68C-4CBC-9CAC-9023621A1A69}|Web\\Web.csproj|c:\\proyectoangular\\proyectohaciendapalermo\\modelsecurityct\\web\\motoresdb\\mysql.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D0CA991D-E68C-4CBC-9CAC-9023621A1A69}|Web\\Web.csproj|solutionrelative:web\\motoresdb\\mysql.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D0CA991D-E68C-4CBC-9CAC-9023621A1A69}|Web\\Web.csproj|c:\\proyectoangular\\proyectohaciendapalermo\\modelsecurityct\\web\\interfacedb\\factoryinterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D0CA991D-E68C-4CBC-9CAC-9023621A1A69}|Web\\Web.csproj|solutionrelative:web\\interfacedb\\factoryinterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DE4B061F-A934-4C69-A06D-AAD45E8BAC71}|Entity\\Entity.csproj|c:\\proyectoangular\\proyectohaciendapalermo\\modelsecurityct\\entity\\relacionesmodel\\userrelations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DE4B061F-A934-4C69-A06D-AAD45E8BAC71}|Entity\\Entity.csproj|solutionrelative:entity\\relacionesmodel\\userrelations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DE4B061F-A934-4C69-A06D-AAD45E8BAC71}|Entity\\Entity.csproj|c:\\proyectoangular\\proyectohaciendapalermo\\modelsecurityct\\entity\\context\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DE4B061F-A934-4C69-A06D-AAD45E8BAC71}|Entity\\Entity.csproj|solutionrelative:entity\\context\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DE4B061F-A934-4C69-A06D-AAD45E8BAC71}|Entity\\Entity.csproj|c:\\proyectoangular\\proyectohaciendapalermo\\modelsecurityct\\entity\\relacionesmodel\\permissionrelations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DE4B061F-A934-4C69-A06D-AAD45E8BAC71}|Entity\\Entity.csproj|solutionrelative:entity\\relacionesmodel\\permissionrelations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DE4B061F-A934-4C69-A06D-AAD45E8BAC71}|Entity\\Entity.csproj|c:\\proyectoangular\\proyectohaciendapalermo\\modelsecurityct\\entity\\relacionesmodel\\personrelations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DE4B061F-A934-4C69-A06D-AAD45E8BAC71}|Entity\\Entity.csproj|solutionrelative:entity\\relacionesmodel\\personrelations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DE4B061F-A934-4C69-A06D-AAD45E8BAC71}|Entity\\Entity.csproj|c:\\proyectoangular\\proyectohaciendapalermo\\modelsecurityct\\entity\\relacionesmodel\\rolrelations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DE4B061F-A934-4C69-A06D-AAD45E8BAC71}|Entity\\Entity.csproj|solutionrelative:entity\\relacionesmodel\\rolrelations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DE4B061F-A934-4C69-A06D-AAD45E8BAC71}|Entity\\Entity.csproj|c:\\proyectoangular\\proyectohaciendapalermo\\modelsecurityct\\entity\\relacionesmodel\\roluserrelations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DE4B061F-A934-4C69-A06D-AAD45E8BAC71}|Entity\\Entity.csproj|solutionrelative:entity\\relacionesmodel\\roluserrelations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DE4B061F-A934-4C69-A06D-AAD45E8BAC71}|Entity\\Entity.csproj|c:\\proyectoangular\\proyectohaciendapalermo\\modelsecurityct\\entity\\datainit\\rolinit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DE4B061F-A934-4C69-A06D-AAD45E8BAC71}|Entity\\Entity.csproj|solutionrelative:entity\\datainit\\rolinit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DE4B061F-A934-4C69-A06D-AAD45E8BAC71}|Entity\\Entity.csproj|c:\\proyectoangular\\proyectohaciendapalermo\\modelsecurityct\\entity\\model\\person.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DE4B061F-A934-4C69-A06D-AAD45E8BAC71}|Entity\\Entity.csproj|solutionrelative:entity\\model\\person.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DE4B061F-A934-4C69-A06D-AAD45E8BAC71}|Entity\\Entity.csproj|c:\\proyectoangular\\proyectohaciendapalermo\\modelsecurityct\\entity\\model\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DE4B061F-A934-4C69-A06D-AAD45E8BAC71}|Entity\\Entity.csproj|solutionrelative:entity\\model\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D0CA991D-E68C-4CBC-9CAC-9023621A1A69}|Web\\Web.csproj|c:\\proyectoangular\\proyectohaciendapalermo\\modelsecurityct\\web\\factorydatabase\\selectiondatabase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D0CA991D-E68C-4CBC-9CAC-9023621A1A69}|Web\\Web.csproj|solutionrelative:web\\factorydatabase\\selectiondatabase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D0CA991D-E68C-4CBC-9CAC-9023621A1A69}|Web\\Web.csproj|c:\\proyectoangular\\proyectohaciendapalermo\\modelsecurityct\\web\\serviceextensions\\injectiondependency.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D0CA991D-E68C-4CBC-9CAC-9023621A1A69}|Web\\Web.csproj|solutionrelative:web\\serviceextensions\\injectiondependency.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D0CA991D-E68C-4CBC-9CAC-9023621A1A69}|Web\\Web.csproj|c:\\proyectoangular\\proyectohaciendapalermo\\modelsecurityct\\web\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D0CA991D-E68C-4CBC-9CAC-9023621A1A69}|Web\\Web.csproj|solutionrelative:web\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A0AE2FA2-CA5C-4EF4-9A66-3D4DF791FA1B}|Data\\Data.csproj|c:\\proyectoangular\\proyectohaciendapalermo\\modelsecurityct\\data\\interfaces\\ipersonrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A0AE2FA2-CA5C-4EF4-9A66-3D4DF791FA1B}|Data\\Data.csproj|solutionrelative:data\\interfaces\\ipersonrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D0CA991D-E68C-4CBC-9CAC-9023621A1A69}|Web\\Web.csproj|c:\\proyectoangular\\proyectohaciendapalermo\\modelsecurityct\\web\\serviceextensions\\authorizeswagger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -35,64 +91,8 @@
       "RelativeMoniker": "D:0:0:{DE4B061F-A934-4C69-A06D-AAD45E8BAC71}|Entity\\Entity.csproj|solutionrelative:entity\\model\\roluser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DE4B061F-A934-4C69-A06D-AAD45E8BAC71}|Entity\\Entity.csproj|c:\\proyectoangular\\proyectohaciendapalermo\\modelsecurityct\\entity\\model\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DE4B061F-A934-4C69-A06D-AAD45E8BAC71}|Entity\\Entity.csproj|solutionrelative:entity\\model\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DE4B061F-A934-4C69-A06D-AAD45E8BAC71}|Entity\\Entity.csproj|c:\\proyectoangular\\proyectohaciendapalermo\\modelsecurityct\\entity\\model\\rol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DE4B061F-A934-4C69-A06D-AAD45E8BAC71}|Entity\\Entity.csproj|solutionrelative:entity\\model\\rol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D0CA991D-E68C-4CBC-9CAC-9023621A1A69}|Web\\Web.csproj|c:\\proyectoangular\\proyectohaciendapalermo\\modelsecurityct\\web\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{D0CA991D-E68C-4CBC-9CAC-9023621A1A69}|Web\\Web.csproj|solutionrelative:web\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D0CA991D-E68C-4CBC-9CAC-9023621A1A69}|Web\\Web.csproj|c:\\proyectoangular\\proyectohaciendapalermo\\modelsecurityct\\web\\controllers\\personcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D0CA991D-E68C-4CBC-9CAC-9023621A1A69}|Web\\Web.csproj|solutionrelative:web\\controllers\\personcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D0CA991D-E68C-4CBC-9CAC-9023621A1A69}|Web\\Web.csproj|c:\\proyectoangular\\proyectohaciendapalermo\\modelsecurityct\\web\\serviceextensions\\authjwt.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D0CA991D-E68C-4CBC-9CAC-9023621A1A69}|Web\\Web.csproj|solutionrelative:web\\serviceextensions\\authjwt.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D0CA991D-E68C-4CBC-9CAC-9023621A1A69}|Web\\Web.csproj|c:\\proyectoangular\\proyectohaciendapalermo\\modelsecurityct\\web\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D0CA991D-E68C-4CBC-9CAC-9023621A1A69}|Web\\Web.csproj|solutionrelative:web\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D0CA991D-E68C-4CBC-9CAC-9023621A1A69}|Web\\Web.csproj|c:\\proyectoangular\\proyectohaciendapalermo\\modelsecurityct\\web\\serviceextensions\\injectiondependency.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D0CA991D-E68C-4CBC-9CAC-9023621A1A69}|Web\\Web.csproj|solutionrelative:web\\serviceextensions\\injectiondependency.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{1D92FC7E-15CE-449A-97F5-F9F1CBFBCB73}|Utilities\\Utilities.csproj|c:\\proyectoangular\\proyectohaciendapalermo\\modelsecurityct\\utilities\\mapping\\mapsterconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1D92FC7E-15CE-449A-97F5-F9F1CBFBCB73}|Utilities\\Utilities.csproj|solutionrelative:utilities\\mapping\\mapsterconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A1B3D0D6-9009-4662-9A90-CAC30B7F1776}|Business\\Business.csproj|c:\\proyectoangular\\proyectohaciendapalermo\\modelsecurityct\\business\\services\\personservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A1B3D0D6-9009-4662-9A90-CAC30B7F1776}|Business\\Business.csproj|solutionrelative:business\\services\\personservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A1B3D0D6-9009-4662-9A90-CAC30B7F1776}|Business\\Business.csproj|c:\\proyectoangular\\proyectohaciendapalermo\\modelsecurityct\\business\\interfaces\\ipersonservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A1B3D0D6-9009-4662-9A90-CAC30B7F1776}|Business\\Business.csproj|solutionrelative:business\\interfaces\\ipersonservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A0AE2FA2-CA5C-4EF4-9A66-3D4DF791FA1B}|Data\\Data.csproj|c:\\proyectoangular\\proyectohaciendapalermo\\modelsecurityct\\data\\repositories\\personrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A0AE2FA2-CA5C-4EF4-9A66-3D4DF791FA1B}|Data\\Data.csproj|solutionrelative:data\\repositories\\personrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A0AE2FA2-CA5C-4EF4-9A66-3D4DF791FA1B}|Data\\Data.csproj|c:\\proyectoangular\\proyectohaciendapalermo\\modelsecurityct\\data\\repositories\\registrorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A0AE2FA2-CA5C-4EF4-9A66-3D4DF791FA1B}|Data\\Data.csproj|solutionrelative:data\\repositories\\registrorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1D92FC7E-15CE-449A-97F5-F9F1CBFBCB73}|Utilities\\Utilities.csproj|c:\\proyectoangular\\proyectohaciendapalermo\\modelsecurityct\\utilities\\controllerexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1D92FC7E-15CE-449A-97F5-F9F1CBFBCB73}|Utilities\\Utilities.csproj|solutionrelative:utilities\\controllerexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DE4B061F-A934-4C69-A06D-AAD45E8BAC71}|Entity\\Entity.csproj|c:\\proyectoangular\\proyectohaciendapalermo\\modelsecurityct\\entity\\dto\\persondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DE4B061F-A934-4C69-A06D-AAD45E8BAC71}|Entity\\Entity.csproj|solutionrelative:entity\\dto\\persondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DE4B061F-A934-4C69-A06D-AAD45E8BAC71}|Entity\\Entity.csproj|c:\\proyectoangular\\proyectohaciendapalermo\\modelsecurityct\\entity\\dto\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DE4B061F-A934-4C69-A06D-AAD45E8BAC71}|Entity\\Entity.csproj|solutionrelative:entity\\dto\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -102,7 +102,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 27,
+          "SelectedChildIndex": 11,
           "Children": [
             {
               "$type": "Bookmark",
@@ -150,67 +150,267 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "RolUser.cs",
-              "DocumentMoniker": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Entity\\Model\\RolUser.cs",
-              "RelativeDocumentMoniker": "Entity\\Model\\RolUser.cs",
-              "ToolTip": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Entity\\Model\\RolUser.cs",
-              "RelativeToolTip": "Entity\\Model\\RolUser.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA8AAAApAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "ApplicationDbContextFactory.cs",
+              "DocumentMoniker": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Web\\MigrationFactory\\ApplicationDbContextFactory.cs",
+              "RelativeDocumentMoniker": "Web\\MigrationFactory\\ApplicationDbContextFactory.cs",
+              "ToolTip": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Web\\MigrationFactory\\ApplicationDbContextFactory.cs",
+              "RelativeToolTip": "Web\\MigrationFactory\\ApplicationDbContextFactory.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAgwAkAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-19T17:09:23.298Z"
+              "WhenOpened": "2025-05-20T11:19:29.693Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 12,
+              "Title": "RolUserRelations.cs",
+              "DocumentMoniker": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Entity\\RelacionesModel\\RolUserRelations.cs",
+              "RelativeDocumentMoniker": "Entity\\RelacionesModel\\RolUserRelations.cs",
+              "ToolTip": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Entity\\RelacionesModel\\RolUserRelations.cs",
+              "RelativeToolTip": "Entity\\RelacionesModel\\RolUserRelations.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-20T10:36:51.522Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "RolRelations.cs",
+              "DocumentMoniker": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Entity\\RelacionesModel\\RolRelations.cs",
+              "RelativeDocumentMoniker": "Entity\\RelacionesModel\\RolRelations.cs",
+              "ToolTip": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Entity\\RelacionesModel\\RolRelations.cs",
+              "RelativeToolTip": "Entity\\RelacionesModel\\RolRelations.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-20T10:36:23.709Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "RolInit.cs",
+              "DocumentMoniker": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Entity\\DataInit\\RolInit.cs",
+              "RelativeDocumentMoniker": "Entity\\DataInit\\RolInit.cs",
+              "ToolTip": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Entity\\DataInit\\RolInit.cs",
+              "RelativeToolTip": "Entity\\DataInit\\RolInit.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-20T10:36:21.379Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "PermissionRelations.cs",
+              "DocumentMoniker": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Entity\\RelacionesModel\\PermissionRelations.cs",
+              "RelativeDocumentMoniker": "Entity\\RelacionesModel\\PermissionRelations.cs",
+              "ToolTip": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Entity\\RelacionesModel\\PermissionRelations.cs",
+              "RelativeToolTip": "Entity\\RelacionesModel\\PermissionRelations.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAA1wBwAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-20T10:27:06.2Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "UserRelations.cs",
+              "DocumentMoniker": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Entity\\RelacionesModel\\UserRelations.cs",
+              "RelativeDocumentMoniker": "Entity\\RelacionesModel\\UserRelations.cs",
+              "ToolTip": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Entity\\RelacionesModel\\UserRelations.cs",
+              "RelativeToolTip": "Entity\\RelacionesModel\\UserRelations.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAACEAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-20T10:26:57.825Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "PersonRelations.cs",
+              "DocumentMoniker": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Entity\\RelacionesModel\\PersonRelations.cs",
+              "RelativeDocumentMoniker": "Entity\\RelacionesModel\\PersonRelations.cs",
+              "ToolTip": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Entity\\RelacionesModel\\PersonRelations.cs",
+              "RelativeToolTip": "Entity\\RelacionesModel\\PersonRelations.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-20T10:26:43.771Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
               "Title": "User.cs",
               "DocumentMoniker": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Entity\\Model\\User.cs",
               "RelativeDocumentMoniker": "Entity\\Model\\User.cs",
               "ToolTip": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Entity\\Model\\User.cs",
               "RelativeToolTip": "Entity\\Model\\User.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAA5wBUAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-19T17:09:14.069Z"
+              "WhenOpened": "2025-05-20T10:11:24.403Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Rol.cs",
-              "DocumentMoniker": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Entity\\Model\\Rol.cs",
-              "RelativeDocumentMoniker": "Entity\\Model\\Rol.cs",
-              "ToolTip": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Entity\\Model\\Rol.cs",
-              "RelativeToolTip": "Entity\\Model\\Rol.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABQAAAABAAAAAAAAAA==",
+              "DocumentIndex": 14,
+              "Title": "Person.cs",
+              "DocumentMoniker": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Entity\\Model\\Person.cs",
+              "RelativeDocumentMoniker": "Entity\\Model\\Person.cs",
+              "ToolTip": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Entity\\Model\\Person.cs",
+              "RelativeToolTip": "Entity\\Model\\Person.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-19T17:08:58.3Z"
+              "WhenOpened": "2025-05-20T10:11:12.895Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "AuthJwt.cs",
-              "DocumentMoniker": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Web\\ServiceExtensions\\AuthJwt.cs",
-              "RelativeDocumentMoniker": "Web\\ServiceExtensions\\AuthJwt.cs",
-              "ToolTip": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Web\\ServiceExtensions\\AuthJwt.cs",
-              "RelativeToolTip": "Web\\ServiceExtensions\\AuthJwt.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAqwCIAAAAVAAAAAAAAAA==",
+              "DocumentIndex": 17,
+              "Title": "InjectionDependency.cs",
+              "DocumentMoniker": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Web\\ServiceExtensions\\InjectionDependency.cs",
+              "RelativeDocumentMoniker": "Web\\ServiceExtensions\\InjectionDependency.cs",
+              "ToolTip": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Web\\ServiceExtensions\\InjectionDependency.cs",
+              "RelativeToolTip": "Web\\ServiceExtensions\\InjectionDependency.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-19T15:24:39.614Z"
+              "WhenOpened": "2025-05-20T03:28:29.173Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 3,
+              "Title": "DatabaseConfiguration.cs",
+              "DocumentMoniker": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Web\\ServiceExtensions\\DatabaseConfiguration.cs",
+              "RelativeDocumentMoniker": "Web\\ServiceExtensions\\DatabaseConfiguration.cs",
+              "ToolTip": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Web\\ServiceExtensions\\DatabaseConfiguration.cs",
+              "RelativeToolTip": "Web\\ServiceExtensions\\DatabaseConfiguration.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAxwBIAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-20T03:24:53.611Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "SelectionDataBase.cs",
+              "DocumentMoniker": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Web\\FactoryDataBase\\SelectionDataBase.cs",
+              "RelativeDocumentMoniker": "Web\\FactoryDataBase\\SelectionDataBase.cs",
+              "ToolTip": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Web\\FactoryDataBase\\SelectionDataBase.cs",
+              "RelativeToolTip": "Web\\FactoryDataBase\\SelectionDataBase.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-20T03:24:22.851Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "FactoryInterface.cs",
+              "DocumentMoniker": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Web\\InterfaceDb\\FactoryInterface.cs",
+              "RelativeDocumentMoniker": "Web\\InterfaceDb\\FactoryInterface.cs",
+              "ToolTip": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Web\\InterfaceDb\\FactoryInterface.cs",
+              "RelativeToolTip": "Web\\InterfaceDb\\FactoryInterface.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-20T03:19:12.824Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "MySql.cs",
+              "DocumentMoniker": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Web\\MotoresDb\\MySql.cs",
+              "RelativeDocumentMoniker": "Web\\MotoresDb\\MySql.cs",
+              "ToolTip": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Web\\MotoresDb\\MySql.cs",
+              "RelativeToolTip": "Web\\MotoresDb\\MySql.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-20T03:01:27.897Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Postgres.cs",
+              "DocumentMoniker": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Web\\MotoresDb\\Postgres.cs",
+              "RelativeDocumentMoniker": "Web\\MotoresDb\\Postgres.cs",
+              "ToolTip": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Web\\MotoresDb\\Postgres.cs",
+              "RelativeToolTip": "Web\\MotoresDb\\Postgres.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-20T03:00:22.266Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "SqlServer.cs",
+              "DocumentMoniker": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Web\\MotoresDb\\SqlServer.cs",
+              "RelativeDocumentMoniker": "Web\\MotoresDb\\SqlServer.cs",
+              "ToolTip": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Web\\MotoresDb\\SqlServer.cs",
+              "RelativeToolTip": "Web\\MotoresDb\\SqlServer.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAkwB0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-20T02:56:32.059Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Entity\\context\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "Entity\\context\\ApplicationDbContext.cs",
+              "ToolTip": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Entity\\context\\ApplicationDbContext.cs",
+              "RelativeToolTip": "Entity\\context\\ApplicationDbContext.cs",
+              "ViewState": "AgIAAHAAAAAAAAAAAAAAAIoAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-19T22:07:16.198Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "IPersonRepository.cs",
+              "DocumentMoniker": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Data\\Interfaces\\IPersonRepository.cs",
+              "RelativeDocumentMoniker": "Data\\Interfaces\\IPersonRepository.cs",
+              "ToolTip": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Data\\Interfaces\\IPersonRepository.cs",
+              "RelativeToolTip": "Data\\Interfaces\\IPersonRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-19T19:00:13.678Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "RolUser.cs",
+              "DocumentMoniker": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Entity\\Model\\RolUser.cs",
+              "RelativeDocumentMoniker": "Entity\\Model\\RolUser.cs",
+              "ToolTip": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Entity\\Model\\RolUser.cs",
+              "RelativeToolTip": "Entity\\Model\\RolUser.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAIBJwA8AAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-19T17:09:23.298Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Web\\appsettings.json",
               "RelativeDocumentMoniker": "Web\\appsettings.json",
               "ToolTip": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Web\\appsettings.json",
               "RelativeToolTip": "Web\\appsettings.json",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAABYAAAAEAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-05-19T15:23:35.977Z"
+              "WhenOpened": "2025-05-19T15:23:35.977Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 20,
               "Title": "AuthorizeSwagger.cs",
               "DocumentMoniker": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Web\\ServiceExtensions\\AuthorizeSwagger.cs",
               "RelativeDocumentMoniker": "Web\\ServiceExtensions\\AuthorizeSwagger.cs",
@@ -218,212 +418,34 @@
               "RelativeToolTip": "Web\\ServiceExtensions\\AuthorizeSwagger.cs",
               "ViewState": "AgIAABYAAAAAAAAAAAAswCwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-19T15:05:02.688Z"
+              "WhenOpened": "2025-05-19T15:05:02.688Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 18,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Web\\Program.cs",
               "RelativeDocumentMoniker": "Web\\Program.cs",
               "ToolTip": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Web\\Program.cs",
               "RelativeToolTip": "Web\\Program.cs",
-              "ViewState": "AgIAADQAAAAAAAAAAAAswEUAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAACUAAAAAAAAAAAAswDYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-19T15:01:35.968Z"
+              "WhenOpened": "2025-05-19T15:01:35.968Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 22,
               "Title": "MapsterConfig.cs",
               "DocumentMoniker": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Utilities\\Mapping\\MapsterConfig.cs",
               "RelativeDocumentMoniker": "Utilities\\Mapping\\MapsterConfig.cs",
               "ToolTip": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Utilities\\Mapping\\MapsterConfig.cs",
               "RelativeToolTip": "Utilities\\Mapping\\MapsterConfig.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAACYAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAIBJwCYAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-19T14:05:31.941Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "InjectionDependency.cs",
-              "DocumentMoniker": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Web\\ServiceExtensions\\InjectionDependency.cs",
-              "RelativeDocumentMoniker": "Web\\ServiceExtensions\\InjectionDependency.cs",
-              "ToolTip": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Web\\ServiceExtensions\\InjectionDependency.cs",
-              "RelativeToolTip": "Web\\ServiceExtensions\\InjectionDependency.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-19T14:05:23.533Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "IPersonService.cs",
-              "DocumentMoniker": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Business\\Interfaces\\IPersonService.cs",
-              "RelativeDocumentMoniker": "Business\\Interfaces\\IPersonService.cs",
-              "ToolTip": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Business\\Interfaces\\IPersonService.cs",
-              "RelativeToolTip": "Business\\Interfaces\\IPersonService.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABQAAABEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-19T13:47:11.976Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "IUserService.cs",
-              "DocumentMoniker": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Business\\Interfaces\\IUserService.cs",
-              "RelativeDocumentMoniker": "Business\\Interfaces\\IUserService.cs",
-              "ToolTip": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Business\\Interfaces\\IUserService.cs",
-              "RelativeToolTip": "Business\\Interfaces\\IUserService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-19T13:46:55.66Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "PersonService.cs",
-              "DocumentMoniker": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Business\\Services\\PersonService.cs",
-              "RelativeDocumentMoniker": "Business\\Services\\PersonService.cs",
-              "ToolTip": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Business\\Services\\PersonService.cs",
-              "RelativeToolTip": "Business\\Services\\PersonService.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAABgAAABQAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-19T13:46:24.472Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "UserService.cs",
-              "DocumentMoniker": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Business\\Services\\UserService.cs",
-              "RelativeDocumentMoniker": "Business\\Services\\UserService.cs",
-              "ToolTip": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Business\\Services\\UserService.cs",
-              "RelativeToolTip": "Business\\Services\\UserService.cs",
-              "ViewState": "AgIAABYAAAAAAAAAAAAkwCUAAAAdAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-19T13:45:51.251Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "RegistroRepository.cs",
-              "DocumentMoniker": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Data\\Repositories\\RegistroRepository.cs",
-              "RelativeDocumentMoniker": "Data\\Repositories\\RegistroRepository.cs",
-              "ToolTip": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Data\\Repositories\\RegistroRepository.cs",
-              "RelativeToolTip": "Data\\Repositories\\RegistroRepository.cs",
-              "ViewState": "AgIAAGIAAAAAAAAAAAAwwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-19T13:44:38.157Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "PersonRepository.cs",
-              "DocumentMoniker": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Data\\Repositories\\PersonRepository.cs",
-              "RelativeDocumentMoniker": "Data\\Repositories\\PersonRepository.cs",
-              "ToolTip": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Data\\Repositories\\PersonRepository.cs",
-              "RelativeToolTip": "Data\\Repositories\\PersonRepository.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAABwAAAA7AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-19T13:44:25.508Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "IUserRepository.cs",
-              "DocumentMoniker": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Data\\Interfaces\\IUserRepository.cs",
-              "RelativeDocumentMoniker": "Data\\Interfaces\\IUserRepository.cs",
-              "ToolTip": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Data\\Interfaces\\IUserRepository.cs",
-              "RelativeToolTip": "Data\\Interfaces\\IUserRepository.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAxwCAAAAA8AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-19T13:44:16.771Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "UserRepository.cs",
-              "DocumentMoniker": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Data\\Repositories\\UserRepository.cs",
-              "RelativeDocumentMoniker": "Data\\Repositories\\UserRepository.cs",
-              "ToolTip": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Data\\Repositories\\UserRepository.cs",
-              "RelativeToolTip": "Data\\Repositories\\UserRepository.cs",
-              "ViewState": "AgIAAEkAAAAAAAAAAADwv1EAAAAgAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-19T13:43:38.41Z",
+              "WhenOpened": "2025-05-19T14:05:31.941Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "generarToken.cs",
-              "DocumentMoniker": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Business\\Token\\generarToken.cs",
-              "RelativeDocumentMoniker": "Business\\Token\\generarToken.cs",
-              "ToolTip": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Business\\Token\\generarToken.cs",
-              "RelativeToolTip": "Business\\Token\\generarToken.cs",
-              "ViewState": "AgIAAC0AAAAAAAAAAAAowDkAAABlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-19T13:40:41.607Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "ControllerException.cs",
-              "DocumentMoniker": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Utilities\\ControllerException.cs",
-              "RelativeDocumentMoniker": "Utilities\\ControllerException.cs",
-              "ToolTip": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Utilities\\ControllerException.cs",
-              "RelativeToolTip": "Utilities\\ControllerException.cs",
-              "ViewState": "AgIAAHoAAAAAAAAAAAA6wIgAAABJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-19T13:33:14.676Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "PersonController.cs",
-              "DocumentMoniker": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Web\\Controllers\\PersonController.cs",
-              "RelativeDocumentMoniker": "Web\\Controllers\\PersonController.cs",
-              "ToolTip": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Web\\Controllers\\PersonController.cs",
-              "RelativeToolTip": "Web\\Controllers\\PersonController.cs",
-              "ViewState": "AgIAAAkBAAAAAAAAAAAswBABAAAHAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-19T13:28:28.916Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 21,
-              "Title": "PersonDTO.cs",
-              "DocumentMoniker": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Entity\\DTO\\PersonDTO.cs",
-              "RelativeDocumentMoniker": "Entity\\DTO\\PersonDTO.cs",
-              "ToolTip": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Entity\\DTO\\PersonDTO.cs",
-              "RelativeToolTip": "Entity\\DTO\\PersonDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAuAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-19T13:25:07.346Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 22,
-              "Title": "UserDTO.cs",
-              "DocumentMoniker": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Entity\\DTO\\UserDTO.cs",
-              "RelativeDocumentMoniker": "Entity\\DTO\\UserDTO.cs",
-              "ToolTip": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Entity\\DTO\\UserDTO.cs",
-              "RelativeToolTip": "Entity\\DTO\\UserDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-19T13:24:57.577Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ApplicationDbContextModelSnapshot.cs",
-              "DocumentMoniker": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Entity\\Migrations\\ApplicationDbContextModelSnapshot.cs",
-              "RelativeDocumentMoniker": "Entity\\Migrations\\ApplicationDbContextModelSnapshot.cs",
-              "ToolTip": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Entity\\Migrations\\ApplicationDbContextModelSnapshot.cs",
-              "RelativeToolTip": "Entity\\Migrations\\ApplicationDbContextModelSnapshot.cs",
-              "ViewState": "AgIAAAgBAAAAAAAAAAAAACMBAAAjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-19T13:01:44.604Z"
             }
           ]
         }

@@ -13,8 +13,8 @@ namespace Entity.RelacionesModel
     {
         public void Configure(EntityTypeBuilder<Permission> builder)
         {
-            // Configuración de la tabla
-            builder.ToTable("permission");
+            // Configuración de la tabla y implementar el esquema de seguridad
+            builder.ToTable("permission", schema: "Seguridad");
 
             // Clave primaria
             builder.HasKey(p => p.Id);
@@ -29,6 +29,9 @@ namespace Entity.RelacionesModel
             builder.Property(p => p.Name)
                   .IsRequired()
                   .HasMaxLength(100);
+
+            // Añadir índice único para Name (los nombres de permisos suelen ser únicos)
+            builder.HasIndex(p => p.Name).IsUnique();
 
             builder.Property(p => p.Description)
                    .HasMaxLength(300);

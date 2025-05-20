@@ -8,11 +8,14 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Entity.Migrations
 {
     /// <inheritdoc />
-    public partial class AddSeedData : Migration
+    public partial class SchemaMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.EnsureSchema(
+                name: "Seguridad");
+
             migrationBuilder.CreateTable(
                 name: "form",
                 columns: table => new
@@ -46,6 +49,7 @@ namespace Entity.Migrations
 
             migrationBuilder.CreateTable(
                 name: "permission",
+                schema: "Seguridad",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -61,6 +65,7 @@ namespace Entity.Migrations
 
             migrationBuilder.CreateTable(
                 name: "person",
+                schema: "Seguridad",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -83,6 +88,7 @@ namespace Entity.Migrations
 
             migrationBuilder.CreateTable(
                 name: "rol",
+                schema: "Seguridad",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -125,6 +131,7 @@ namespace Entity.Migrations
 
             migrationBuilder.CreateTable(
                 name: "user",
+                schema: "Seguridad",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -141,6 +148,7 @@ namespace Entity.Migrations
                     table.ForeignKey(
                         name: "FK_user_person_PersonId",
                         column: x => x.PersonId,
+                        principalSchema: "Seguridad",
                         principalTable: "person",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -169,12 +177,14 @@ namespace Entity.Migrations
                     table.ForeignKey(
                         name: "FK_rolFormPermission_permission_PermissionId",
                         column: x => x.PermissionId,
+                        principalSchema: "Seguridad",
                         principalTable: "permission",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_rolFormPermission_rol_RolId",
                         column: x => x.RolId,
+                        principalSchema: "Seguridad",
                         principalTable: "rol",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -182,6 +192,7 @@ namespace Entity.Migrations
 
             migrationBuilder.CreateTable(
                 name: "rolUser",
+                schema: "Seguridad",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -197,12 +208,14 @@ namespace Entity.Migrations
                     table.ForeignKey(
                         name: "FK_rolUser_rol_RolId",
                         column: x => x.RolId,
+                        principalSchema: "Seguridad",
                         principalTable: "rol",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_rolUser_user_UserId",
                         column: x => x.UserId,
+                        principalSchema: "Seguridad",
                         principalTable: "user",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -229,6 +242,7 @@ namespace Entity.Migrations
                 });
 
             migrationBuilder.InsertData(
+                schema: "Seguridad",
                 table: "permission",
                 columns: new[] { "Id", "Description", "IsDeleted", "Name" },
                 values: new object[,]
@@ -240,6 +254,7 @@ namespace Entity.Migrations
                 });
 
             migrationBuilder.InsertData(
+                schema: "Seguridad",
                 table: "person",
                 columns: new[] { "Id", "DateBorn", "Document", "DocumentType", "Eps", "FirstName", "Genero", "LastName", "PhoneNumber", "RelatedPerson" },
                 values: new object[,]
@@ -249,6 +264,7 @@ namespace Entity.Migrations
                 });
 
             migrationBuilder.InsertData(
+                schema: "Seguridad",
                 table: "rol",
                 columns: new[] { "Id", "Description", "Name" },
                 values: new object[,]
@@ -278,6 +294,7 @@ namespace Entity.Migrations
                 });
 
             migrationBuilder.InsertData(
+                schema: "Seguridad",
                 table: "user",
                 columns: new[] { "Id", "Active", "Email", "Password", "PersonId" },
                 values: new object[,]
@@ -287,6 +304,7 @@ namespace Entity.Migrations
                 });
 
             migrationBuilder.InsertData(
+                schema: "Seguridad",
                 table: "rolUser",
                 columns: new[] { "Id", "Email", "RolId", "UserId" },
                 values: new object[,]
@@ -306,6 +324,13 @@ namespace Entity.Migrations
                 column: "ModuleId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_permission_Name",
+                schema: "Seguridad",
+                table: "permission",
+                column: "Name",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_rolFormPermission_FormId",
                 table: "rolFormPermission",
                 column: "FormId");
@@ -322,16 +347,19 @@ namespace Entity.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_rolUser_RolId",
+                schema: "Seguridad",
                 table: "rolUser",
                 column: "RolId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_rolUser_UserId",
+                schema: "Seguridad",
                 table: "rolUser",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_user_PersonId",
+                schema: "Seguridad",
                 table: "user",
                 column: "PersonId");
         }
@@ -346,7 +374,8 @@ namespace Entity.Migrations
                 name: "rolFormPermission");
 
             migrationBuilder.DropTable(
-                name: "rolUser");
+                name: "rolUser",
+                schema: "Seguridad");
 
             migrationBuilder.DropTable(
                 name: "module");
@@ -355,16 +384,20 @@ namespace Entity.Migrations
                 name: "form");
 
             migrationBuilder.DropTable(
-                name: "permission");
+                name: "permission",
+                schema: "Seguridad");
 
             migrationBuilder.DropTable(
-                name: "rol");
+                name: "rol",
+                schema: "Seguridad");
 
             migrationBuilder.DropTable(
-                name: "user");
+                name: "user",
+                schema: "Seguridad");
 
             migrationBuilder.DropTable(
-                name: "person");
+                name: "person",
+                schema: "Seguridad");
         }
     }
 }

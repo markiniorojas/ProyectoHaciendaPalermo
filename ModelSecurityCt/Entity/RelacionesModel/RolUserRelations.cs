@@ -13,7 +13,10 @@ namespace Entity.RelacionesModel
     {
         public void Configure(EntityTypeBuilder<RolUser> builder)
         {
-            builder.ToTable("rolUser");
+            ///<Summary>
+            ///Esqumas de seguridad:
+            ///<Summary>
+            builder.ToTable("rolUser", schema: "Seguridad");
 
             // Clave primaria
             builder.HasKey(ru => ru.Id);
