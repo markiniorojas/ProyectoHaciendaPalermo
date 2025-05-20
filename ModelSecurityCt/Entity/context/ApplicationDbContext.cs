@@ -116,6 +116,43 @@ namespace Entity.context
         private void EnsureAudit()
         {
             ChangeTracker.DetectChanges();
+
+            var entries = ChangeTracker.Entries<IAuditableEntity>();
+
+            foreach (var entry in entries)
+            {
+                switch (entry.State)
+                {
+                    case EntityState.Added:
+                        entry.Entity.CreatedDate = DateTime.UtcNow; // Establece la fecha de creación
+                        entry.Entity.IsDeleted = false; // Asegura que no esté marcado como eliminado al crearse
+                        break;
+
+                    case EntityState.Modified:
+                        // Solo actualiza UpdatedDate si la entidad no está marcada para eliminación
+                        if (!entry.Entity.IsDeleted)
+                        {
+                            entry.Entity.UpdatedDate = DateTime.UtcNow;
+                        }
+                        // Si la entidad es modificada y IsDeleted se cambió a true, es una "eliminación lógica"
+                        // Aquí podrías querer registrar DeletedDate si el estado de IsDeleted cambió a true
+                        // Podrías necesitar el valor original para hacer esto:
+                        if (entry.OriginalValues.GetValue<bool>(nameof(IAuditableEntity.IsDeleted)) == false &&
+                            entry.CurrentValues.GetValue<bool>(nameof(IAuditableEntity.IsDeleted)) == true)
+                        {
+                            entry.Entity.DeletedDate = DateTime.UtcNow;
+                        }
+                        break;
+
+                    case EntityState.Deleted:
+                        // Para borrado lógico, cambiamos el estado a Modified y marcamos IsDeleted=true
+                        // Pero dado que tienes IsDeleted, es mejor manejarlo como Modificado.
+                        entry.State = EntityState.Modified;
+                        entry.Entity.IsDeleted = true;
+                        entry.Entity.DeletedDate = DateTime.UtcNow;
+                        break;
+                }
+            }
         }
 
 

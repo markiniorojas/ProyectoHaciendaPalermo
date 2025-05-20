@@ -46,7 +46,8 @@ namespace Entity.RelacionesModel
                    .HasDefaultValue(true);
 
             builder.Property(u => u.IsDeleted)
-                   .HasDefaultValue(false);
+                   .HasDefaultValue(false)
+                   .IsRequired();
 
         }
     }

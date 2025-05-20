@@ -6,12 +6,16 @@ using System.Threading.Tasks;
 
 namespace Entity.Model
 {
-    public class Rol
+    public class Rol : IAuditableEntity
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public bool IsDeleted { get; set; }
+
+        public DateTime CreatedDate { get; set; }
+        public DateTime? UpdatedDate { get; set; }
+        public DateTime? DeletedDate { get; set; }
 
 
         public List<RolUser> RolUsers { get; set; } = new List<RolUser>();

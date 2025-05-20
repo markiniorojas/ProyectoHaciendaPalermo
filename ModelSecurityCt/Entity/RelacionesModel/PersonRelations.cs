@@ -43,7 +43,8 @@ namespace Entity.RelacionesModel
                    .HasMaxLength(50);
 
             builder.Property(p => p.IsDeleted)
-                   .HasDefaultValue(false);
+                   .HasDefaultValue(false) 
+                   .IsRequired();
         }
     }
 }
