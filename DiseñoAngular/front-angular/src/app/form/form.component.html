@@ -52,17 +52,27 @@
               <button mat-icon-button color="primary" (click)="editForm(form)" matTooltip="Editar">
                 <mat-icon>edit</mat-icon>
               </button>
-              <button mat-icon-button color="warn" (click)="deleteForm(form.id)" matTooltip="Eliminar">
-                <mat-icon>delete</mat-icon>
+
+              <button mat-icon-button color="warn" (click)="deleteForm(form)" matTooltip="Eliminar permanentemente">
+                 <mat-icon>delete_forever</mat-icon>
               </button>
-              <button mat-icon-button color="accent" (click)="deleteFormLogic(form.id)" matTooltip="Eliminar lógicamente">
-                <mat-icon>archive</mat-icon>
-              </button>
+
+              <ng-container *ngIf="!form.isDeleted; else reactivateButton">
+                <button mat-icon-button color="accent" (click)="deleteFormLogic(form)" matTooltip="Desactivar">
+                  <mat-icon>archive</mat-icon>
+                </button>
+              </ng-container>
+
+              <ng-template #reactivateButton>
+                <button mat-icon-button color="primary" (click)="reactivateForm(form)" matTooltip="Reactivar">
+                  <mat-icon>restore</mat-icon>
+                </button>
+              </ng-template>
             </td>
           </ng-container>
           
-          <tr mat-header-row *matHeaderRowDef="['name', 'description', 'url', 'isDeleted', 'actions']"></tr>
-          <tr mat-row *matRowDef="let row; columns: ['name', 'description', 'url', 'isDeleted', 'actions']"></tr>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
         </table>
         
         <!-- Paginador opcional -->
@@ -104,7 +114,7 @@
             <mat-icon matSuffix>link</mat-icon>
           </mat-form-field>
           
-          <mat-slide-toggle color="primary" id="isDeleted" name="isDeleted" [(ngModel)]="currentForm.isDeleted">
+          <mat-slide-toggle  color="primary" id="isDeleted" name="isDeleted" [(ngModel)]="currentForm.isDeleted">
             {{ currentForm.isDeleted ? 'Inactivo' : 'Activo' }}
           </mat-slide-toggle>
           

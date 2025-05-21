@@ -89,13 +89,12 @@
           <!-- Para activar o desactivar lógicamente -->
           <ng-container *ngIf="!person.isDeleted; else reactivateButton">
             <button mat-icon-button color="accent" (click)="deleteFormLogic(person)" matTooltip="Desactivar">
-              <mat-icon>delete</mat-icon>
+              <mat-icon>archive</mat-icon>
             </button>
           </ng-container>
           
           <ng-template #reactivateButton>
-            <!-- Solo visible para admin (reactivar) -->
-            <button *ngIf="userRole == 1" mat-icon-button color="primary" (click)="reactivatePerson(person)" matTooltip="Reactivar">
+            <button mat-icon-button color="primary" (click)="reactivatePerson(person)" matTooltip="Reactivar">
               <mat-icon>restore</mat-icon>
             </button>
           </ng-template>
@@ -112,6 +111,9 @@
 </mat-card-content>
   </mat-card>
 </div>
+
+
+
 <!-- Formulario de Creación/Edición -->
 <div *ngIf="showForm" class="overlay">
   <div class="form-dialog mat-elevation-z8">
@@ -185,7 +187,7 @@
       </div>
       
       <!-- Solo visible para administradores -->
-      <mat-slide-toggle *ngIf="userRole === 1" color="primary" id="isDeleted" name="isDeleted" [(ngModel)]="currentPerson.isDeleted">
+      <mat-slide-toggle  color="primary" id="isDeleted" name="isDeleted" [(ngModel)]="currentPerson.isDeleted">
         {{ currentPerson.isDeleted ? 'Inactivo' : 'Activo' }}
       </mat-slide-toggle>
       

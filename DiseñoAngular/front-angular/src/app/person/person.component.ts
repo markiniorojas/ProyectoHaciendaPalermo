@@ -81,8 +81,8 @@ export class PersonComponent implements OnInit {
   private loadPersons(): void {
     this.personService.get<IPerson[]>('person').subscribe({
       next: (data) => {
-        console.log('Persons loaded:', data);
-        this.persons = data; // The backend already filters based on role
+        console.log('Persons recibidos:', data);
+        this.persons = data; 
       },
       error: (err) => {
         console.error('Error al cargar personas', err);
@@ -121,7 +121,7 @@ export class PersonComponent implements OnInit {
           timer: 1500, 
           showConfirmButton: false 
         });
-        this.loadPersons(); // Reload all persons
+        this.loadPersons(); 
         this.resetForm();
       },
       error: (err) => {
@@ -187,8 +187,7 @@ export class PersonComponent implements OnInit {
       cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
-        // Usando el método genérico delete con la ruta correcta
-        this.personService.delete('person/permanent', person.id).subscribe({
+        this.personService.delete<IPerson>('person/permanent', person.id).subscribe({
           next: () => {
             this.loadPersons();
             Swal.fire({ 
@@ -257,45 +256,44 @@ export class PersonComponent implements OnInit {
 
   reactivatePerson(person: IPerson): void {
     if (!person || !person.id) {
-      Swal.fire({ 
-        icon: 'error', 
-        title: 'Error', 
-        text: 'ID de persona no válido' 
-      });
-      return;
-    }
-
-  Swal.fire({
-  title: '¿Estás seguro?',
-  text: "¿Deseas reactivar esta persona?",
-  icon: 'question',
-  showCancelButton: true,
-  confirmButtonText: 'Sí, reactivar',
-  cancelButtonText: 'Cancelar'
-}).then((result) => {
-  if (result.isConfirmed) {
-    this.personService.patchRestore<void>('person', person.id, {}).subscribe({
-      next: () => {
-        this.loadPersons(); // Reload persons after reactivation
-        Swal.fire({ 
-          icon: 'success', 
-          title: 'Reactivado', 
-          text: 'Persona reactivada correctamente', 
-          timer: 1500, 
-          showConfirmButton: false 
+          Swal.fire({ 
+            icon: 'error', 
+            title: 'Error', 
+            text: 'ID de persona no válido' 
+          });
+          return;
+        }
+      Swal.fire({
+      title: '¿Estás seguro?',
+      text: "¿Deseas reactivar esta persona?",
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, reactivar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.personService.patchRestore<void>('person', person.id, {}).subscribe({
+          next: () => {
+            this.loadPersons(); 
+            Swal.fire({ 
+              icon: 'success', 
+              title: 'Reactivado', 
+              text: 'Persona reactivada correctamente', 
+              timer: 1500, 
+              showConfirmButton: false 
+            });
+          },
+          error: (err) => {
+            Swal.fire({ 
+              icon: 'error', 
+              title: 'Error', 
+              text: 'No se pudo reactivar la persona' 
+            });
+            console.error('Error al reactivar persona', err);
+          }
         });
-      },
-      error: (err) => {
-        Swal.fire({ 
-          icon: 'error', 
-          title: 'Error', 
-          text: 'No se pudo reactivar la persona' 
-        });
-        console.error('Error al reactivar persona', err);
       }
     });
-  }
-});
   }
 
   cancelPerson(): void {
