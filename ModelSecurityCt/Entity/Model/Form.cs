@@ -6,17 +6,13 @@ using System.Threading.Tasks;
 
 namespace Entity.Model
 {
-    public class Form : IAuditableEntity
+    public class Form 
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public string Url { get; set; }
 
-        public DateTime CreatedDate { get; set; }
-        public DateTime? UpdatedDate { get; set; }
-        public DateTime? DeletedDate { get; set; }
-        public bool IsDeleted { get; set; } = false;
 
         public List<RolFormPermission> RolFormPermission { get; set; } = new List<RolFormPermission>();
 

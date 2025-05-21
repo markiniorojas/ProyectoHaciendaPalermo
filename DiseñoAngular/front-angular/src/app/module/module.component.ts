@@ -131,7 +131,7 @@ constructor(private moduleService: ServiceGeneralService, private authService: A
           showConfirmButton: false
         });
         this.loadModule();
-        this.resetModel();
+        this.resetForm();
       },
       error: err => {
         Swal.fire({
@@ -163,7 +163,7 @@ constructor(private moduleService: ServiceGeneralService, private authService: A
              showConfirmButton: false
            });
            this.loadModule(); // Recargar la lista para ver los cambios
-           this.resetModel(); // Limpiar el formulario
+           this.resetForm(); // Limpiar el formulario
          },
          error: err => {
            Swal.fire({
@@ -256,8 +256,8 @@ constructor(private moduleService: ServiceGeneralService, private authService: A
   }
 
   // Método para reactivar un formulario lógicamente eliminado
-    reactivateForm(form: IModule): void {
-      if (!form || !form.id) {
+    reactivateModule(module: IModule): void {
+      if (!module || !module.id) {
         Swal.fire({
           icon: 'error',
           title: 'Error',
@@ -274,7 +274,7 @@ constructor(private moduleService: ServiceGeneralService, private authService: A
         cancelButtonText: 'Cancelar'
       }).then((result) => {
         if (result.isConfirmed) {
-          this.moduleService.patchRestore<void>('mudule', module.id, {}).subscribe({ // Ajusta el endpoint según tu API
+          this.moduleService.patchRestore<void>('module', module.id, {}).subscribe({ // Ajusta el endpoint según tu API
             next: () => {
               this.loadModule(); // Recargar la lista para ver el formulario reactivado
               Swal.fire({
@@ -316,21 +316,21 @@ constructor(private moduleService: ServiceGeneralService, private authService: A
             cancelButtonText: 'Seguir editando'
           }).then((result) => {
             if (result.isConfirmed) {
-              this.resetModel();
+              this.resetForm();
               this.showForm = false; // Ocultar el formulario después de cancelar
             }
           });
         } else {
-          this.resetModel();
+          this.resetForm();
           this.showForm = false; // Ocultar el formulario si no hay cambios
         }
   }
 
-  private resetModel(): void {
+  private resetForm(): void {
     this.currentModule = this.getEmptyModel();
     this.isEditing = false;
     if (this.formElement) {
-      this.formElement.resetModel();
+      this.formElement.resetForm();
     }
   }
 }

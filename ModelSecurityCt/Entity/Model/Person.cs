@@ -6,7 +6,7 @@ namespace Entity.Model
     /// <summary>
     /// Entidad que representa los datos personales asociados a un usuario
     /// </summary>
-    public class Person : IAuditableEntity
+    public class Person 
     {
         public int Id { get; set; }
         public string FirstName { get; set; }
@@ -18,11 +18,6 @@ namespace Entity.Model
         public string Eps { get; set; }
         public string Genero { get; set; }
         public bool RelatedPerson { get; set; }
-
-        public DateTime CreatedDate { get; set; }
-        public DateTime? UpdatedDate { get; set; }
-        public DateTime? DeletedDate { get; set; }
-        public bool IsDeleted { get; set; }
 
         public List<User> Users { get; set; } = new List<User>();
     }
