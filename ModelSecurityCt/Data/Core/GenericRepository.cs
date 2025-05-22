@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Entity.context;
+using Entity.Dtos;
 using Entity.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -11,7 +12,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Data.Core
 {
-    public class GenericRepository<T> : IRepository<T> where T : class
+    public class GenericRepository<T>:ABaseModelData<T> where T : BaseModel, IRepository<T> 
     {
         protected readonly ApplicationDbContext _context;
         private readonly ILogger _logger;

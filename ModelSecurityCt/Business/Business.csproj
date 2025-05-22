@@ -16,4 +16,12 @@
     <ProjectReference Include="..\Utilities\Utilities.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <EditorConfigFiles Remove="C:\ProyectoAngular\ProyectoHaciendaPalermo\ModelSecurityCt\Business\Core\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="C:\ProyectoAngular\ProyectoHaciendaPalermo\ModelSecurityCt\Business\Core\.editorconfig" />
+  </ItemGroup>
+
 </Project>
