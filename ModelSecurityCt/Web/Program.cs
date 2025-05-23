@@ -16,6 +16,7 @@ using Utilities.Mapping;
 using Web.ServiceExtensions;
 using WebServiceExtensions;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 // 
@@ -30,6 +31,7 @@ var dbProvider = configuration["DatabaseProvider"];
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddCustomSwagger();
+builder.Services.AddHttpContextAccessor(); // Acceso al contexto HTTP
 
 // 
 // Autenticación JWT

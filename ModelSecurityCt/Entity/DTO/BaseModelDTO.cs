@@ -8,8 +8,9 @@ namespace Entity.DTO
 {
     public class BaseModelDTO
     {
-        public string Id { get; set; }
-        public bool IsDeleted { get; set; }
+        public int Id { get; set; }
         public bool Active { get; set; }
+        public bool IsDeleted { get; set; }
+
     }
 }

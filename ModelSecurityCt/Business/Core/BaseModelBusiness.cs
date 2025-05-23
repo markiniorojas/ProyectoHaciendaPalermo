@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Data.Interfaces;
+using Entity.DTO;
+using Entity.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Business.Core
 {
-    public  class BaseModelBusiness<T, D> : ABaseModelBusiness<T, D> where T : BaseModel where D : BaseDTO
+    public  class BaseModelBusiness<T, D> : ABaseModelBusiness<T, D> where T : BaseModel where D : BaseModelDTO
     {
         private readonly IBaseModelData<T, D> _data;
         private readonly IMapper _mapper;
@@ -36,7 +39,7 @@ namespace Business.Core
         public override async Task<D> GetByCode(string code)
         {
             BaseModel entity = await _data.GetByCode(code);
-            BaseDto dto = _mapper.Map<D>(entity);
+            BaseModelDTO dto = _mapper.Map<D>(entity);
             return (D)dto;
         }
 
@@ -59,7 +62,7 @@ namespace Business.Core
                 dto.Codigo = await GenerarCodigo(dto.Codigo);
             }
             dto.CreateAt = DateTime.UtcNow.AddHours(-5);
-            dto.Activo = true;
+            dto.Active = true;
             BaseModel entity = _mapper.Map<T>(dto);
             entity = await _data.Save((T)entity);
             return _mapper.Map<D>(entity);

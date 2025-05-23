@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "G/DZkpSLAKo=",
+  "dgSpecHash": "zNwJ32RLMjg=",
   "success": true,
   "projectFilePath": "C:\\ProyectoAngular\\ProyectoHaciendaPalermo\\ModelSecurityCt\\Shared\\Shared.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\User\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.16\\microsoft.windowsdesktop.app.ref.8.0.16.nupkg.sha512",
+    "C:\\Users\\User\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.16\\microsoft.netcore.app.ref.8.0.16.nupkg.sha512",
+    "C:\\Users\\User\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.16\\microsoft.aspnetcore.app.ref.8.0.16.nupkg.sha512"
+  ],
   "logs": []
 }

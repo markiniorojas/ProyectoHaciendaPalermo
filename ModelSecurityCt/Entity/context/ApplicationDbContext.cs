@@ -123,91 +123,59 @@ namespace Entity.context
         {
             ChangeTracker.DetectChanges();
 
-            var userEmail = _currentRequestUserService.GetCurrentUserEmail();
-            var timestamp = DateTime.UtcNow;
+            string userEmail = _currentRequestUserService.GetCurrentUserEmail();
+            DateTime timestamp = DateTime.UtcNow;
 
-            var auditLogsToCreate = new List<AudiLog>();
+            List<AudiLog> auditLogsToCreate = new List<AudiLog>();
 
-            // Iterar sobre todas las entradas rastreadas por Entity Framework Core
             foreach (var entry in ChangeTracker.Entries())
             {
-                // Ignorar la propia tabla de auditoría para evitar recursión
-                // Ignorar entidades que no han cambiado o están desvinculadas
-                if (entry.Entity is AudiLog || // Importante: usa el nombre de tu clase de entidad AuditLog
+                if (entry.Entity is AudiLog || // Ignorar la propia tabla de auditoría
                     entry.State == EntityState.Detached ||
                     entry.State == EntityState.Unchanged)
                 {
                     continue;
                 }
 
-              
+                // Eliminado: IAuditableEntity auditableEntity = entry.Entity as IAuditableEntity;
 
-                var auditEntry = new AudiLog
+                AudiLog auditEntry = new AudiLog
                 {
-                    UserEmail = userEmail,
-                    EntityName = entry.Metadata.DisplayName(), // Nombre de la clase de la entidad
+                    // UserId = userId, // <--- Si eliminaste UserId de AuditLog, remueve esta línea
+                    Email = userEmail,
+                    NameTable = entry.Metadata.DisplayName(),
                     Timestamp = timestamp,
-                    InformationType = "Info", // Para operaciones exitosas
+                    InformationType = "Info",
                     Message = ""
                 };
 
                 switch (entry.State)
                 {
                     case EntityState.Added:
-                        // Lógica de IAuditableEntity para Added
-                        if (auditableEntity != null)
-                        {
-                            auditableEntity.CreatedDate = timestamp;
-                            auditableEntity.IsDeleted = false;
-                            // Aseguramos que EF Core no intente marcar estas propiedades como "cambiadas"
-                            // si ya las hemos establecido aquí o no provienen de un DTO
-                            entry.Property(nameof(IAuditableEntity.CreatedDate)).IsModified = false;
-                            entry.Property(nameof(IAuditableEntity.IsDeleted)).IsModified = false;
-                        }
-
                         auditEntry.ActionType = "Insert";
-                        auditEntry.NewValues = JsonSerializer.Serialize(entry.CurrentValues.ToObject());
-                        auditEntry.Message = $"Se insertó '{auditEntry.EntityName}' por '{userEmail}'.";
+                        auditEntry.NewValue = JsonSerializer.Serialize(entry.CurrentValues.ToObject());
+                        auditEntry.Message = $"Se insertó '{auditEntry.NameTable}' por '{userEmail}'.";
                         break;
 
                     case EntityState.Modified:
-                        var oldValues = new Dictionary<string, object>();
-                        var newValues = new Dictionary<string, object>();
-                        var changedColumns = new List<string>();
+                        Dictionary<string, object> oldValues = new Dictionary<string, object>();
+                        Dictionary<string, object> newValues = new Dictionary<string, object>();
+                        List<string> changedColumns = new List<string>();
 
-                        bool isDeletedChangedToTrue = false;  // Indica borrado lógico
-                        bool isDeletedChangedToFalse = false; // Indica restauración lógica
+                        bool isDeletedPropertyExists = false;
+                        bool originalIsDeleted = false;
+                        bool currentIsDeleted = false;
 
-                        // Recorrer las propiedades para encontrar cuáles cambiaron y sus valores
                         foreach (var property in entry.Properties)
                         {
-                            // Solo procesar propiedades que han sido modificadas
                             if (property.IsModified)
                             {
-                                // Detectar el cambio en IsDeleted específicamente para entidades auditables
-                                if (auditableEntity != null && property.Metadata.Name == nameof(IAuditableEntity.IsDeleted))
+                                // Detectar el cambio en una propiedad "IsDeleted" si existe
+                                if (property.Metadata.Name == "IsDeleted" && property.OriginalValue is bool originalBool && property.CurrentValue is bool currentBool)
                                 {
-                                    if (property.OriginalValue is bool originalBool && property.CurrentValue is bool currentBool)
-                                    {
-                                        if (originalBool == false && currentBool == true)
-                                        {
-                                            isDeletedChangedToTrue = true;
-                                            // Actualizar DeletedDate para borrado lógico
-                                            auditableEntity.DeletedDate = timestamp;
-                                        }
-                                        else if (originalBool == true && currentBool == false)
-                                        {
-                                            isDeletedChangedToFalse = true;
-                                            // Limpiar DeletedDate si es una restauración lógica (o establecer en null)
-                                            auditableEntity.DeletedDate = null;
-                                        }
-                                    }
-                                }
-                                // Si UpdatedDate es la propiedad modificada y no es una eliminación/restauración lógica,
-                                // la actualizamos al final del bloque para la entidad.
-                                else if (auditableEntity != null && property.Metadata.Name == nameof(IAuditableEntity.UpdatedDate))
-                                {
-                                    // Esta propiedad se actualiza explícitamente en la entidad más adelante si no es borrado/restauración
+                                    isDeletedPropertyExists = true;
+                                    originalIsDeleted = originalBool;
+                                    currentIsDeleted = currentBool;
                                 }
 
                                 oldValues[property.Metadata.Name] = property.OriginalValue;
@@ -216,59 +184,36 @@ namespace Entity.context
                             }
                         }
 
-                        // Lógica para actualizar UpdatedDate para modificaciones "normales"
-                        if (auditableEntity != null && !isDeletedChangedToTrue && !isDeletedChangedToFalse)
-                        {
-                            auditableEntity.UpdatedDate = timestamp;
-                        }
+                        auditEntry.OldValue = JsonSerializer.Serialize(oldValues);
+                        auditEntry.NewValue = JsonSerializer.Serialize(newValues);
+                        auditEntry.ChangedColumns= JsonSerializer.Serialize(changedColumns);
 
-
-                        auditEntry.OldValues = JsonSerializer.Serialize(oldValues);
-                        auditEntry.NewValues = JsonSerializer.Serialize(newValues);
-                        auditEntry.ChangedColumns = JsonSerializer.Serialize(changedColumns);
-
-                        // Determinar el ActionType y el mensaje basado en los cambios detectados
-                        if (isDeletedChangedToTrue)
+                        if (isDeletedPropertyExists && originalIsDeleted == false && currentIsDeleted == true)
                         {
                             auditEntry.ActionType = "Delete (Logical)";
-                            auditEntry.Message = $"Se eliminó lógicamente '{auditEntry.EntityName}' por '{userEmail}'.";
+                            auditEntry.Message = $"Se eliminó lógicamente '{auditEntry.NameTable}' por '{userEmail}'.";
                         }
-                        else if (isDeletedChangedToFalse)
+                        else if (isDeletedPropertyExists && originalIsDeleted == true && currentIsDeleted == false)
                         {
                             auditEntry.ActionType = "Restore (Logical)";
-                            auditEntry.Message = $"Se restauró lógicamente '{auditEntry.EntityName}' por '{userEmail}'.";
+                            auditEntry.Message = $"Se restauró lógicamente '{auditEntry.NameTable}' por '{userEmail}'.";
                         }
                         else
                         {
                             auditEntry.ActionType = "Update";
-                            auditEntry.Message = $"Se actualizó '{auditEntry.EntityName}' por '{userEmail}'. Columnas: {string.Join(", ", changedColumns)}.";
+                            auditEntry.Message = $"Se actualizó '{auditEntry.NameTable}' por '{userEmail}'. Columnas: {string.Join(", ", changedColumns)}.";
                         }
                         break;
 
                     case EntityState.Deleted:
-                        // Este 'case' se ejecutará ahora para cualquier entidad que se marque como EntityState.Deleted.
-                        // Si tu repositorio maneja el borrado lógico correctamente (cambiando a Modified y IsDeleted=true),
-                        // entonces las IAuditableEntity no deberían llegar aquí con EntityState.Deleted.
-                        // Si llegan aquí, se tratarán como eliminación física.
-                        if (auditableEntity != null)
-                        {
-                            // Si la entidad se va a eliminar físicamente, asegura que sus campos de auditoría reflejen esto.
-                            auditableEntity.IsDeleted = true;
-                            auditableEntity.DeletedDate = timestamp;
-                            // Asegura que EF Core no intente guardar estos cambios ya que la entidad se va a eliminar
-                            entry.Property(nameof(IAuditableEntity.IsDeleted)).IsModified = false;
-                            entry.Property(nameof(IAuditableEntity.DeletedDate)).IsModified = false;
-                        }
-
                         auditEntry.ActionType = "Delete (Physical)";
-                        auditEntry.OldValues = JsonSerializer.Serialize(entry.OriginalValues.ToObject());
-                        auditEntry.Message = $"Se eliminó físicamente '{auditEntry.EntityName}' por '{userEmail}'.";
+                        auditEntry.OldValue = JsonSerializer.Serialize(entry.OriginalValues.ToObject());
+                        auditEntry.Message = $"Se eliminó físicamente '{auditEntry.NameTable}' por '{userEmail}'.";
                         break;
                 }
                 auditLogsToCreate.Add(auditEntry);
             }
 
-            // Añadir las entradas de auditoría al contexto para que se guarden en la misma transacción
             foreach (var auditLog in auditLogsToCreate)
             {
                 AuditLogs.Add(auditLog);

@@ -15,9 +15,11 @@ namespace Entity.Model
         public string Email { get; set; }
         public string NameTable { get; set; }
         public string ActionType { get; set; }
-        public DateTime TypeStamp { get; set; }
+        public DateTime Timestamp { get; set; }
         public string OldValue { get; set; }
         public string NewValue { get; set; }
+        public string ChangedColumns { get; set; }
         public string InformationType { get; set; }
+        public string Message { get; set; } 
     }
 }

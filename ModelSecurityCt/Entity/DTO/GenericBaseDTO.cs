@@ -8,6 +8,7 @@ namespace Entity.DTO
 {
     public class GenericBaseDTO
     {
+        public int Code { get; set; }
         public string Name{ get; set; }
     }
 }

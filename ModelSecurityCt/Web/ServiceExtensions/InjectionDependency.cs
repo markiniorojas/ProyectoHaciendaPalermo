@@ -10,6 +10,8 @@ using Business.Token;
 using Business.Interfaces;
 using Email.Interface;
 using Email.Mensajes;
+using Shared.Interface;
+using Web.ServicioLog;
 
 namespace WebServiceExtensions
 {
@@ -17,6 +19,8 @@ namespace WebServiceExtensions
     {
             public static IServiceCollection AddApplicationServices(this IServiceCollection services)
             {
+
+                services.AddScoped<IUnitOfWork, UnitOfWork>();
                 services.AddScoped<IPersonRepository, PersonRepository>();
                 services.AddScoped<PersonService>();
 
@@ -49,12 +53,16 @@ namespace WebServiceExtensions
                 services.AddScoped<RegistroService>();
 
                 services.AddScoped<generarToken>();
-
+                
+                //Inyectar la funcion de enviar mensajes
                 services.AddScoped<IMensajeEmail, CorreoMensaje>();
-                services.AddScoped<IMensajeTelegram, MensajeTelegram>();    
+                services.AddScoped<IMensajeTelegram, MensajeTelegram>();
 
+                //Inyectar el servicio de log
+
+                services.AddScoped<ICurrentRequestUserService, CurrentRequestUserService>();
+            
             return services;
-
         }
 
     }

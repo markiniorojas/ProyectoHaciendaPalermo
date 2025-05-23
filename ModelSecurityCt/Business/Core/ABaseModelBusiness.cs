@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Business.Interfaces;
+using Entity.DTO;
+using Entity.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Business.Core
 {
-    public abstract class ABaseModelBusiness<T, D>: IBaseModelBusiness<T, D> where T : BaseModel where D : BaseDto
+    public abstract class ABaseModelBusiness<T, D>: IBaseModelBusiness<T, D> where T : BaseModel where D : BaseModelDTO
     {
         public abstract Task<int> Delete(int id);
         public abstract Task<int> DeleteNoLogic(int id);

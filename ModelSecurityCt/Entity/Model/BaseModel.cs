@@ -10,7 +10,7 @@ namespace Entity.Model
     {
         public int Id { get; set; }
         public bool Active { get; set; }
-        public bool Isdeleted { get; set; }
+        public bool IsDeleted { get; set; }
 
     }
 }

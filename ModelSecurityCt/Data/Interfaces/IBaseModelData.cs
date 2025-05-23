@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entity.DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Data.Interfaces
 {
-    public interface IBaseModelData<T, D> where T: IBaseModel where D: BaseDto
+    public interface IBaseModelData<T, D> where T: IBaseModelData where D: BaseModelDTO
     {
         /// <summary>
         /// Datatable
