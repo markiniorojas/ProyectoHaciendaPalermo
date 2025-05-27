@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Entity.DTO
 {
-    public class BaseModelDTO
+    public class BaseModelDTO : GenericBaseDTO
     {
         public int Id { get; set; }
         public bool Active { get; set; }

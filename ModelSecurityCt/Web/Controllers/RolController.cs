@@ -119,7 +119,7 @@ namespace Web.Controllers
         {
             try
             {
-                var createRol = await _rolBusiness.CreateAsync(rolDTO);
+                var createRol = await _rolBusiness.AddAsync(rolDTO);
                 return CreatedAtAction(nameof(GetRolById), new
                 {
                     id = createRol.Id

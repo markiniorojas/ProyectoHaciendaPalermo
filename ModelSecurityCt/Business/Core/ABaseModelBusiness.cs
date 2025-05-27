@@ -3,35 +3,100 @@ using Entity.DTO;
 using Entity.Model;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace Business.Core
+namespace Business.Implementations
 {
-    public abstract class ABaseModelBusiness<T, D>: IBaseModelBusiness<T, D> where T : BaseModel where D : BaseModelDTO
+    /// <summary>
+    /// Clase abstracta base para la lógica de negocio que implementa IServiceBase
+    /// con operaciones de dominio para entidades que heredan de BaseModel.
+    /// </summary>
+    /// <typeparam name="TDto">Tipo de DTO que hereda de BaseModelDTO</typeparam>
+    /// <typeparam name="TEntity">Tipo de entidad que hereda de BaseModel</typeparam>
+    public abstract class ABaseModelBusiness<TDto, TEntity> : IServiceBase<TDto, TEntity>
+        where TDto : BaseModelDTO
+        where TEntity : BaseModel
     {
-        public abstract Task<int> Delete(int id);
-        public abstract Task<int> DeleteNoLogic(int id);
-        public abstract Task<List<D>> GetAllSelect();
-
-        public abstract Task<D> GetByCode(string code);
-
-        public abstract Task<D> GetById(int id);
-
-        public abstract Task<List<D>> GetDataTable(QueryFilterDto filters);
-
-        public abstract Task<D> Save(D entityDto);
-
-        public abstract Task<D[]> SaveDetails(D[] entityDto);
-
-        public abstract Task Update(D entityDto);
-
-        public abstract Task UpdatePatch(D entityDto);
 
 
-        public abstract Task UpdateDetails(D[] details);
+        public abstract Task<TDto> AddAsync(TDto dto);
+        public abstract Task<TDto> Save(TDto dto);
+        public abstract Task<TDto[]> SaveDetails(TDto[] details);
+        public abstract Task<List<TDto>> GetAllAsync();
+        public abstract Task<List<TDto>> GetAllActiveAsync();
+        public abstract Task<List<TDto>> GetAllSelectAsync();
+        public abstract Task<TDto> GetByIdAsync(int id);
+        public abstract Task<TDto> GetByNameAsync(string name);
 
-        public abstract Task<string> GenerarCodigo(string prefix);
+
+        public abstract Task<TDto> CreateAsync(TDto dto);
+        public abstract Task<TDto> UpdateAsync(TDto dto);
+        public abstract Task UpdateDetailsAsync(TDto[] dtos);
+
+       
+        public abstract Task<bool> DeletePermanentAsync(int id);
+        public abstract Task<bool> DeleteLogicalAsync(int id);
+        public abstract Task<bool> PatchLogicalAsync(int id);
+        public abstract Task<bool> ToggleActiveAsync(int id);
+
+        public abstract Task<string> GenerateCodeAsync(string prefix);
+
+
+        protected virtual async Task<List<string>> ValidateForCreateAsync(TDto dto)
+        {
+            var errors = new List<string>();
+
+            if (dto == null)
+            {
+                errors.Add("Los datos de la entidad son requeridos");
+                return errors;
+            }
+
+            if (string.IsNullOrWhiteSpace(dto.Name))
+            {
+                errors.Add("El nombre es requerido");
+            }
+
+            return errors;
+        }
+
+        protected virtual async Task<List<string>> ValidateForUpdateAsync(TDto dto)
+        {
+            var errors = new List<string>();
+
+            if (dto == null)
+            {
+                errors.Add("Los datos de la entidad son requeridos");
+                return errors;
+            }
+
+            if (dto.Id <= 0)
+            {
+                errors.Add("ID de entidad inválido");
+            }
+
+            if (string.IsNullOrWhiteSpace(dto.Name))
+            {
+                errors.Add("El nombre es requerido");
+            }
+
+            return errors;
+        }
+
+        protected virtual async Task ApplyBusinessRulesForCreateAsync(TDto dto)
+        {
+            if (dto != null)
+            {
+                dto.Active = true;
+                dto.IsDeleted = false;
+            }
+            await Task.CompletedTask;
+        }
+
+        protected virtual async Task ApplyBusinessRulesForUpdateAsync(TDto dto)
+        {
+            await Task.CompletedTask;
+        }
+
     }
 }

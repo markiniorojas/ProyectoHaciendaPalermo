@@ -20,7 +20,6 @@ namespace WebServiceExtensions
             public static IServiceCollection AddApplicationServices(this IServiceCollection services)
             {
 
-                services.AddScoped<IUnitOfWork, UnitOfWork>();
                 services.AddScoped<IPersonRepository, PersonRepository>();
                 services.AddScoped<PersonService>();
 

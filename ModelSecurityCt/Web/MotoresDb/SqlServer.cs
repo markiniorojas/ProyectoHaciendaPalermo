@@ -7,6 +7,7 @@ using Web.InterfaceDb;
 using Entity.context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Web.MigrationFactory;
 
 namespace Web.ImplementacionBaseDatos;
 
@@ -25,6 +26,8 @@ public class SqlServer : FactoryInterface
     {
         var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
         optionsBuilder.UseSqlServer(_connectionString);
-        return new ApplicationDbContext(optionsBuilder.Options, _configuration);
+
+        var mockUserService = new MockCurrentRequestUserService();
+        return new ApplicationDbContext(optionsBuilder.Options, _configuration, mockUserService);
     }
 }

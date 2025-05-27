@@ -108,7 +108,7 @@ namespace Web.Controllers
         {
             try
             {
-                var createFormModule = await _rolFormPermissionBusiness.CreateAsync(rolFormPermissionDTO);
+                var createFormModule = await _rolFormPermissionBusiness.AddAsync(rolFormPermissionDTO);
                 return CreatedAtAction(nameof(GetFormModuleById), new
                 {
                     id = createFormModule.Id

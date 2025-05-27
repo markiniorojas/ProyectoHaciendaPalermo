@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Entity.DTO
 {
-    public class PersonDTO
+    public class PersonDTO : BaseModelDTO
     {
-        public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string DocumentType { get; set; }
@@ -18,6 +17,5 @@ namespace Entity.DTO
         public string Eps { get; set; }
         public string Genero { get; set; }
         public bool RelatedPerson { get; set; }
-        public bool IsDeleted { get; set; }
     }
 }

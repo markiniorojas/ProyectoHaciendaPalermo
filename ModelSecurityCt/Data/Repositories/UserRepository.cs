@@ -51,8 +51,7 @@ namespace Data.Repositories
                 u.Email == dto.Email &&
                 u.Password == dto.Password
             );
-            sucess = (user != null) ? true : throw new UnauthorizedAccessException("credenciales Incorrectas");
-            return user;
+            return user ?? throw new UnauthorizedAccessException("Credenciales incorrectas"); ;
         }
         ///<Summary>
         ///Metodo para el auth con google

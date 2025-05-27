@@ -111,7 +111,7 @@ namespace Web.Controllers
         {
             try
             {
-                var createFormModule = await _formModuleBusiness.CreateAsync(formModuleDTO);
+                var createFormModule = await _formModuleBusiness.AddAsync(formModuleDTO);
                 return CreatedAtAction(nameof(GetFormModuleById), new
                 {
                     id = createFormModule.Id

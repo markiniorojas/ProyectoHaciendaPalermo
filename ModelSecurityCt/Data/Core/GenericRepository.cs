@@ -1,120 +1,95 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Entity.context;
-using Entity.Dtos;
+﻿using Entity.context;
 using Entity.Model;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
 namespace Data.Core
 {
-    public class GenericRepository<T>:ABaseModelData<T> where T : BaseModel, IRepository<T> 
+    public class GenericRepository<TEntity> : IRepository<TEntity>
+        where TEntity : BaseModel
     {
         protected readonly ApplicationDbContext _context;
-        private readonly ILogger _logger;
+        protected readonly ILogger _logger;
 
-        public GenericRepository(ApplicationDbContext context, ILogger logger)
+        public GenericRepository(ApplicationDbContext context,ILogger logger )
         {
             _context = context;
             _logger = logger;
         }
 
-        /// <summary>
-        /// Obtiene todos los registros de la entidad T desde la base de datos.
-        /// </summary>
-        /// <returns>Una lista de todos los registros encontrados.</returns>
-        public async Task<IEnumerable<T>> GetAllAsync()
+        public async Task<List<TEntity>> GetAllAsync()
         {
-            return await _context.Set<T>().ToListAsync();
+            return await _context.Set<TEntity>()
+                .Where(e => !e.IsDeleted)
+                .ToListAsync();
         }
 
-        /// <summary>
-        /// Busca un registro por su identificador único.
-        /// </summary>
-        /// <param name="id">El identificador del registro a buscar.</param>
-        /// <returns>El registro encontrado o null si no existe.</returns>
-        public async Task<T?> GetByIdAsync(int id)
+        public async Task<TEntity?> GetByIdAsync(int id)
         {
-            return await _context.Set<T>().FindAsync(id);
+            return await _context.Set<TEntity>()
+                .FirstOrDefaultAsync(e => e.Id == id && !e.IsDeleted);
         }
 
-        /// Agrega una nueva entidad a la base de datos.
-        /// </summary>
-        /// <param name="entity">La entidad que se desea agregar.</param>
-        /// <returns>La entidad agregada con sus valores actualizados, si aplica.</returns>
-        public async Task<T> AddAsync(T entity)
+        public async Task<TEntity> AddAsync(TEntity entity)
         {
-            await _context.Set<T>().AddAsync(entity);
+            await _context.Set<TEntity>().AddAsync(entity);
             await _context.SaveChangesAsync();
             return entity;
         }
 
-        /// <summary>
-        /// Actualiza los datos de una entidad existente.
-        /// </summary>
-        /// <param name="entity">La entidad con los datos actualizados.</param>
-        /// <returns>True si la operación fue exitosa.</returns>
-        public async Task<bool> UpdateAsync(T entity)
+        public async Task<bool> UpdateAsync(TEntity entity)
         {
-            _context.Set<T>().Update(entity);
-            await _context.SaveChangesAsync();
-            return true; 
+            _context.Set<TEntity>().Update(entity);
+            return await _context.SaveChangesAsync() > 0;
         }
 
-        // <sumse si nomary>
-        /// Elimina físicamente un registro de la base de datos según su identificador.
-        /// </summary>
-        /// <param name="id">El identificador de la entidad a eliminar.</param>
-        /// <returns>True si se eliminó correctamente; Fal se encontró.</returns>
         public async Task<bool> DeleteAsync(int id)
         {
-            var entity = await _context.Set<T>().FindAsync(id);
+            var entity = await GetByIdAsync(id);
             if (entity == null) return false;
-            _context.Set<T>().Remove(entity);
-            await _context.SaveChangesAsync();
-            return true;
+
+            _context.Set<TEntity>().Remove(entity);
+            return await _context.SaveChangesAsync() > 0;
         }
 
-        /// <summary>
-        /// Realiza una eliminación lógica de la entidad, marcando la propiedad IsDeleted como true.
-        /// </summary>
-        /// <param name="id">El identificador de la entidad a eliminar lógicamente.</param>
-        /// <returns>True si se actualizó correctamente; False si no se encontró o no tiene la propiedad IsDeleted.</returns>
         public async Task<bool> DeleteLogicalAsync(int id)
         {
-            var entity = await _context.Set<T>().FindAsync(id);
-            if (entity == null) return false;
-
-            var prop = entity.GetType().GetProperty("IsDeleted");
-            if (prop != null)
+            _logger.LogInformation($"Eliminación lógica de {typeof(TEntity).Name} con ID: {id}");
+            try
             {
-                prop.SetValue(entity, true);
+                var entity = await GetByIdAsync(id);
+                if (entity == null) return false;
+
+                entity.IsDeleted = true;
                 await _context.SaveChangesAsync();
                 return true;
             }
-            _logger.LogWarning($"La entidad {typeof(T).Name} no tiene propiedad IsDeleted");
-            return false;
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Error en eliminación lógica de {typeof(TEntity).Name} con ID {id}");
+                throw;
+            }
         }
 
         public async Task<bool> PatchLogicalAsync(int id)
         {
-            var entity = await _context.Set<T>().FindAsync(id);
+            var entity = await _context.Set<TEntity>().FindAsync(id);
             if (entity == null) return false;
 
-            var prop = entity.GetType().GetProperty("IsDeleted");
-            if (prop != null)
+            var isDeletedProp = entity.GetType().GetProperty("IsDeleted");
+            if (isDeletedProp != null)
             {
-                prop.SetValue(entity, false);
-                await _context.SaveChangesAsync();
-                return true;
+                isDeletedProp.SetValue(entity, false);
             }
-            _logger.LogWarning($"La entidad {typeof(T).Name} no tiene propiedad IsDeleted");
-            return false;
-        }
 
+            var activeProp = entity.GetType().GetProperty("Active");
+            if (activeProp != null)
+            {
+                activeProp.SetValue(entity, true);
+            }
+
+            await _context.SaveChangesAsync();
+            return true;
+        }
     }
 }

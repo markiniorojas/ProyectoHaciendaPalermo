@@ -114,7 +114,7 @@ namespace Web.Controllers
         {
             try
             {
-                var createModule = await _moduleBusiness.CreateAsync(moduleDTO);
+                var createModule = await _moduleBusiness.AddAsync(moduleDTO);
                 return CreatedAtAction(nameof(GetModuleById), new
                 {
                     id = createModule.Id

@@ -1,10 +1,13 @@
 ﻿using Business.Core;
 using Data.Interfaces;
-using Data.Repositories;
 using Entity.DTO;
 using Entity.Model;
 using Mapster;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Utilities;
 
 namespace Business.Services
@@ -15,7 +18,9 @@ namespace Business.Services
         private readonly IUserRepository _userRepository;
         private readonly ILogger<RolUserService> _logger;
 
-        public RolUserService(IRolUserRepository rolUserRepository, IUserRepository userRepository, ILogger<RolUserService> logger)
+        public RolUserService(IRolUserRepository rolUserRepository,
+                            IUserRepository userRepository,
+                            ILogger<RolUserService> logger)
             : base(rolUserRepository, logger)
         {
             _rolUserRepository = rolUserRepository;
@@ -23,23 +28,30 @@ namespace Business.Services
             _logger = logger;
         }
 
-        public override async Task<IEnumerable<RolUserDTO>> GetAllAsync()
+        public override async Task<List<RolUserDTO>> GetAllAsync()
         {
-            return await _rolUserRepository.GetAllAsync();
+            var entities = await _rolUserRepository.GetAllAsync();
+            return entities.Adapt<List<RolUserDTO>>(); // List implementa IEnumerable
         }
 
-        public override async Task<RolUserDTO> CreateAsync(RolUserDTO dto)
+        public override async Task<RolUserDTO> AddAsync(RolUserDTO dto)
         {
             try
             {
+                // Validación adicional
+                if (dto.UserId <= 0)
+                    throw new ArgumentException("UserId es requerido");
+
+                // Lógica base
                 var entity = dto.Adapt<RolUser>();
                 var createdEntity = await _rolUserRepository.AddAsync(entity);
 
+                // Lógica adicional
                 var user = await _userRepository.GetByIdAsync(dto.UserId);
-                var createdDto = createdEntity.Adapt<RolUserDTO>();
-                createdDto.Email = user?.Email;
+                var result = createdEntity.Adapt<RolUserDTO>();
+                result.Email = user?.Email;
 
-                return createdDto;
+                return result;
             }
             catch (Exception ex)
             {
@@ -57,6 +69,5 @@ namespace Business.Services
             }
             return entity.Adapt<RolUserDTO>();
         }
-
     }
 }

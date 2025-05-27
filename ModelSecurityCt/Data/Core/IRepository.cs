@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Entity.DTO;
 using Entity.Model;
 
 namespace Data.Core
@@ -11,14 +12,15 @@ namespace Data.Core
     /// Define los métodos genéricos para acceder y manipular datos en el repositorio.
     /// </summary>
     /// <typeparam name="T">El tipo de entidad sobre el cual se aplican las operaciones.</typeparam>
-    public interface IRepository<T>
+    public interface IRepository<TEntity> 
+        where TEntity : BaseModel
     {
         /// <summary>
         /// Obtiene todos los registros de la entidad T.
         /// Ideal para escenarios donde se necesita trabajar con listas completas.
         /// </summary>
         /// <returns>Una colección enumerable de entidades.</returns>
-        Task<IEnumerable<T>> GetAllAsync();
+        Task<List<TEntity>> GetAllAsync();
 
         /// <summary>
         /// Obtiene un registro único por su identificador primario.
@@ -26,7 +28,7 @@ namespace Data.Core
         /// </summary>
         /// <param name="id">Identificador único de la entidad.</param>
         /// <returns>Entidad encontrada o null si no existe.</returns>
-        Task<T?> GetByIdAsync(int id);
+        Task<TEntity?> GetByIdAsync(int id);
 
         /// <summary>
         /// Agrega una nueva entidad al contexto y la persiste en la base de datos.
@@ -34,7 +36,7 @@ namespace Data.Core
         /// </summary>
         /// <param name="entity">Entidad a agregar.</param>
         /// <returns>Entidad persistida, con claves generadas si aplica.</returns>
-        Task<T> AddAsync(T entity);
+        Task<TEntity> AddAsync(TEntity entity);
 
         /// <summary>
         /// Actualiza una entidad existente en la base de datos.
@@ -42,7 +44,7 @@ namespace Data.Core
         /// </summary>
         /// <param name="entity">Entidad con los datos actualizados.</param>
         /// <returns>True si la actualización fue exitosa.</returns>
-        Task<bool> UpdateAsync(T entity);
+        Task<bool> UpdateAsync(TEntity entity);
 
         /// <summary>
         /// Elimina físicamente una entidad según su identificador.

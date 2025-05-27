@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Entity.Model
 {
-    public class GenericBase : BaseModel
+    public class GenericBase
     {
-        public int Code { get; set; }
         public string Name { get; set; }
     }
 }

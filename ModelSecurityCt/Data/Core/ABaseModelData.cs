@@ -10,24 +10,22 @@ using Entity.DTO;
 
 namespace Data.Core
 {
-    public abstract class ABaseModelData<T, D> : IBaseModelData<T, D> where T : BaseModel where D : BaseModelDTO
+    public abstract class ABaseModelData<TEntity> : IRepository<TEntity>
+        where TEntity : BaseModel
     {
-        public abstract Task<int> Delete(int id);
-        public abstract Task<int> DeleteNoLogic(int id);
-        public abstract Task<IEnumerable<D>> GetAllSelect();
 
-        public abstract Task<T> GetByCode(string code);
+        public abstract Task<List<TEntity>> GetAllAsync();
+        public abstract Task<TEntity?> GetByIdAsync(int id);
+        public abstract Task<TEntity> AddAsync(TEntity entity);
+        public abstract Task<bool> UpdateAsync(TEntity entity);
+        public abstract Task<bool> DeleteAsync(int id);
+        public abstract Task<bool> DeleteLogicalAsync(int id);
+        public abstract Task<bool> PatchLogicalAsync(int id);
 
-        public abstract Task<T> GetById(int id);
+       
 
-        public abstract Task<IEnumerable<D>> GetDataTable(QueryFilterDto filters);
+     
 
-        public abstract Task<T> Save(T entity);
-
-        public abstract Task<T[]> SaveDetails(T[] entity);
-
-        public abstract Task Update(T entity);
-
-        public abstract Task UpdatePatch(T entity);
+       
     }
 }

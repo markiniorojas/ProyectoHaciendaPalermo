@@ -77,7 +77,7 @@ namespace Web.Controllers
           
             try
             {
-                var createRolUser = await _rolUserBusiness.CreateAsync(rolUserDto);
+                var createRolUser = await _rolUserBusiness.AddAsync(rolUserDto);
                 return CreatedAtAction(nameof(GetRolUserById), new
                 {
                     id = createRolUser.Id

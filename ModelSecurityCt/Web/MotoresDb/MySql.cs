@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Entity.context;
 using Web.InterfaceDb;
+using Web.MigrationFactory;
 
 namespace Web.ImplementacionBaseDatos
 {
@@ -24,7 +25,10 @@ namespace Web.ImplementacionBaseDatos
         {
             var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
             optionsBuilder.UseMySql(_connectionString, ServerVersion.AutoDetect(_connectionString));
-            return new ApplicationDbContext(optionsBuilder.Options, _configuration);
+
+            var mockUserService = new MockCurrentRequestUserService();
+
+            return new ApplicationDbContext(optionsBuilder.Options, _configuration, mockUserService);
         }
     }
 }

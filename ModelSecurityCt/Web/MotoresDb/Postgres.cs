@@ -7,6 +7,7 @@ using Web.InterfaceDb;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
 using Entity.context;
+using Web.MigrationFactory;
 
 namespace Web.ImplementacionBaseDatos
 {
@@ -25,7 +26,9 @@ namespace Web.ImplementacionBaseDatos
         {
             var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
             optionsBuilder.UseNpgsql(_connectionString);
-            return new ApplicationDbContext(optionsBuilder.Options, _configuration);
+
+            var mockUserService = new MockCurrentRequestUserService();
+            return new ApplicationDbContext(optionsBuilder.Options, _configuration, mockUserService);
         }
     }
 }

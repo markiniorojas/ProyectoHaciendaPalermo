@@ -30,9 +30,11 @@ namespace Web.MigrationFactory
             // Si usas PostgreSQL:
             // optionsBuilder.UseNpgsql(connectionString);
 
+            var mockUserService = new MockCurrentRequestUserService();
+
 
             // 3. Retornar una nueva instancia de ApplicationDbContext
-            return new ApplicationDbContext(optionsBuilder.Options, configuration);
+            return new ApplicationDbContext(optionsBuilder.Options, configuration, mockUserService);
         }
     }
 }

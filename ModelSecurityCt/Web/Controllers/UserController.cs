@@ -90,7 +90,7 @@ namespace Web.Controllers
         {
             try
             {
-                var createdUser = await _userBusiness.CreateAsync(userDTO);
+                var createdUser = await _userBusiness.AddAsync(userDTO);
                 return CreatedAtAction(nameof(GetUserById), new { id = createdUser.Id }, createdUser);
             }
             catch (ValidationException ex)

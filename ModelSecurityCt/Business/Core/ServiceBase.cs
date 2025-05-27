@@ -1,21 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Business.Interfaces;
-using Utilities;
 using Mapster;
 using Data.Core;
+using Entity.Model;
+using Entity.DTO;
 
 namespace Business.Core
 {
     /// <summary>
-    /// Clase base abstracta para servicios de negocio que encapsula operaciones CRUD genéricas
-    /// sobre cualquier entidad, utilizando un patrón de repositorio y mapeo automático con Mapster.
+    /// Implementación base sencilla de IServiceBase que proporciona operaciones CRUD genéricas
+    /// utilizando un patrón de repositorio y mapeo automático con Mapster.
     /// </summary>
-    /// <typeparam name="TDto">Tipo de objeto de transferencia de datos (DTO).</typeparam>
-    /// <typeparam name="TEntity">Tipo de entidad del dominio correspondiente en la base de datos.</typeparam>
-    public abstract class ServiceBase<TDTO, TEntity> : IServiceBase<TDTO, TEntity>
+    /// <typeparam name="TDto">Tipo de DTO que hereda de BaseModelDTO.</typeparam>
+    /// <typeparam name="TEntity">Tipo de entidad que hereda de BaseModel.</typeparam>
+    public class ServiceBase<TDto, TEntity> : IServiceBase<TDto, TEntity>
+        where TDto : BaseModelDTO
+        where TEntity : BaseModel
     {
         protected readonly IRepository<TEntity> _repository;
         protected readonly ILogger _logger;
@@ -25,68 +29,88 @@ namespace Business.Core
             _repository = repository;
             _logger = logger;
         }
+        public virtual async Task<List<TDto>> GetAllAsync()
+        { 
+            var entities = await _repository.GetAllAsync();
+            return entities.Adapt<List<TDto>>();
+        }
 
-        public virtual async Task<IEnumerable<TDTO>> GetAllAsync()
+        public virtual async Task<List<TDto>> GetAllActiveAsync()
         {
-            try
+            var entities = await _repository.GetAllAsync();
+            var activeEntities = entities.Where(e => e.Active && !e.IsDeleted);
+            return activeEntities.Adapt<List<TDto>>();
+        }
+
+        public virtual async Task<List<TDto>> GetAllSelectAsync()
+        {
+            return await GetAllActiveAsync();
+        }
+
+        // Cambiado para coincidir con la interfaz (nullable)
+        public virtual async Task<TDto?> GetByIdAsync(int id)
+        {
+            var entity = await _repository.GetByIdAsync(id);
+            return entity?.Adapt<TDto>();
+        }
+
+        public virtual async Task<TDto> GetByNameAsync(string name)
+        {
+            var entities = await _repository.GetAllAsync();
+            var entity = entities.FirstOrDefault(e => e.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
+            return entity?.Adapt<TDto>();
+        }
+
+        // Método AddAsync que faltaba (renombrado desde CreateAsync)
+        public virtual async Task<TDto> AddAsync(TDto dto)
+        {
+            var entity = dto.Adapt<TEntity>();
+            entity.Active = true;
+            entity.IsDeleted = false;
+
+            var created = await _repository.AddAsync(entity);
+            return created.Adapt<TDto>();
+        }
+
+        // Método Save que implementa la lógica de crear o actualizar
+        public virtual async Task<TDto> Save(TDto dto)
+        {
+            if (dto.Id == 0)
             {
-                var entities = await _repository.GetAllAsync();
-                return entities.Adapt<IEnumerable<TDTO>>();
+                return await AddAsync(dto);
             }
-            catch (Exception ex)
+            else
             {
-                _logger.LogError(ex, "Error al obtener todos los registros de {Entity}", typeof(TEntity).Name);
-                throw;
+                return await UpdateAsync(dto);
             }
         }
 
-        public virtual async Task<TDTO> GetByIdAsync(int id)
+        // Método SaveDetails que faltaba
+        public virtual async Task<TDto[]> SaveDetails(TDto[] details)
         {
-            try
-            {
-                var entity = await _repository.GetByIdAsync(id);
-                if (entity == null)
-                    throw new EntityNotFoundException(typeof(TEntity).Name, id);
+            var results = new List<TDto>();
 
-                return entity.Adapt<TDTO>();
-            }
-            catch (Exception ex)
+            foreach (var dto in details)
             {
-                _logger.LogError(ex, "Error al obtener el registro con ID {Id} de {Entity}", id, typeof(TEntity).Name);
-                throw;
+                var result = await Save(dto);
+                results.Add(result);
             }
+
+            return results.ToArray();
         }
 
-        public virtual async Task<TDTO> CreateAsync(TDTO dto)
+        public virtual async Task<TDto> UpdateAsync(TDto dto)
         {
-            try
-            {
-                var entity = dto.Adapt<TEntity>();
-                var created = await _repository.AddAsync(entity);
-                return created.Adapt<TDTO>();
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error al crear entidad {Entity}", typeof(TEntity).Name);
-                throw;
-            }
+            var entity = dto.Adapt<TEntity>();
+            await _repository.UpdateAsync(entity);
+            return dto;
         }
 
-        public virtual async Task<TDTO> UpdateAsync(TDTO dto)
+        public virtual async Task UpdateDetailsAsync(TDto[] dtos)
         {
-            try
+            foreach (var dto in dtos)
             {
-                var entity = dto.Adapt<TEntity>();
-                var updated = await _repository.UpdateAsync(entity);
-                if (!updated)
-                    throw new Exception("Update failed");
-
-                return dto;
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error al actualizar entidad {Entity}", typeof(TEntity).Name);
-                throw;
+                await UpdateAsync(dto);
             }
         }
 
@@ -94,39 +118,63 @@ namespace Business.Core
         {
             try
             {
-                return await _repository.DeleteAsync(id);
+                bool result = await _repository.DeleteAsync(id);
+
+                if (!result)
+                {
+                    _logger.LogWarning($"No se encontró la entidad {typeof(TEntity).Name} con ID {id} para eliminación física.");
+                }
+
+                return result;
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error al eliminar permanentemente el registro con ID {Id} de {Entity}", id, typeof(TEntity).Name);
-                throw;
+                _logger.LogError(ex, $"Error al eliminar permanentemente {typeof(TEntity).Name} con ID {id}");
+                throw; // Relanza la excepción para manejo superior
             }
         }
 
         public virtual async Task<bool> DeleteLogicalAsync(int id)
         {
-            try
+            var entity = await _repository.GetByIdAsync(id);
+            if (entity != null)
             {
-                return await _repository.DeleteLogicalAsync(id);
+                entity.IsDeleted = true;
+                entity.Active = false;
+                return await _repository.UpdateAsync(entity);
             }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error al eliminar lógicamente el registro con ID {Id} de {Entity}", id, typeof(TEntity).Name);
-                throw;
-            }
+            return false;
         }
 
         public virtual async Task<bool> PatchLogicalAsync(int id)
         {
-            try
+            var entity = await _repository.GetByIdAsync(id);
+            if (entity != null)
             {
+                entity.IsDeleted = false;
+                entity.Active = true;
                 return await _repository.PatchLogicalAsync(id);
             }
-            catch (Exception ex)
+            return false;
+        }
+
+        public virtual async Task<bool> ToggleActiveAsync(int id)
+        {
+            var entity = await _repository.GetByIdAsync(id);
+            if (entity != null)
             {
-                _logger.LogError(ex, "Error al restaurar lógicamente el registro con ID {Id} de {Entity}", id, typeof(TEntity).Name);
-                throw;
+                entity.Active = !entity.Active;
+                return await _repository.UpdateAsync(entity);
             }
+            return false;
+        }
+
+        public virtual async Task<string> GenerateCodeAsync(string prefix)
+        {
+            var entities = await _repository.GetAllAsync();
+            int count = entities.Count() + 1;
+            int currentYear = DateTime.UtcNow.Year;
+            return $"{prefix}-{currentYear}-{count.ToString().PadLeft(4, '0')}";
         }
     }
 }

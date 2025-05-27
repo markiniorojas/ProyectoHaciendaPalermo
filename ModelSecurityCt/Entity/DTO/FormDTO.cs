@@ -6,13 +6,10 @@ using System.Threading.Tasks;
 
 namespace Entity.DTO
 {
-    public class FormDTO
+    public class FormDTO : BaseModelDTO
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
         public string Description { get; set; }
         public string Url { get; set; }
-        public bool IsDeleted { get; set; }
         
     }
 }

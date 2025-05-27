@@ -6,9 +6,8 @@ namespace Entity.Model
     /// <summary>
     /// Entidad que representa los datos personales asociados a un usuario
     /// </summary>
-    public class Person 
+    public class Person : BaseModel
     {
-        public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string DocumentType { get; set; }

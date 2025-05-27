@@ -117,7 +117,7 @@ namespace Web.Controllers
         {
             try
             {
-                var createPermission = await _permissionBusiness.CreateAsync(permissionDTO);
+                var createPermission = await _permissionBusiness.AddAsync(permissionDTO);
                 return CreatedAtAction(nameof(GetPermissionById), new
                 {
                     id = createPermission.Id

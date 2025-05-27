@@ -137,7 +137,7 @@ namespace Web.Controllers
         {
             try
             {
-                var createPerson = await _personBusiness.CreateAsync(personDTO);
+                var createPerson = await _personBusiness.AddAsync(personDTO);
                 return CreatedAtAction(nameof(GetPersonById), new
                 {
                     id = createPerson.Id

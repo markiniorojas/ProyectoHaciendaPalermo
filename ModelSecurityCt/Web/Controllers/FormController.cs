@@ -109,7 +109,7 @@ namespace Web.Controllers
         {
             try
             {
-                var createdForm = await _formBusiness.CreateAsync(FormDTO);
+                var createdForm = await _formBusiness.AddAsync(FormDTO);
                 return CreatedAtAction(nameof(GetFormById), new { id = createdForm.Id }, createdForm);
             }
             catch (ValidationException ex)

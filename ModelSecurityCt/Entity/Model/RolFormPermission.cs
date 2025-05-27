@@ -7,13 +7,11 @@ using System.Threading.Tasks;
 
 namespace Entity.Model
 {
-    public class RolFormPermission 
+    public class RolFormPermission : BaseModel
     {
-        public int Id { get; set; }
         public int RolId { get; set; }
         public int FormId { get; set; }
         public int PermissionId { get; set; }
-        public bool IsDeleted { get; set; }
 
 
         public Rol Rol { get; set; }
