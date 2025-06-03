@@ -3,12 +3,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
-
 namespace Entity.Migrations
 {
     /// <inheritdoc />
-    public partial class SchemaMigration : Migration
+    public partial class AddAuditableFields : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -17,14 +15,37 @@ namespace Entity.Migrations
                 name: "Seguridad");
 
             migrationBuilder.CreateTable(
+                name: "AuditLogs",
+                schema: "Seguridad",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    NameTable = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ActionType = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Timestamp = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    OldValue = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    NewValue = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ChangedColumns = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    InformationType = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Message = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AuditLogs", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "form",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
                     Url = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Active = table.Column<bool>(type: "bit", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -38,8 +59,9 @@ namespace Entity.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Active = table.Column<bool>(type: "bit", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -54,8 +76,9 @@ namespace Entity.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Active = table.Column<bool>(type: "bit", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -79,6 +102,8 @@ namespace Entity.Migrations
                     Eps = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Genero = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     RelatedPerson = table.Column<bool>(type: "bit", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Active = table.Column<bool>(type: "bit", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false)
                 },
                 constraints: table =>
@@ -93,8 +118,9 @@ namespace Entity.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Active = table.Column<bool>(type: "bit", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false)
                 },
                 constraints: table =>
@@ -110,6 +136,8 @@ namespace Entity.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FormId = table.Column<int>(type: "int", nullable: false),
                     ModuleId = table.Column<int>(type: "int", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Active = table.Column<bool>(type: "bit", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -138,8 +166,9 @@ namespace Entity.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Email = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Password = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Active = table.Column<bool>(type: "bit", nullable: false, defaultValue: true),
                     PersonId = table.Column<int>(type: "int", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Active = table.Column<bool>(type: "bit", nullable: false, defaultValue: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false)
                 },
                 constraints: table =>
@@ -163,6 +192,8 @@ namespace Entity.Migrations
                     RolId = table.Column<int>(type: "int", nullable: false),
                     FormId = table.Column<int>(type: "int", nullable: false),
                     PermissionId = table.Column<int>(type: "int", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Active = table.Column<bool>(type: "bit", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -199,8 +230,10 @@ namespace Entity.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     RolId = table.Column<int>(type: "int", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
-                    Email = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false)
+                    Email = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Active = table.Column<bool>(type: "bit", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false)
                 },
                 constraints: table =>
                 {
@@ -219,98 +252,6 @@ namespace Entity.Migrations
                         principalTable: "user",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.InsertData(
-                table: "form",
-                columns: new[] { "Id", "Description", "IsDeleted", "Name", "Url" },
-                values: new object[,]
-                {
-                    { 1, "Formulario principal del sistema", false, "Formulario Principal", "/dashboard" },
-                    { 2, "Formulario para administración de usuarios", false, "Gestión de Usuarios", "/usuarios" },
-                    { 3, "Formulario para visualizar reportes", false, "Reportes", "/reportes" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "module",
-                columns: new[] { "Id", "Description", "IsDeleted", "Name" },
-                values: new object[,]
-                {
-                    { 1, "Módulo de administración general", false, "Administración" },
-                    { 2, "Control y mantenimiento de usuarios", false, "Gestión de usuarios" },
-                    { 3, "Visualización y exportación de reportes", false, "Reportes" }
-                });
-
-            migrationBuilder.InsertData(
-                schema: "Seguridad",
-                table: "permission",
-                columns: new[] { "Id", "Description", "IsDeleted", "Name" },
-                values: new object[,]
-                {
-                    { 1, "Permite crear registros", false, "Crear" },
-                    { 2, "Permite editar registros", false, "Editar" },
-                    { 3, "Permite eliminar registros", false, "Eliminar" },
-                    { 4, "Permite ver registros", false, "Ver" }
-                });
-
-            migrationBuilder.InsertData(
-                schema: "Seguridad",
-                table: "person",
-                columns: new[] { "Id", "DateBorn", "Document", "DocumentType", "Eps", "FirstName", "Genero", "LastName", "PhoneNumber", "RelatedPerson" },
-                values: new object[,]
-                {
-                    { 1, new DateTime(1990, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), "1075455", "TI", "Nueva EPS", "Marcos", "Masculino", "Rojas Alvarez", "30012345", false },
-                    { 2, new DateTime(1965, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "121243333", "CC", "Sura", "Gentil", "Masculino", "Rojas Cortes", "30198763", true }
-                });
-
-            migrationBuilder.InsertData(
-                schema: "Seguridad",
-                table: "rol",
-                columns: new[] { "Id", "Description", "Name" },
-                values: new object[,]
-                {
-                    { 1, "Rol con todos los permisos del sistema", "Administrador" },
-                    { 2, "Rol con permisos limitados", "Usuario" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "formModule",
-                columns: new[] { "Id", "FormId", "IsDeleted", "ModuleId" },
-                values: new object[,]
-                {
-                    { 1, 1, false, 1 },
-                    { 2, 2, false, 1 },
-                    { 3, 2, false, 2 }
-                });
-
-            migrationBuilder.InsertData(
-                table: "rolFormPermission",
-                columns: new[] { "Id", "FormId", "IsDeleted", "PermissionId", "RolId" },
-                values: new object[,]
-                {
-                    { 1, 1, false, 1, 1 },
-                    { 2, 1, false, 2, 1 },
-                    { 3, 2, false, 4, 2 }
-                });
-
-            migrationBuilder.InsertData(
-                schema: "Seguridad",
-                table: "user",
-                columns: new[] { "Id", "Active", "Email", "Password", "PersonId" },
-                values: new object[,]
-                {
-                    { 1, true, "marcosrojasalvarez09172007@gmail.com", "1234", 1 },
-                    { 2, true, "gentilrojas@gmail.com", "123", 2 }
-                });
-
-            migrationBuilder.InsertData(
-                schema: "Seguridad",
-                table: "rolUser",
-                columns: new[] { "Id", "Email", "RolId", "UserId" },
-                values: new object[,]
-                {
-                    { 1, "marcosrojasalvarez09172007@gmail.com", 1, 1 },
-                    { 2, "gentilrojas@gmail.com", 2, 2 }
                 });
 
             migrationBuilder.CreateIndex(
@@ -367,6 +308,10 @@ namespace Entity.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "AuditLogs",
+                schema: "Seguridad");
+
             migrationBuilder.DropTable(
                 name: "formModule");
 

@@ -59,7 +59,7 @@ namespace Data.Repositories
         /// 
         public async Task<User?> getByEmail(string email)
         {
-            return await _context.user.FirstOrDefaultAsync(u => u.Email == email);
+            return await _context.User.FirstOrDefaultAsync(u => u.Email == email);
         }
         /// <summary> 
         /// Metodo para enviar un correo de notificacion
@@ -83,7 +83,7 @@ namespace Data.Repositories
 
         public async Task<User> GetUserWithRolesAsync(int userId)
         {
-            return await _context.user
+            return await _context.User
                 .Include(u => u.RolUsers)
                 .FirstOrDefaultAsync(u => u.Id == userId);
         }

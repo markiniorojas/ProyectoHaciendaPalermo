@@ -30,7 +30,7 @@ namespace Business.Core
             _logger = logger;
         }
         public virtual async Task<List<TDto>> GetAllAsync()
-        { 
+          { 
             var entities = await _repository.GetAllAsync();
             return entities.Adapt<List<TDto>>();
         }

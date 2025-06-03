@@ -51,15 +51,15 @@ namespace Entity.context
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
-            modelBuilder.SeedPerson();
-            modelBuilder.SeedUser();
-            modelBuilder.SeedRol();
-            modelBuilder.SeedRolUser();
-            modelBuilder.SeedForm();
-            modelBuilder.SeedPermission();
-            modelBuilder.SeedModule();
-            modelBuilder.SeedFormModule();
-            modelBuilder.SeedRolFormPermission();
+            //modelBuilder.SeedPerson();
+            //modelBuilder.SeedUser();
+            //modelBuilder.SeedRol();
+            //modelBuilder.SeedRolUser();
+            //modelBuilder.SeedForm();
+            //modelBuilder.SeedPermission();
+            //modelBuilder.SeedModule();
+            //modelBuilder.SeedFormModule();
+            //modelBuilder.SeedRolFormPermission();
         }
 
 

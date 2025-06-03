@@ -22,6 +22,54 @@ namespace Entity.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("Entity.Model.AudiLog", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ActionType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ChangedColumns")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("InformationType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NameTable")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NewValue")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("OldValue")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Timestamp")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AuditLogs", "Seguridad");
+                });
+
             modelBuilder.Entity("Entity.Model.Form", b =>
                 {
                     b.Property<int>("Id")
@@ -30,11 +78,8 @@ namespace Entity.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
+                    b.Property<bool>("Active")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -49,9 +94,6 @@ namespace Entity.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("Url")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -59,35 +101,6 @@ namespace Entity.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("form", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Formulario principal del sistema",
-                            IsDeleted = false,
-                            Name = "Formulario Principal",
-                            Url = "/dashboard"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Formulario para administración de usuarios",
-                            IsDeleted = false,
-                            Name = "Gestión de Usuarios",
-                            Url = "/usuarios"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Formulario para visualizar reportes",
-                            IsDeleted = false,
-                            Name = "Reportes",
-                            Url = "/reportes"
-                        });
                 });
 
             modelBuilder.Entity("Entity.Model.FormModule", b =>
@@ -98,11 +111,8 @@ namespace Entity.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
+                    b.Property<bool>("Active")
+                        .HasColumnType("bit");
 
                     b.Property<int>("FormId")
                         .HasColumnType("int");
@@ -113,8 +123,9 @@ namespace Entity.Migrations
                     b.Property<int>("ModuleId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -123,32 +134,6 @@ namespace Entity.Migrations
                     b.HasIndex("ModuleId");
 
                     b.ToTable("formModule", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FormId = 1,
-                            IsDeleted = false,
-                            ModuleId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FormId = 2,
-                            IsDeleted = false,
-                            ModuleId = 1
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FormId = 2,
-                            IsDeleted = false,
-                            ModuleId = 2
-                        });
                 });
 
             modelBuilder.Entity("Entity.Model.Module", b =>
@@ -159,11 +144,8 @@ namespace Entity.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
+                    b.Property<bool>("Active")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -178,38 +160,9 @@ namespace Entity.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
                     b.HasKey("Id");
 
                     b.ToTable("module", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Módulo de administración general",
-                            IsDeleted = false,
-                            Name = "Administración"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Control y mantenimiento de usuarios",
-                            IsDeleted = false,
-                            Name = "Gestión de usuarios"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Visualización y exportación de reportes",
-                            IsDeleted = false,
-                            Name = "Reportes"
-                        });
                 });
 
             modelBuilder.Entity("Entity.Model.Permission", b =>
@@ -220,11 +173,8 @@ namespace Entity.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
+                    b.Property<bool>("Active")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -239,49 +189,12 @@ namespace Entity.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
                     b.HasKey("Id");
 
                     b.HasIndex("Name")
                         .IsUnique();
 
                     b.ToTable("permission", "Seguridad");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Permite crear registros",
-                            IsDeleted = false,
-                            Name = "Crear"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Permite editar registros",
-                            IsDeleted = false,
-                            Name = "Editar"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Permite eliminar registros",
-                            IsDeleted = false,
-                            Name = "Eliminar"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Permite ver registros",
-                            IsDeleted = false,
-                            Name = "Ver"
-                        });
                 });
 
             modelBuilder.Entity("Entity.Model.Person", b =>
@@ -292,13 +205,10 @@ namespace Entity.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                    b.Property<bool>("Active")
+                        .HasColumnType("bit");
 
                     b.Property<DateTime>("DateBorn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Document")
@@ -333,6 +243,10 @@ namespace Entity.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -340,44 +254,9 @@ namespace Entity.Migrations
                     b.Property<bool>("RelatedPerson")
                         .HasColumnType("bit");
 
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
                     b.HasKey("Id");
 
                     b.ToTable("person", "Seguridad");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateBorn = new DateTime(1990, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Document = "1075455",
-                            DocumentType = "TI",
-                            Eps = "Nueva EPS",
-                            FirstName = "Marcos",
-                            Genero = "Masculino",
-                            IsDeleted = false,
-                            LastName = "Rojas Alvarez",
-                            PhoneNumber = "30012345",
-                            RelatedPerson = false
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateBorn = new DateTime(1965, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Document = "121243333",
-                            DocumentType = "CC",
-                            Eps = "Sura",
-                            FirstName = "Gentil",
-                            Genero = "Masculino",
-                            IsDeleted = false,
-                            LastName = "Rojas Cortes",
-                            PhoneNumber = "30198763",
-                            RelatedPerson = true
-                        });
                 });
 
             modelBuilder.Entity("Entity.Model.Rol", b =>
@@ -388,11 +267,8 @@ namespace Entity.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
+                    b.Property<bool>("Active")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -409,30 +285,9 @@ namespace Entity.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
                     b.HasKey("Id");
 
                     b.ToTable("rol", "Seguridad");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Rol con todos los permisos del sistema",
-                            IsDeleted = false,
-                            Name = "Administrador"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Rol con permisos limitados",
-                            IsDeleted = false,
-                            Name = "Usuario"
-                        });
                 });
 
             modelBuilder.Entity("Entity.Model.RolFormPermission", b =>
@@ -443,11 +298,8 @@ namespace Entity.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
+                    b.Property<bool>("Active")
+                        .HasColumnType("bit");
 
                     b.Property<int>("FormId")
                         .HasColumnType("int");
@@ -455,14 +307,15 @@ namespace Entity.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("PermissionId")
                         .HasColumnType("int");
 
                     b.Property<int>("RolId")
                         .HasColumnType("int");
-
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -473,35 +326,6 @@ namespace Entity.Migrations
                     b.HasIndex("RolId");
 
                     b.ToTable("rolFormPermission", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FormId = 1,
-                            IsDeleted = false,
-                            PermissionId = 1,
-                            RolId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FormId = 1,
-                            IsDeleted = false,
-                            PermissionId = 2,
-                            RolId = 1
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FormId = 2,
-                            IsDeleted = false,
-                            PermissionId = 4,
-                            RolId = 2
-                        });
                 });
 
             modelBuilder.Entity("Entity.Model.RolUser", b =>
@@ -512,11 +336,8 @@ namespace Entity.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
+                    b.Property<bool>("Active")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -528,11 +349,12 @@ namespace Entity.Migrations
                         .HasColumnType("bit")
                         .HasDefaultValue(false);
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("RolId")
                         .HasColumnType("int");
-
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
@@ -544,26 +366,6 @@ namespace Entity.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("rolUser", "Seguridad");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "marcosrojasalvarez09172007@gmail.com",
-                            IsDeleted = false,
-                            RolId = 1,
-                            UserId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "gentilrojas@gmail.com",
-                            IsDeleted = false,
-                            RolId = 2,
-                            UserId = 2
-                        });
                 });
 
             modelBuilder.Entity("Entity.Model.User", b =>
@@ -579,12 +381,6 @@ namespace Entity.Migrations
                         .HasColumnType("bit")
                         .HasDefaultValue(true);
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -595,6 +391,10 @@ namespace Entity.Migrations
                         .HasColumnType("bit")
                         .HasDefaultValue(false);
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -603,36 +403,11 @@ namespace Entity.Migrations
                     b.Property<int?>("PersonId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
                     b.HasKey("Id");
 
                     b.HasIndex("PersonId");
 
                     b.ToTable("user", "Seguridad");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Active = true,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "marcosrojasalvarez09172007@gmail.com",
-                            IsDeleted = false,
-                            Password = "1234",
-                            PersonId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Active = true,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "gentilrojas@gmail.com",
-                            IsDeleted = false,
-                            Password = "123",
-                            PersonId = 2
-                        });
                 });
 
             modelBuilder.Entity("Entity.Model.FormModule", b =>
